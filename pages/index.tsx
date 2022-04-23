@@ -3,12 +3,12 @@ import Head from "next/head";
 
 const Home: NextPage = () => {
   const styles = {
-    container: "flex items-center",
-    column: "w-[50%]",
+    container: "flex flex-col sm:flex-row sm:items-center",
+    column: "p-[20px] sm:w-[50%]",
     title:
-      "w-1/2 text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
+      "text-4xl font-extrabold sm:w-1/2 sm:text-5xl sm:tracking-tight lg:text-6xl",
     info: "mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl",
-    image: "w-[40%]",
+    image: "sm:w-[40%]",
   };
 
   return (
