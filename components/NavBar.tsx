@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 export const NavBar = () => {
   const navItems = [
     {
       text: "Get Benefits",
-      href: "/",
+      href: "/benefits",
     },
     {
       text: "Become a partner",
@@ -20,16 +22,18 @@ export const NavBar = () => {
 
   const RenderItems = () => {
     return navItems.map((item, index) => (
-      <button key={index} className={styles.button}>
-        {item.text}
-      </button>
+      <Link key={index} href={item.href}>
+        <a className={styles.button}>{item.text}</a>
+      </Link>
     ));
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.logo}>
-        <a href="/">B3NZ</a>
+        <Link href="/">
+          <a>B3NZ</a>
+        </Link>
       </h1>
       <div className={styles.itemsDesktopContainer}>{RenderItems()}</div>
     </div>

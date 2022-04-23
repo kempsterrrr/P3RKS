@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const Home: NextPage = () => {
   const styles = {
-    container: "flex flex-col sm:flex-row sm:items-center",
+    container: "flex flex-col sm:flex-row sm:items-center border-4",
     column: "p-[20px] sm:w-[50%]",
     title:
       "text-4xl font-extrabold sm:w-1/2 sm:text-5xl sm:tracking-tight lg:text-6xl",
