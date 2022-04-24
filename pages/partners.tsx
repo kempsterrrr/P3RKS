@@ -11,7 +11,7 @@ const Partners: NextPage = () => {
     subtitle: "font-bold text-gray-500",
     title: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
     info: "text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl",
-    buttonContainer: "space-y-2",
+    buttonContainer: "h-[90px] space-y-2",
     button:
       "px-6 py-3 w-full inline-flex justify-center font-medium text-white bg-black rounded-md shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2 lg:w-fit",
     imageContainer: "md:w-[50%]",
