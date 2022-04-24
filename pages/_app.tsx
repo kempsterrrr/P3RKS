@@ -12,7 +12,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className={styles.container}>
       <NavBar />
-      <hr />
       <div className={styles.body}>
         <Component {...pageProps} />
       </div>

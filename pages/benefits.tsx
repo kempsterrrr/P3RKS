@@ -78,15 +78,15 @@ const Benefits: NextPage = () => {
   ];
 
   const styles = {
-    container: "p-[20px] flex flex-col space-y-[30px]",
+    container: "p-5 flex flex-col space-y-5",
     title: "text-3xl font-bold",
-    categoriesContainer: "space-y-[12px]",
-    categoriesList: "space-x-2 flex",
+    categoriesContainer: "space-y-3",
+    categoriesList: "space-x-3 flex",
     categoryContainer:
       "py-[5px] px-[10px] bg-zinc-300 rounded-md border-[1px] shadow-sm hover:cursor-pointer",
     itemsContainer:
-      "space-y-12 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8",
-    item: "p-[20px] border-[1px] shadow-sm  rounded-lg space-y-5",
+      "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
+    item: "p-5 border-[1px] shadow-sm  rounded-lg space-y-5",
     itemImage: "object-cover",
     itemTitle: "text-lg leading-6 font-medium space-y-1",
     itemInfo: "text-lg text-gray-500",
