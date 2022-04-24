@@ -38,7 +38,7 @@ const Partners: NextPage = () => {
             thousands of DAO contributors building the future.
           </p>
           <div className={styles.buttonContainer}>
-            <p>Drop us your details and we'll be in touch!</p>
+            <p>Drop us your details and we will be in touch!</p>
             <Link href="https://airtable.com/shrZZn6ZKZfvrUqDX">
               <a className={styles.button}>Become a Partner Fren</a>
             </Link>
