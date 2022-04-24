@@ -30,7 +30,7 @@ export const NavBar = () => {
     mobileMenuPanelContainer: "sm:hidden",
     mobileMenuPanelItems: "pt-2 pb-3 space-y-1",
     mobileMenuNavItem:
-      "border-black block pl-2 py-2 border-l-4 text-base font-medium",
+      "border-black block pl-2 py-2 border-l-4 bg-gray-300 text-base font-medium",
   };
 
   const RenderItems = (type = "desktop") => {
