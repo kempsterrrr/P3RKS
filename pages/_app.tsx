@@ -1,20 +1,23 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { NavBar } from "../components/NavBar";
+import { Footer } from "../components/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const styles = {
+    container: "min-h-screen flex flex-col",
+    body: "max-w-[1400px] mx-auto grow",
+  };
+
   return (
-    <>
-      <div className='container mx-auto py-4'>
-        <Header />
-        <div className='p-10'>
-          <Component {...pageProps} />
-        </div>
-        <Footer />
+    <div className={styles.container}>
+      <NavBar />
+      <div className={styles.body}>
+        <Component {...pageProps} />
       </div>
-    </>
-  )
+      <Footer />
+    </div>
+  );
 }
 
-export default MyApp
+export default MyApp;
