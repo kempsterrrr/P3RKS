@@ -10,7 +10,7 @@ export const NavBar = () => {
     },
     {
       text: "Become a partner",
-      href: "/",
+      href: "/partners",
     },
   ];
 
