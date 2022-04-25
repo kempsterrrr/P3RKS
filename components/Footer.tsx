@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
 
-export const Footer = () => {
-  const styles = {
-    container:
-      "p-[20px] max-w-[1400px] w-full mx-auto space-x-4 flex justify-center sm:justify-between",
-    text: "text-gray-400",
-    icon: "w-6 h-6 text-gray-400 hover:text-gray-500",
-  };
+const styles = {
+  container:
+    "p-[20px] max-w-[1400px] w-full mx-auto space-x-4 flex justify-center sm:justify-between",
+  text: "text-gray-400",
+  icon: "w-6 h-6 text-gray-400 hover:text-gray-500",
+};
 
+export const Footer = () => {
   return (
     <footer className={styles.container}>
       <p className={styles.text}>benz</p>
