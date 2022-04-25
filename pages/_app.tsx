@@ -3,12 +3,12 @@ import type { AppProps } from "next/app";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const styles = {
-    container: "min-h-screen flex flex-col",
-    body: "max-w-[1400px] mx-auto flex grow",
-  };
+const styles = {
+  container: "min-h-screen flex flex-col",
+  body: "max-w-[1400px] mx-auto flex grow",
+};
 
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className={styles.container}>
       <NavBar />
