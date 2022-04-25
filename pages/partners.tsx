@@ -47,7 +47,7 @@ const Partners: NextPage = () => {
         <div>
           <img
             className={styles.image}
-            src="https://www.b3nz.xyz/images/partners-hero.jpeg"
+            src="/partners-hero.jpeg"
             alt="cyber world"
           />
         </div>

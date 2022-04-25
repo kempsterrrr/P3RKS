@@ -43,11 +43,7 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div>
-          <img
-            className={styles.image}
-            src="https://www.b3nz.xyz/images/home-page-hero-2.jpg"
-            alt="cyber world"
-          />
+          <img className={styles.image} src="/hero.jpg" alt="cyber world" />
         </div>
       </main>
     </>
