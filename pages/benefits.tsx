@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { SuggestConnectModal } from "../components/SuggestConnectModal";
 
 const styles = {
   container: "p-5 flex flex-col space-y-5",
@@ -140,6 +141,7 @@ const Benefits: NextPage = () => {
           ))}
         </ul>
       </main>
+      <SuggestConnectModal />
     </>
   );
 };

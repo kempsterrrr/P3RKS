@@ -9,7 +9,7 @@ const styles = {
   logoText: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
   desktopMenuContainer: "hidden sm:flex sm:space-x-3",
   desktopMenuNavItem:
-    "inline-flex items-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
+    "px-6 py-3 w-[180px] h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
   mobileMenuContainer: "flex items-center sm:hidden",
   mobileMenuButton:
     "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black",
@@ -30,7 +30,7 @@ const navItems = [
   },
 ];
 
-export const NavBar = () => {
+const NavBar = () => {
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -50,6 +50,9 @@ export const NavBar = () => {
                     <a className={styles.desktopMenuNavItem}>{item.text}</a>
                   </Link>
                 ))}
+                <Link href="">
+                  <a className={styles.desktopMenuNavItem}>Connect Wallet</a>
+                </Link>
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -89,3 +92,5 @@ export const NavBar = () => {
     </>
   );
 };
+
+export default NavBar;
