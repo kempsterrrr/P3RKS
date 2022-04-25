@@ -30,7 +30,7 @@ const navItems = [
   },
 ];
 
-export const NavBar = () => {
+const NavBar = () => {
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -92,3 +92,5 @@ export const NavBar = () => {
     </>
   );
 };
+
+export default NavBar;

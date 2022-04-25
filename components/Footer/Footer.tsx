@@ -8,7 +8,7 @@ const styles = {
   icon: "w-6 h-6 text-gray-400 hover:text-gray-500",
 };
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className={styles.container}>
       <p className={styles.text}>benz</p>
@@ -21,3 +21,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
