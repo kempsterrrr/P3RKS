@@ -56,7 +56,7 @@ const NavBar = () => {
       setConnected(false);
     }
   }, [account, setWalletAddress, setConnected]);
-  console.log(!connectors[0].ready);
+
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
