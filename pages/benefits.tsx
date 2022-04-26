@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import useStore from "../stores/useStore";
 import Head from "next/head";
 import { SuggestConnectModal } from "../components/SuggestConnectModal";
 
@@ -11,10 +12,13 @@ const styles = {
     "py-[5px] px-[10px] bg-zinc-300 rounded-md border-[1px] shadow-sm hover:cursor-pointer",
   itemsContainer:
     "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
-  item: "p-5 border-[1px] shadow-sm  rounded-lg space-y-5",
+  item: "p-5 border-[1px] shadow-sm rounded-lg flex flex-col space-y-5",
+  itemTopContainer: "grow",
   itemImage: "object-cover",
   itemTitle: "text-lg leading-6 font-medium space-y-1",
   itemInfo: "text-lg text-gray-500",
+  button:
+    "px-6 py-3 w-full h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
 };
 
 const categories = ["All", "Education", "Developer", "Beginner"];
@@ -93,6 +97,8 @@ const items = [
 ];
 
 const Benefits: NextPage = () => {
+  const { connected } = useStore((state) => state.user);
+
   return (
     <>
       <Head>
@@ -114,29 +120,32 @@ const Benefits: NextPage = () => {
         <ul role="list" className={styles.itemsContainer}>
           {items.map((item, index) => (
             <li className={styles.item} key={index}>
-              <img className={styles.itemImage} src={item.image} alt="" />
-              <div>
-                <h3 className={styles.itemTitle}>
-                  {`About ${item.title}`.toUpperCase()}
-                </h3>
-                <p className={styles.itemInfo}>
-                  Lucas ipsum dolor sit amet wicket cathar kel gavyn zannah nien
-                  qu mirialan falleen saleucami.
-                </p>
+              <div className={styles.itemTopContainer}>
+                <img className={styles.itemImage} src={item.image} alt="" />
+                <div>
+                  <h3 className={styles.itemTitle}>
+                    {`About ${item.title}`.toUpperCase()}
+                  </h3>
+                  <p className={styles.itemInfo}>
+                    Lucas ipsum dolor sit amet wicket cathar kel gavyn zannah
+                    nien qu mirialan falleen saleucami.
+                  </p>
+                </div>
+                <div>
+                  <h3 className={styles.itemTitle}>Benefit</h3>
+                  <p className={styles.itemInfo}>{item.benefits}</p>
+                </div>
+                <ul role="list" className={styles.categoriesList}>
+                  {item.categories.map((item, index) => {
+                    return (
+                      <div key={index} className={styles.categoryContainer}>
+                        {item}
+                      </div>
+                    );
+                  })}
+                </ul>
               </div>
-              <div>
-                <h3 className={styles.itemTitle}>Benefit</h3>
-                <p className={styles.itemInfo}>{item.benefits}</p>
-              </div>
-              <ul role="list" className={styles.categoriesList}>
-                {item.categories.map((item, index) => {
-                  return (
-                    <div key={index} className={styles.categoryContainer}>
-                      {item}
-                    </div>
-                  );
-                })}
-              </ul>
+              {connected && <button className={styles.button}>Redeem</button>}
             </li>
           ))}
         </ul>

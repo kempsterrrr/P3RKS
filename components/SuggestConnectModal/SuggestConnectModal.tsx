@@ -1,3 +1,6 @@
+import useStore from "../../stores/useStore";
+import shallow from "zustand/shallow";
+import { useConnect } from "wagmi";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -19,7 +22,20 @@ const styles = {
 };
 
 const SuggestConnectModal = () => {
-  const [open, setOpen] = useState(true);
+  const user = useStore((state) => state.user);
+  const [open, setOpen] = useState(!user.connected);
+  const { connect, connectors, error, isConnecting, pendingConnector } =
+    useConnect();
+
+  const handleConnect = () => {
+    connect(connectors[0]);
+    setOpen(false);
+  };
+
+  const handleBrowse = () => {
+    setOpen(false);
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -66,16 +82,23 @@ const SuggestConnectModal = () => {
               </div>
               <div className={styles.buttonsContainer}>
                 <button
-                  type="button"
                   className={styles.button}
-                  onClick={() => console.log(false)}
+                  disabled={!connectors[0].ready}
+                  key={connectors[0].id}
+                  onClick={handleConnect}
                 >
                   Connect Wallet
+                  {!connectors[0].ready && " (unsupported)"}
+                  {isConnecting &&
+                    connectors[0].id === pendingConnector?.id &&
+                    " (connecting)"}
                 </button>
+                {/* move error handleing to side notifications or alert */}
+                {error && <div>{error.message}</div>}
                 <button
                   type="button"
                   className={styles.button}
-                  onClick={() => setOpen(false)}
+                  onClick={handleBrowse}
                 >
                   Just Browse
                 </button>

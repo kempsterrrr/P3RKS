@@ -1,7 +1,17 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { Provider, createClient } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
+
+// Set up connectors
+const client = createClient({
+  autoConnect: true,
+  connectors() {
+    return [new InjectedConnector()];
+  },
+});
 
 const styles = {
   container: "min-h-screen flex flex-col",
@@ -10,13 +20,15 @@ const styles = {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={styles.container}>
-      <NavBar />
-      <div className={styles.body}>
-        <Component {...pageProps} />
+    <Provider client={client}>
+      <div className={styles.container}>
+        <NavBar />
+        <div className={styles.body}>
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Provider>
   );
 }
 

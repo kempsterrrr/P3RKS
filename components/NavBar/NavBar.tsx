@@ -1,3 +1,7 @@
+import useStore from "../../stores/useStore";
+import shallow from "zustand/shallow";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useEffect } from "react";
 import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -31,6 +35,28 @@ const navItems = [
 ];
 
 const NavBar = () => {
+  const { setWalletAddress, setConnected } = useStore(
+    (state) => ({
+      setWalletAddress: state.setWalletAddress,
+      setConnected: state.setConnected,
+    }),
+    shallow
+  );
+  const { data: account } = useAccount();
+  const { connect, connectors, error, isConnecting, pendingConnector } =
+    useConnect();
+  const { disconnect } = useDisconnect();
+
+  useEffect(() => {
+    if (account) {
+      setWalletAddress(account.address!);
+      setConnected(true);
+    } else {
+      setWalletAddress("");
+      setConnected(false);
+    }
+  }, [account, setWalletAddress, setConnected]);
+
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -50,9 +76,35 @@ const NavBar = () => {
                     <a className={styles.desktopMenuNavItem}>{item.text}</a>
                   </Link>
                 ))}
-                <Link href="">
-                  <a className={styles.desktopMenuNavItem}>Connect Wallet</a>
-                </Link>
+                <div>
+                  {account ? (
+                    <button
+                      className={styles.desktopMenuNavItem}
+                      onClick={() => disconnect()}
+                    >
+                      {`${account!.address!.substring(
+                        0,
+                        4
+                      )}...${account!.address!.substring(
+                        account!.address!.length - 4
+                      )}`.toUpperCase()}
+                    </button>
+                  ) : (
+                    <button
+                      className={styles.desktopMenuNavItem}
+                      key={connectors[0].id}
+                      onClick={() => connect(connectors[0])}
+                    >
+                      Connect Wallet
+                      {!connectors[0].ready && " (unsupported)"}
+                      {isConnecting &&
+                        connectors[0].id === pendingConnector?.id &&
+                        " (connecting)"}
+                    </button>
+                  )}
+                  {/* move error handleing to side notifications or alert */}
+                  {error && <div>{error.message}</div>}
+                </div>
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
