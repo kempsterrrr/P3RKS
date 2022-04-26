@@ -90,18 +90,20 @@ const NavBar = () => {
                       )}`.toUpperCase()}
                     </button>
                   ) : (
-                    <button
-                      className={styles.desktopMenuNavItem}
-                      disabled={!connectors[0].ready}
-                      key={connectors[0].id}
-                      onClick={() => connect(connectors[0])}
-                    >
-                      Connect Wallet
-                      {!connectors[0].ready && " (unsupported)"}
-                      {isConnecting &&
-                        connectors[0].id === pendingConnector?.id &&
-                        " (connecting)"}
-                    </button>
+                    <>
+                      <button
+                        className={styles.desktopMenuNavItem}
+                        disabled={!connectors[0].ready}
+                        key={connectors[0].id}
+                        onClick={() => connect(connectors[0])}
+                      >
+                        Connect Wallet
+                        {!connectors[0].ready && " (unsupported)"}
+                        {isConnecting &&
+                          connectors[0].id === pendingConnector?.id &&
+                          " (connecting)"}
+                      </button>
+                    </>
                   )}
                   {/* move error handleing to side notifications or alert */}
                   {error && <div>{error.message}</div>}
