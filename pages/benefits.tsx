@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import useStore from "../stores/useStore";
 import Head from "next/head";
 import { SuggestConnectModal } from "../components/SuggestConnectModal";
 
@@ -15,6 +16,8 @@ const styles = {
   itemImage: "object-cover",
   itemTitle: "text-lg leading-6 font-medium space-y-1",
   itemInfo: "text-lg text-gray-500",
+  button:
+    "px-6 py-3 w-full h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
 };
 
 const categories = ["All", "Education", "Developer", "Beginner"];
@@ -93,6 +96,8 @@ const items = [
 ];
 
 const Benefits: NextPage = () => {
+  const { connected } = useStore((state) => state.user);
+
   return (
     <>
       <Head>
@@ -137,6 +142,7 @@ const Benefits: NextPage = () => {
                   );
                 })}
               </ul>
+              {connected && <button className={styles.button}>Redeem</button>}
             </li>
           ))}
         </ul>
