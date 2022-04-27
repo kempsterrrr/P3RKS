@@ -1,11 +1,7 @@
-import useStore from "../../stores/useStore";
-import shallow from "zustand/shallow";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { useEffect } from "react";
 import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-
+import ConnectButton from '../NavBar/ConnectButton'
 const styles = {
   container: "px-5 py-3 mx-auto max-w-[1400px] w-full",
   navContainer: "flex justify-between",
@@ -13,7 +9,7 @@ const styles = {
   logoText: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
   desktopMenuContainer: "hidden sm:flex sm:space-x-3",
   desktopMenuNavItem:
-    "px-6 py-3 w-[180px] h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
+    "py-3 w-[180px] h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
   mobileMenuContainer: "flex items-center sm:hidden",
   mobileMenuButton:
     "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black",
@@ -35,28 +31,6 @@ const navItems = [
 ];
 
 const NavBar = () => {
-  const { setWalletAddress, setConnected } = useStore(
-    (state) => ({
-      setWalletAddress: state.setWalletAddress,
-      setConnected: state.setConnected,
-    }),
-    shallow
-  );
-  const { data: account } = useAccount();
-  const { connect, connectors, error, isConnecting, pendingConnector } =
-    useConnect();
-  const { disconnect } = useDisconnect();
-
-  useEffect(() => {
-    if (account) {
-      setWalletAddress(account.address!);
-      setConnected(true);
-    } else {
-      setWalletAddress("");
-      setConnected(false);
-    }
-  }, [account, setWalletAddress, setConnected]);
-
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -76,35 +50,7 @@ const NavBar = () => {
                     <a className={styles.desktopMenuNavItem}>{item.text}</a>
                   </Link>
                 ))}
-                <div>
-                  {account ? (
-                    <button
-                      className={styles.desktopMenuNavItem}
-                      onClick={() => disconnect()}
-                    >
-                      {`${account!.address!.substring(
-                        0,
-                        4
-                      )}...${account!.address!.substring(
-                        account!.address!.length - 4
-                      )}`.toUpperCase()}
-                    </button>
-                  ) : (
-                    <button
-                      className={styles.desktopMenuNavItem}
-                      key={connectors[0].id}
-                      onClick={() => connect(connectors[0])}
-                    >
-                      Connect Wallet
-                      {!connectors[0].ready && " (unsupported)"}
-                      {isConnecting &&
-                        connectors[0].id === pendingConnector?.id &&
-                        " (connecting)"}
-                    </button>
-                  )}
-                  {/* move error handleing to side notifications or alert */}
-                  {error && <div>{error.message}</div>}
-                </div>
+                <ConnectButton styles={styles} />
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -115,11 +61,11 @@ const NavBar = () => {
                       aria-hidden="true"
                     />
                   ) : (
-                    <MenuIcon
-                      className={styles.mobileMenuIcon}
-                      aria-hidden="true"
-                    />
-                  )}
+                      <MenuIcon
+                        className={styles.mobileMenuIcon}
+                        aria-hidden="true"
+                      />
+                    )}
                 </Disclosure.Button>
               </div>
             </div>
@@ -135,6 +81,7 @@ const NavBar = () => {
                     </Disclosure.Button>
                   </Link>
                 ))}
+                <ConnectButton styles={styles} />
               </div>
             </Disclosure.Panel>
           </>
