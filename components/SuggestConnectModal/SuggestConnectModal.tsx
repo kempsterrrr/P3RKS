@@ -1,8 +1,8 @@
 import useStore from "../../stores/useStore";
-import shallow from "zustand/shallow";
-import { useConnect } from "wagmi";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { ConnectButton } from "../ConnectButton";
+import { Button } from "../Button";
 
 const styles = {
   dialogContainer: "fixed z-10 inset-0 overflow-y-auto",
@@ -17,18 +17,13 @@ const styles = {
   bodyContainer: "mt-2",
   bodyText: "text-sm text-gray-500",
   buttonsContainer: "flex justify-between space-x-3 mt-5 sm:mt-6",
-  button:
-    "px-6 py-3 w-[180px] h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
 };
 
 const SuggestConnectModal = () => {
   const user = useStore((state) => state.user);
   const [open, setOpen] = useState(!user.connected);
-  const { connect, connectors, error, isConnecting, pendingConnector } =
-    useConnect();
 
-  const handleConnect = () => {
-    connect(connectors[0]);
+  const onConnect = () => {
     setOpen(false);
   };
 
@@ -38,11 +33,7 @@ const SuggestConnectModal = () => {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className={styles.dialogContainer}
-        onClose={() => setOpen(true)} //prevents user to close modal by clicking outside
-      >
+      <Dialog as="div" className={styles.dialogContainer} onClose={setOpen}>
         <div className={styles.container}>
           <Transition.Child
             as={Fragment}
@@ -81,27 +72,10 @@ const SuggestConnectModal = () => {
                 </div>
               </div>
               <div className={styles.buttonsContainer}>
-                <button
-                  className={styles.button}
-                  disabled={!connectors[0].ready}
-                  key={connectors[0].id}
-                  onClick={handleConnect}
-                >
-                  Connect Wallet
-                  {!connectors[0].ready && " (unsupported)"}
-                  {isConnecting &&
-                    connectors[0].id === pendingConnector?.id &&
-                    " (connecting)"}
-                </button>
-                {/* move error handleing to side notifications or alert */}
-                {error && <div>{error.message}</div>}
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={handleBrowse}
-                >
+                <ConnectButton onConnect={onConnect} />
+                <Button as="button" onClick={handleBrowse}>
                   Just Browse
-                </button>
+                </Button>
               </div>
             </div>
           </Transition.Child>
