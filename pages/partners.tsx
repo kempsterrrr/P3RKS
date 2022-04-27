@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import Head from "next/head";
+import { Button } from "../components/Button";
 
 const styles = {
   container:
@@ -11,8 +11,6 @@ const styles = {
   title: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
   info: "text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl",
   buttonContainer: "h-[90px] space-y-2",
-  button:
-    "px-6 py-3 w-full inline-flex justify-center font-medium text-white bg-black rounded-md shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2 lg:w-fit",
   imageContainer: "md:w-[50%]",
   image: "rounded-md",
 };
@@ -39,9 +37,13 @@ const Partners: NextPage = () => {
           </p>
           <div className={styles.buttonContainer}>
             <p>Drop us your details and we will be in touch!</p>
-            <Link href="https://airtable.com/shrZZn6ZKZfvrUqDX">
-              <a className={styles.button}>Become a Partner Fren</a>
-            </Link>
+            <Button
+              as="link"
+              href="https://airtable.com/shrZZn6ZKZfvrUqDX"
+              style="!w-full lg:!w-[200px]"
+            >
+              Become a Partner Fren
+            </Button>
           </div>
         </div>
         <div>
