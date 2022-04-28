@@ -4,6 +4,8 @@ import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
 import { Button } from "../Button";
+import Notification from '../Notifications/Notification'
+import Portal from '../Notifications/Portal'
 
 const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
   const { connect, connectors, error, isConnecting, pendingConnector } =
@@ -60,7 +62,8 @@ const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
         </Button>
       )}
       {/* move error handleing to side notifications or alert */}
-      {error && <div>{error.message}</div>}
+
+      {error && <Portal><Notification notification={error.message} isError={true} /></Portal>}
     </div>
   );
 };
