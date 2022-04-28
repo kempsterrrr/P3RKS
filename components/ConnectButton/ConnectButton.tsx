@@ -4,6 +4,7 @@ import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
 import { Button } from "../Button";
+import ErrorToast from '../NavBar/ErrorToast'
 
 const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
   const { connect, connectors, error, isConnecting, pendingConnector } =
@@ -60,7 +61,8 @@ const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
         </Button>
       )}
       {/* move error handleing to side notifications or alert */}
-      {error && <div>{error.message}</div>}
+
+      {error && <ErrorToast error={error} />}
     </div>
   );
 };
