@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider client={client}>
       <div className={styles.container}>
         <NavBar />
-        <div className={styles.body}>
+        <div id="body" className={styles.body}>
           <Component {...pageProps} />
         </div>
         <Footer />
