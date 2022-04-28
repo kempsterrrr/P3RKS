@@ -13,7 +13,7 @@ const styles = {
   itemsContainer:
     "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
   item: "p-5 border-[1px] shadow-sm rounded-lg flex flex-col space-y-5",
-  itemTopContainer: "grow",
+  itemTopContainer: "grow space-y-3",
   itemImage: "object-cover",
   itemTitle: "text-lg leading-6 font-medium space-y-1",
   itemInfo: "text-lg text-gray-500",
