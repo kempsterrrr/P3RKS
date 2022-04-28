@@ -1,4 +1,3 @@
-import { ReactDOM } from 'react'
 import { Fragment, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/outline'
