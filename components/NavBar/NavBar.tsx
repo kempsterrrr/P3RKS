@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { Button } from "../Button";
-import { ConnectButton } from "../ConnectButton";
+import { ConnectWallet } from "../ConnectWallet";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const styles = {
@@ -50,7 +50,7 @@ const NavBar = () => {
                     {item.text}
                   </Button>
                 ))}
-                <ConnectButton />
+                <ConnectWallet />
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -81,7 +81,7 @@ const NavBar = () => {
                     {item.text}
                   </Button>
                 ))}
-                <ConnectButton />
+                <ConnectWallet />
               </div>
             </Disclosure.Panel>
           </>

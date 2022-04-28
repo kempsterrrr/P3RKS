@@ -1,7 +1,7 @@
 import useStore from "../../stores/useStore";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ConnectButton } from "../ConnectButton";
+import { ConnectWallet } from "../ConnectWallet";
 import { Button } from "../Button";
 
 const styles = {
@@ -72,7 +72,7 @@ const SuggestConnectModal = () => {
                 </div>
               </div>
               <div className={styles.buttonsContainer}>
-                <ConnectButton onConnect={onConnect} />
+                <ConnectWallet onConnect={onConnect} />
                 <Button as="button" onClick={handleBrowse}>
                   Just Browse
                 </Button>

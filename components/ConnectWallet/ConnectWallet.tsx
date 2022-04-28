@@ -1,15 +1,20 @@
-import { ConnectButtonProps } from "./ConnectButton.types";
+import { ConnectWalletProps } from "./ConnectWallet.types";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
 import { Button } from "../Button";
-import Notification from '../Notifications/Notification'
-import Portal from '../Notifications/Portal'
+import { Notification } from "../Notification";
 
-const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
-  const { connect, connectors, error, isConnecting, pendingConnector } =
-    useConnect();
+const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
+  const {
+    connect,
+    connectors,
+    error,
+    isConnecting,
+    isConnected,
+    pendingConnector,
+  } = useConnect();
   const { disconnect } = useDisconnect();
   const { data: account } = useAccount();
   const { setWalletAddress, setConnected } = useStore(
@@ -19,6 +24,8 @@ const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
     }),
     shallow
   );
+
+  console.log(connect);
 
   useEffect(() => {
     if (account) {
@@ -36,7 +43,7 @@ const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
 
   const handleConnect = () => {
     connect(connectors[0]);
-    if (onConnect) {
+    if (onConnect && isConnected) {
       onConnect();
     }
   };
@@ -63,9 +70,15 @@ const ConnectButton: React.FC<ConnectButtonProps> = ({ onConnect }) => {
       )}
       {/* move error handleing to side notifications or alert */}
 
-      {error && <Portal><Notification notification={error.message} isError={true} /></Portal>}
+      {error && (
+        <Notification
+          isError={true}
+          title="Wallet Connection"
+          body={error.message}
+        />
+      )}
     </div>
   );
 };
 
-export default ConnectButton;
+export default ConnectWallet;
