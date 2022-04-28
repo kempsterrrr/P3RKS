@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Image from "next/image";
 import Head from "next/head";
 import { Button } from "../components/Button";
 
@@ -13,6 +12,7 @@ const styles = {
   info: "text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl",
   buttonContainer: "h-[90px] space-y-2",
   imageContainer: "md:w-[50%]",
+  image: "rounded-md",
 };
 
 const Home: NextPage = () => {
