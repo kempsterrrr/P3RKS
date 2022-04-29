@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className={styles.container}>
         <NavBar />
         <div id="body" className={styles.body}>
+          {/* @ts-ignore: react-dom type issues */}
           <Component {...pageProps} />
         </div>
         <Footer />
