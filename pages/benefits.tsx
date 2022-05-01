@@ -9,11 +9,7 @@ import { Notification } from "../components/Notification";
 
 const styles = {
   container: "p-5 flex flex-col space-y-5",
-  title: "text-3xl font-bold",
-  categoriesContainer: "space-y-3",
-  categoriesList: "space-x-3 flex",
-  categoryContainer:
-    "py-[5px] px-[10px] bg-zinc-300 rounded-md border-[1px] shadow-sm hover:cursor-pointer",
+  title: "text-3xl font-bold m-[0px]",
   itemsContainer:
     "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
   item: "p-5 border-[1px] shadow-sm rounded-lg flex flex-col space-y-5",
@@ -25,8 +21,6 @@ const styles = {
     "px-6 py-3 w-full h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
 };
 
-const categories = ["All", "Education", "Developer", "Beginner"];
-
 const items = [
   {
     id: 0,
@@ -36,7 +30,6 @@ const items = [
     info: "",
     benefits:
       "25 holders will get access to consensys’ flagship blockchain developer bootcamp. raffle based.",
-    categories: ["Education", "Developer"],
   },
   {
     id: 1,
@@ -46,7 +39,6 @@ const items = [
     about: "",
     benefits:
       "5000 holders will receive 40% OFF discount for their first year’s subscription.",
-    categories: ["education", "developer"],
   },
   {
     id: 2,
@@ -56,7 +48,6 @@ const items = [
     about: "",
     benefits:
       "5000 holders will receive a $100 voucher for credits to purchase NFT domains.",
-    categories: ["education", "developer"],
   },
   {
     id: 3,
@@ -66,7 +57,6 @@ const items = [
     about: "",
     benefits:
       "5000 holders will get a 70% off discount to the Bitcoin Prep Course and exam materials.",
-    categories: ["education", "developer"],
   },
   {
     id: 4,
@@ -76,7 +66,6 @@ const items = [
     about: "",
     benefits:
       "All developer holders will have free access to a 5-day camp to learn how to build dApps on the Hyperverse.",
-    categories: ["education", "developer"],
   },
   {
     id: 5,
@@ -86,7 +75,6 @@ const items = [
     about: "",
     benefits:
       "8+ womxn holders will have a scholarship to every cohort forever. Application based.",
-    categories: ["education", "developer"],
   },
   {
     id: 6,
@@ -96,7 +84,6 @@ const items = [
     about: "",
     benefits:
       "10 scholarships for an Introduction to Web3 Course in Spanish. Raffle based.",
-    categories: ["education", "developer"],
   },
 ];
 
@@ -145,16 +132,7 @@ const Benefits: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.container}>
-        <div className={styles.categoriesContainer}>
-          <h2 className={styles.title}>All offers</h2>
-          <ul className={styles.categoriesList}>
-            {categories.map((item, index) => (
-              <div key={index} className={styles.categoryContainer}>
-                {item}
-              </div>
-            ))}
-          </ul>
-        </div>
+        <h2 className={styles.title}>All offers</h2>
         <ul role="list" className={styles.itemsContainer}>
           {items.map((item, index) => (
             <li className={styles.item} key={index}>
@@ -173,15 +151,6 @@ const Benefits: NextPage = () => {
                   <h3 className={styles.itemTitle}>Benefit</h3>
                   <p className={styles.itemInfo}>{item.benefits}</p>
                 </div>
-                <ul role="list" className={styles.categoriesList}>
-                  {item.categories.map((item, index) => {
-                    return (
-                      <div key={index} className={styles.categoryContainer}>
-                        {item}
-                      </div>
-                    );
-                  })}
-                </ul>
               </div>
               {ownsNFT && <button className={styles.button}>Redeem</button>}
             </li>
