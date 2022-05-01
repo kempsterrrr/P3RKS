@@ -28,6 +28,10 @@ const navItems = [
     text: "Become a partner",
     href: "/partners",
   },
+  {
+    text: "Blog",
+    href: "/blog",
+  },
 ];
 
 const NavBar = () => {
