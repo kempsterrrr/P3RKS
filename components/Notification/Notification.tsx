@@ -1,5 +1,5 @@
 import { NotificationProps } from "./Notification.types";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import {
   CheckCircleIcon,
@@ -8,10 +8,10 @@ import {
 import { XIcon } from "@heroicons/react/solid";
 import ReactDOM from "react-dom";
 
-let bodyContainer = null as any;
+let rootContainer = null as any;
 
-if (typeof window !== "undefined") {
-  bodyContainer = document.getElementById("body");
+if (typeof document !== "undefined") {
+  rootContainer = document.getElementById("root");
 }
 
 const styles = {
@@ -38,6 +38,13 @@ const Notification: React.FC<NotificationProps> = ({
   body,
 }) => {
   const [show, setShow] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    return () => setMounted(false);
+  }, []);
 
   const Notification = () => {
     return (
@@ -92,8 +99,9 @@ const Notification: React.FC<NotificationProps> = ({
     );
   };
 
-  return ReactDOM.createPortal(<Notification />, bodyContainer);
+  return mounted
+    ? ReactDOM.createPortal(<Notification />, rootContainer)
+    : null;
 };
 
 export default Notification;
-

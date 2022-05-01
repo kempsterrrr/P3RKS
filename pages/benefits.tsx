@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import useStore from "../stores/useStore";
+import { useState } from "react";
 import Head from "next/head";
 import { SuggestConnectModal } from "../components/SuggestConnectModal";
+import { useContractRead } from "wagmi";
+import GenisisContract from "../abis/GenesisContract.json";
+import { Notification } from "../components/Notification";
 
 const styles = {
   container: "p-5 flex flex-col space-y-5",
@@ -97,7 +101,41 @@ const items = [
 ];
 
 const Benefits: NextPage = () => {
-  const { connected } = useStore((state) => state.user);
+  const { walletAddress } = useStore((state) => state.user);
+  const [ownsNFT, setOwnsNFT] = useState(false);
+  const [error, setError] = useState({ show: false, title: "", message: "" });
+  const { isLoading } = useContractRead(
+    {
+      addressOrName: "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b",
+      contractInterface: GenisisContract.abi,
+    },
+    "balanceOf",
+    {
+      enabled: !!walletAddress,
+      args: walletAddress,
+      onSuccess(data) {
+        if (parseInt(data._hex) > 0) setOwnsNFT(true);
+        else {
+          setOwnsNFT(false);
+          setError({
+            show: true,
+            title: "DEVELOPER DAO NFT NOT FOUND",
+            message: "To redeem any benefits you need a Developer DAO NFT.",
+          });
+        }
+      },
+      onError(error) {
+        setOwnsNFT(false);
+        setError({
+          show: true,
+          title: "SOMETHING WENT WRONG",
+          message: error.toString(),
+        });
+      },
+    }
+  );
+
+  if (isLoading) return <></>;
 
   return (
     <>
@@ -145,11 +183,19 @@ const Benefits: NextPage = () => {
                   })}
                 </ul>
               </div>
-              {connected && <button className={styles.button}>Redeem</button>}
+              {ownsNFT && <button className={styles.button}>Redeem</button>}
             </li>
           ))}
         </ul>
+        {error.show && (
+          <Notification
+            isError={true}
+            title={error.title}
+            body={error.message}
+          />
+        )}
       </main>
+
       <SuggestConnectModal />
     </>
   );

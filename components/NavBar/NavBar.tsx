@@ -6,7 +6,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const styles = {
   container: "px-5 py-3 mx-auto max-w-[1400px] w-full",
-  navContainer: "flex justify-between",
+  navContainer: "flex justify-between items-center",
   logoContainer: "flex flex-shrink-0 flex items-center",
   logoText: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
   desktopMenuContainer: "hidden sm:flex sm:space-x-3",
@@ -42,11 +42,11 @@ const NavBar = () => {
           <>
             <div className={styles.navContainer}>
               <div className={styles.logoContainer}>
-                <h1 className={styles.logoText}>
+                <div className={styles.logoText}>
                   <Link href="/">
                     <a>B3NZ</a>
                   </Link>
-                </h1>
+                </div>
               </div>
               <div className={styles.desktopMenuContainer}>
                 {navItems.map((item) => (

@@ -68,8 +68,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
             " (connecting)"}
         </Button>
       )}
-      {/* move error handleing to side notifications or alert */}
-
       {error && (
         <Notification
           isError={true}
