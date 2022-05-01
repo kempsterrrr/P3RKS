@@ -19,7 +19,7 @@ const styles = {
   description: "mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4",
   gridContainer: "p-5 mt-20 mx-auto grid gap-5 lg:grid-cols-3",
   postContainer:
-    "flex flex-col rounded-lg shadow-sm border-[1px] overflow-hidden cursor-pointer",
+    "flex flex-col rounded-lg shadow border-[1px] overflow-hidden cursor-pointer",
   postImageContainer: "flex-shrink-0",
   postImage: "h-48 w-full object-cover",
   postBody: "flex-1 bg-white p-6 flex flex-col justify-between",

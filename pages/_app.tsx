@@ -4,6 +4,7 @@ import { Provider, createClient } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
+import { SWRConfig } from "swr";
 
 // Set up connectors
 const client = createClient({
@@ -21,14 +22,21 @@ const styles = {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider client={client}>
-      <div id="root" className={styles.container}>
-        <NavBar />
-        <div className={styles.body}>
-          {/* @ts-ignore: react-dom type issues */}
-          <Component {...pageProps} />
+      <SWRConfig
+        value={{
+          fetcher: (resource: any, init: any) =>
+            fetch(resource, init).then((res) => res.json()),
+        }}
+      >
+        <div id="root" className={styles.container}>
+          <NavBar />
+          <div className={styles.body}>
+            {/* @ts-ignore: react-dom type issues */}
+            <Component {...pageProps} />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </SWRConfig>
     </Provider>
   );
 }
