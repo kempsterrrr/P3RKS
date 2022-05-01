@@ -21,9 +21,9 @@ const styles = {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider client={client}>
-      <div className={styles.container}>
+      <div id="root" className={styles.container}>
         <NavBar />
-        <div id="body" className={styles.body}>
+        <div className={styles.body}>
           {/* @ts-ignore: react-dom type issues */}
           <Component {...pageProps} />
         </div>
