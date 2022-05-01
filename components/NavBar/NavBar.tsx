@@ -1,5 +1,7 @@
-import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { Disclosure } from "@headlessui/react";
 import { Button } from "../Button";
 import { ConnectWallet } from "../ConnectWallet";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -35,6 +37,8 @@ const navItems = [
 ];
 
 const NavBar = () => {
+  const router = useRouter();
+  console.log(router.pathname === navItems[0].href)
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -50,9 +54,11 @@ const NavBar = () => {
               </div>
               <div className={styles.desktopMenuContainer}>
                 {navItems.map((item) => (
-                  <Button key={item.text} as="link" href={item.href}>
-                    {item.text}
-                  </Button>
+                  <Link key={item.text} href={item.href}>
+                    <a className={`inline-flex items-center p-2 mr-4 text-lg ${router.pathname === item.href ? "text-blue-500 drop-shadow-sm" : ""}`}>
+                      {item.text}
+                    </a>
+                  </Link>
                 ))}
                 <ConnectWallet />
               </div>
@@ -76,14 +82,11 @@ const NavBar = () => {
             <Disclosure.Panel className={styles.mobileMenuPanelContainer}>
               <div className={styles.mobileMenuPanelItems}>
                 {navItems.map((item) => (
-                  <Button
-                    key={item.text}
-                    as="link"
-                    className={styles.mobileMenuNavItem}
-                    href={item.href}
-                  >
-                    {item.text}
-                  </Button>
+                  <Link key={item.text} href={item.href}>
+                    <a className={`block pl-2 py-2 text-base font-medium ${router.pathname === item.href ? "text-blue-500 drop-shadow-sm" : ""}`}>
+                      {item.text}
+                    </a>
+                  </Link>
                 ))}
                 <ConnectWallet />
               </div>
