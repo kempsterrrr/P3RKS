@@ -6,91 +6,28 @@ import { SuggestConnectModal } from "../components/SuggestConnectModal";
 import { useContractRead } from "wagmi";
 import GenisisContract from "../abis/GenesisContract.json";
 import { Notification } from "../components/Notification";
+import useSWR from "swr";
 
 const styles = {
   container: "p-5 flex flex-col space-y-5",
   title: "text-3xl font-bold m-[0px]",
   itemsContainer:
     "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
-  item: "p-5 border-[1px] shadow-sm rounded-lg flex flex-col space-y-5",
+  item: "p-5 border-[1px] shadow rounded-lg flex flex-col space-y-5",
   itemTopContainer: "grow space-y-3",
   itemImage: "object-cover",
   itemTitle: "text-lg leading-6 font-medium space-y-1",
   itemInfo: "text-lg text-gray-500",
   button:
-    "px-6 py-3 w-full h-[60px] inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
+    "px-6 py-3 w-full h-[60px] cursor:pointer inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
 };
 
-const items = [
-  {
-    id: 0,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/consensys-353x241x0x22x353x197x1649542842.jpg",
-    title: "consensys",
-    info: "",
-    benefits:
-      "25 holders will get access to consensys’ flagship blockchain developer bootcamp. raffle based.",
-  },
-  {
-    id: 1,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/crypto-tax-353x241x0x22x353x197x1649542866.jpg",
-    title: "Crypto Tax Calculator",
-    about: "",
-    benefits:
-      "5000 holders will receive 40% OFF discount for their first year’s subscription.",
-  },
-  {
-    id: 2,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/unstoppable-domains-354x241x0x22x354x198x1649542975.jpg",
-    title: "Unstoppable Domains",
-    about: "",
-    benefits:
-      "5000 holders will receive a $100 voucher for credits to purchase NFT domains.",
-  },
-  {
-    id: 3,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/c4-346x236x0x21x346x194x1649542828.jpg",
-    title: "C4",
-    about: "",
-    benefits:
-      "5000 holders will get a 70% off discount to the Bitcoin Prep Course and exam materials.",
-  },
-  {
-    id: 4,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/decentology-346x236x0x21x346x194x1649542941.jpg",
-    title: "Decentology",
-    about: "",
-    benefits:
-      "All developer holders will have free access to a 5-day camp to learn how to build dApps on the Hyperverse.",
-  },
-  {
-    id: 5,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/kernel-347x237x0x21x347x194x1649542958.jpg",
-    title: "Kernel",
-    about: "",
-    benefits:
-      "8+ womxn holders will have a scholarship to every cohort forever. Application based.",
-  },
-  {
-    id: 6,
-    image:
-      "https://perks.surgewomen.io/wp-content/uploads/brizy/imgs/your-juno-346x236x0x21x346x194x1649543184.jpg",
-    title: "Crypto Mujeres",
-    about: "",
-    benefits:
-      "10 scholarships for an Introduction to Web3 Course in Spanish. Raffle based.",
-  },
-];
-
 const Benefits: NextPage = () => {
+  const { data: benefits, error: benefitsError } = useSWR("/api/benefits");
   const { walletAddress } = useStore((state) => state.user);
   const [ownsNFT, setOwnsNFT] = useState(false);
   const [error, setError] = useState({ show: false, title: "", message: "" });
+
   const { isLoading } = useContractRead(
     {
       addressOrName: "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b",
@@ -122,7 +59,9 @@ const Benefits: NextPage = () => {
     }
   );
 
-  if (isLoading) return <></>;
+  if (isLoading || !benefits) return <h1>Loading...</h1>;
+
+  if (benefitsError) return <h1>Error during fetching benefits</h1>;
 
   return (
     <>
@@ -134,25 +73,32 @@ const Benefits: NextPage = () => {
       <main className={styles.container}>
         <h2 className={styles.title}>All offers</h2>
         <ul role="list" className={styles.itemsContainer}>
-          {items.map((item, index) => (
+          {benefits.map((item, index) => (
             <li className={styles.item} key={index}>
               <div className={styles.itemTopContainer}>
-                <img className={styles.itemImage} src={item.image} alt="" />
+                <img
+                  className={styles.itemImage}
+                  src={item.fields["Partner Thumbnail"]}
+                  alt=""
+                />
                 <div>
                   <h3 className={styles.itemTitle}>
-                    {`About ${item.title}`.toUpperCase()}
+                    {`About ${item.fields["Partner Name"]}`.toUpperCase()}
                   </h3>
                   <p className={styles.itemInfo}>
-                    Lucas ipsum dolor sit amet wicket cathar kel gavyn zannah
-                    nien qu mirialan falleen saleucami.
+                    {item.fields["Partner About"]}
                   </p>
                 </div>
                 <div>
                   <h3 className={styles.itemTitle}>Benefit</h3>
-                  <p className={styles.itemInfo}>{item.benefits}</p>
+                  <p className={styles.itemInfo}>{item.fields["Benefit"]}</p>
                 </div>
               </div>
-              {ownsNFT && <button className={styles.button}>Redeem</button>}
+              {ownsNFT && (
+                <a href={item.fields["Benefit Link"]} className={styles.button}>
+                  Redeem
+                </a>
+              )}
             </li>
           ))}
         </ul>

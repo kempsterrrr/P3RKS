@@ -1,5 +1,5 @@
 import { ConnectWalletProps } from "./ConnectWallet.types";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
@@ -15,8 +15,14 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
     isConnected,
     pendingConnector,
   } = useConnect();
+
   const { disconnect } = useDisconnect();
   const { data: account } = useAccount();
+
+  const ensName = useEnsName({
+    address: account?.address,
+  })
+
   const { setWalletAddress, setConnected } = useStore(
     (state) => ({
       setWalletAddress: state.setWalletAddress,
@@ -24,8 +30,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
     }),
     shallow
   );
-
-  console.log(connect);
 
   useEffect(() => {
     if (account) {
@@ -52,7 +56,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
     <div>
       {account ? (
         <Button as="button" onClick={handleDisconnect}>
-          {`${account!.address!.substring(
+          {ensName?.data ? ensName.data : `${account!.address!.substring(
             0,
             4
           )}...${account!.address!.substring(
