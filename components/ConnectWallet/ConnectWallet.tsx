@@ -31,8 +31,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
     shallow
   );
 
-  console.log(connect);
-
   useEffect(() => {
     if (account) {
       setWalletAddress(account.address!);
