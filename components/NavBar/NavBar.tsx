@@ -21,16 +21,8 @@ const styles = {
 
 const navItems = [
   {
-    text: "Get Benefits",
-    href: "/benefits",
-  },
-  {
     text: "Become a partner",
     href: "/partners",
-  },
-  {
-    text: "Blog",
-    href: "/blog",
   },
 ];
 
@@ -54,7 +46,7 @@ const NavBar = () => {
                     {item.text}
                   </Button>
                 ))}
-                <ConnectWallet />
+                {/*<ConnectWallet /> */}
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -85,7 +77,7 @@ const NavBar = () => {
                     {item.text}
                   </Button>
                 ))}
-                <ConnectWallet />
+                {/*  <ConnectWallet /> */}
               </div>
             </Disclosure.Panel>
           </>
