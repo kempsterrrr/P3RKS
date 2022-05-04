@@ -1,24 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @layer base {
-  h1 {
-    @apply block text-[2em] my-[0.67em] font-bold;
-  }
-  h2 {
-    @apply block text-[1.5em] my-[0.83em] font-bold;
-  }
-  h3 {
-    @apply block text-[1.17em] my-[1em] font-bold;
-  }
-  h4 {
-    @apply block my-[1.33em] font-bold;
-  }
-  h5 {
-    @apply block text-[.83em] my-[1.67em] font-bold;
-  }
-  h6 {
-    @apply block text-[.67em] my-[2.33em] font-bold;
+  html {
+    @apply font-lexend bg-[#FEFDFE];
   }
 }

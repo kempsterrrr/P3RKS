@@ -36,7 +36,10 @@ const NavBar = () => {
               <div className={styles.logoContainer}>
                 <div className={styles.logoText}>
                   <Link href="/">
-                    <a>B3NZ</a>
+                    <a className="flex justify-center items-center space-x-[6px]">
+                      <img className="w-[32px] h-[30px]" src="diamond.png" />
+                      <div className="text-[20px]">B3NZ</div>
+                    </a>
                   </Link>
                 </div>
               </div>
