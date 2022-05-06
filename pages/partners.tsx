@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Button } from "../components/Button";
 
 const styles = {
   container:
@@ -37,13 +36,12 @@ const Partners: NextPage = () => {
           </p>
           <div className={styles.buttonContainer}>
             <p>Drop us your details and we will be in touch!</p>
-            <Button
-              as="link"
+            <a
               href="https://airtable.com/shrZZn6ZKZfvrUqDX"
               style="!w-full lg:!w-[200px]"
             >
               Become a Partner Fren
-            </Button>
+            </a>
           </div>
         </div>
         <div>
