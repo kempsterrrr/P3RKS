@@ -1,25 +1,37 @@
+import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Button } from "../components/Button";
+import { ConnectWalletModal } from "../components/ConnectWalletModal";
 
 const styles = {
-    container: "relative px-[30px] grow w-screen",
-    contentContainer: "py-[50px] h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center",
-    mobilePercentageIconsContainer: "relative flex justify-between lg:hidden",
-    mobilePercentageIconOne: "w-[70px] h-[55px]",
-    mobilePercentageIconTwo: "absolute right-0 -top-5 w-[67.27px] h-[67.94px]",
-    title: "text-[38px] text-[#1A021B] font-medium leading-[48px] lg:text-[112px] lg:leading-[118px]",
-    slogan: "text-[24px] text-[#908C91] leading-[40px] lg:w-[616px] lg:mx-auto lg:text-[32px] lg:leading-[52px]",
-    buttonsContainer: "flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto",
-    blackButton: "text-center text-white text-[18px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] lg:text-[22px] lg:py-[21px] lg:px-[52px]",
-    outlineButton: "text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] lg:text-[22px] lg:py-[21px] px-[52px]",
-    desktopPercentageIconOne: "hidden lg:flex absolute bottom-20 w-[201px] h-[203px]",
-    desktopPercentageIconTwo: "hidden lg:flex absolute top-96 right-14 w-[129px] h-[101px]",
-    desktopPercentageIconThree: "hidden lg:flex absolute bottom-0 right-36 w-[247px] h-[247px]",
-    desktopPercentageIconFour: "hidden lg:flex absolute top-44 left-80 w-[64px] h-[86px]"
-};  
+  container: "relative px-[30px] grow w-screen",
+  contentContainer:
+    "py-[50px] h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center",
+  mobilePercentageIconsContainer: "relative flex justify-between lg:hidden",
+  mobilePercentageIconOne: "w-[70px] h-[55px]",
+  mobilePercentageIconTwo: "absolute right-0 -top-5 w-[67.27px] h-[67.94px]",
+  title:
+    "text-[38px] text-[#1A021B] font-medium leading-[48px] lg:text-[112px] lg:leading-[118px]",
+  slogan:
+    "text-[24px] text-[#908C91] leading-[40px] lg:w-[616px] lg:mx-auto lg:text-[32px] lg:leading-[52px]",
+  buttonsContainer:
+    "flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto",
+  blackButton:
+    "text-center text-white text-[18px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer lg:text-[22px] lg:py-[21px] lg:px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)]",
+  outlineButton:
+    "text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer lg:text-[22px] lg:py-[21px] px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)]",
+  desktopPercentageIconOne:
+    "hidden lg:flex absolute bottom-20 w-[201px] h-[203px]",
+  desktopPercentageIconTwo:
+    "hidden lg:flex absolute top-96 right-14 w-[129px] h-[101px]",
+  desktopPercentageIconThree:
+    "hidden lg:flex absolute bottom-0 right-36 w-[247px] h-[247px]",
+  desktopPercentageIconFour:
+    "hidden lg:flex absolute top-44 left-80 w-[64px] h-[86px]",
+};
 
 const Home: NextPage = () => {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Head>
@@ -30,7 +42,10 @@ const Home: NextPage = () => {
       <main className={styles.container}>
         <div className={styles.contentContainer}>
           <div className={styles.mobilePercentageIconsContainer}>
-            <img className={styles.mobilePercentageIconOne} src="percentage-icon-two.png" />
+            <img
+              className={styles.mobilePercentageIconOne}
+              src="percentage-icon-two.png"
+            />
             <img
               className={styles.mobilePercentageIconTwo}
               src="percentage-icon-one.png"
@@ -44,20 +59,30 @@ const Home: NextPage = () => {
             your DAO.
           </p>
           <div className={styles.buttonsContainer}>
-            <a className={styles.blackButton}>
+            <a className={styles.blackButton} onClick={() => setOpen(true)}>
               View benefits
             </a>
-
-            <a className={styles.outlineButton}>
-              Offer benefits
-            </a>
+            <a className={styles.outlineButton}>Offer benefits</a>
           </div>
         </div>
       </main>
-      <img className={styles.desktopPercentageIconOne} src="percentage-icon-one.png"/>
-      <img className={styles.desktopPercentageIconTwo} src="percentage-icon-two.png"/>
-      <img className={styles.desktopPercentageIconThree} src="percentage-icon-three.png"/>
-      <img className={styles.desktopPercentageIconFour} src="percentage-icon-four.png"/>
+      <img
+        className={styles.desktopPercentageIconOne}
+        src="percentage-icon-one.png"
+      />
+      <img
+        className={styles.desktopPercentageIconTwo}
+        src="percentage-icon-two.png"
+      />
+      <img
+        className={styles.desktopPercentageIconThree}
+        src="percentage-icon-three.png"
+      />
+      <img
+        className={styles.desktopPercentageIconFour}
+        src="percentage-icon-four.png"
+      />
+      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };
