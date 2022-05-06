@@ -55,22 +55,22 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onConnect }) => {
   return (
     <div>
       {account ? (
-        <Button as="button" onClick={handleDisconnect}>
+        <a onClick={handleDisconnect}>
           {ensName?.data ? ensName.data : `${account!.address!.substring(
             0,
             4
           )}...${account!.address!.substring(
             account!.address!.length - 4
           )}`.toUpperCase()}
-        </Button>
+        </a>
       ) : (
-        <Button as="button" onClick={handleConnect}>
+        <a className="text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] " onClick={handleConnect}>
           Connect Wallet
           {!connectors[0].ready && " (unsupported)"}
           {isConnecting &&
             connectors[0].id === pendingConnector?.id &&
             " (connecting)"}
-        </Button>
+        </a>
       )}
       {error && (
         <Notification

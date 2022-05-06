@@ -5,23 +5,34 @@ import { ConnectWallet } from "../ConnectWallet";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const styles = {
-  container: "px-5 py-3 mx-auto max-w-[1400px] w-full",
-  navContainer: "flex justify-between items-center",
-  logoContainer: "flex flex-shrink-0 flex items-center",
-  logoText: "text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl",
-  desktopMenuContainer: "hidden sm:flex sm:space-x-3",
-  mobileMenuContainer: "flex items-center sm:hidden",
+  container: "px-[30px] lg:px-[60px]",
+  navContainer: "py-3 flex justify-between items-center lg:h-[120px]",
+  logoContainer: "flex justify-center items-center space-x-[6px]",
+  logoImage: "w-[32px] h-[30px]",
+  logoText: "text-[20px] font-medium text-[##1A021B]",
+  desktopMenuContainer: "hidden lg:flex lg:space-x-[116px]",
+  desktopMenuButton: "text-[#908C91] text-[18px]",
+  walletContainer: "hidden lg:flex",
+  mobileMenuContainer: "flex items-center lg:hidden",
   mobileMenuButton:
     "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black",
   mobileMenuIcon: "block h-6 w-6",
-  mobileMenuPanelContainer: "sm:hidden",
+  mobileMenuPanelContainer: "lg:hidden",
   mobileMenuPanelItems: "pt-2 pb-3 space-y-1",
   mobileMenuNavItem: "block pl-2 py-2 text-base font-medium",
 };
 
 const navItems = [
   {
-    text: "Become a partner",
+      text:"Blog",
+      href:"/blog",
+  },
+  {
+      text:"DAOs",
+      href:"/",
+  },
+    {
+    text: "Partners",
     href: "/partners",
   },
 ];
@@ -33,23 +44,21 @@ const NavBar = () => {
         {({ open }) => (
           <>
             <div className={styles.navContainer}>
-              <div className={styles.logoContainer}>
-                <div className={styles.logoText}>
                   <Link href="/">
-                    <a className="flex justify-center items-center space-x-[6px]">
-                      <img className="w-[32px] h-[30px]" src="diamond.png" />
-                      <div className="text-[20px]">B3NZ</div>
+                    <a className={styles.logoContainer}>
+                      <img className={styles.logoImage} src="diamond.png" />
+                      <div className={styles.logoText}>B3NZ</div>
                     </a>
                   </Link>
-                </div>
-              </div>
               <div className={styles.desktopMenuContainer}>
                 {navItems.map((item) => (
-                  <Button key={item.text} as="link" href={item.href}>
+                  <a className={styles.desktopMenuButton} key={item.text} href={item.href}>
                     {item.text}
-                  </Button>
+                  </a>
                 ))}
-                {/*<ConnectWallet /> */}
+              </div>
+              <div className={styles.walletContainer}>
+                <ConnectWallet />
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -80,7 +89,9 @@ const NavBar = () => {
                     {item.text}
                   </Button>
                 ))}
-                {/*  <ConnectWallet /> */}
+                <div className={styles.mobileMenuNavItem}>
+                    <ConnectWallet /> 
+                </div>
               </div>
             </Disclosure.Panel>
           </>
