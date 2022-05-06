@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import useStore from "../stores/useStore";
 import { useState } from "react";
 import Head from "next/head";
-import { SuggestConnectModal } from "../components/SuggestConnectModal";
 import { useContractRead } from "wagmi";
 import GenisisContract from "../abis/GenesisContract.json";
 import { Notification } from "../components/Notification";
@@ -73,7 +72,7 @@ const Benefits: NextPage = () => {
       <main className={styles.container}>
         <h2 className={styles.title}>All offers</h2>
         <ul role="list" className={styles.itemsContainer}>
-          {benefits.map((item, index) => (
+          {benefits.map((item: any, index: number) => (
             <li className={styles.item} key={index}>
               <div className={styles.itemTopContainer}>
                 <img
@@ -110,8 +109,6 @@ const Benefits: NextPage = () => {
           />
         )}
       </main>
-
-      <SuggestConnectModal />
     </>
   );
 };

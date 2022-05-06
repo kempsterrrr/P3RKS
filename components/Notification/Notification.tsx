@@ -1,4 +1,4 @@
-import { NotificationProps } from "./Notification.types";
+import { NotificationProps } from "./Notification.d";
 import { Fragment, useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import {

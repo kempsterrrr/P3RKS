@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider, createClient } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { SWRConfig } from "swr";
@@ -10,7 +11,18 @@ import { SWRConfig } from "swr";
 const client = createClient({
   autoConnect: true,
   connectors() {
-    return [new InjectedConnector()];
+    return [
+      new InjectedConnector({
+        options: {
+          name: "MetaMask",
+        },
+      }),
+      new WalletConnectConnector({
+        options: {
+          qrcode: true,
+        },
+      }),
+    ];
   },
 });
 
