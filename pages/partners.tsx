@@ -38,7 +38,7 @@ const Partners: NextPage = () => {
             <p>Drop us your details and we will be in touch!</p>
             <a
               href="https://airtable.com/shrZZn6ZKZfvrUqDX"
-              style="!w-full lg:!w-[200px]"
+              className="!w-full lg:!w-[200px]"
             >
               Become a Partner Fren
             </a>
