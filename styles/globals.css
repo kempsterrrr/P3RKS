@@ -8,3 +8,9 @@
     @apply font-lexend bg-[#FEFDFE];
   }
 }
+
+.fade {
+  font-size: 35px;
+  -webkit-mask: linear-gradient(#fff, transparent);
+  mask: linear-gradient(#fff, transparent);
+}
