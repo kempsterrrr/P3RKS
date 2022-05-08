@@ -3,8 +3,6 @@ import type { AppProps } from "next/app";
 import { Provider, createClient } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
 import { SWRConfig } from "swr";
 
 // Set up connectors
@@ -27,8 +25,7 @@ const client = createClient({
 });
 
 const styles = {
-  container: "min-h-screen flex flex-col",
-  body: "max-w-[1400px] mx-auto flex grow",
+  container: "flex flex-col absolute inset-0",
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -41,12 +38,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <div id="root" className={styles.container}>
-          <NavBar />
-          <div className={styles.body}>
-            {/* @ts-ignore: react-dom type issues */}
-            <Component {...pageProps} />
-          </div>
-          <Footer />
+          {/* @ts-ignore: react-dom type issues */}
+          <Component {...pageProps} />
         </div>
       </SWRConfig>
     </Provider>

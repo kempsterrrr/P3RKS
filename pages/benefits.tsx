@@ -1,67 +1,73 @@
 import type { NextPage } from "next";
-import useStore from "../stores/useStore";
-import { useState } from "react";
 import Head from "next/head";
-import { useContractRead } from "wagmi";
-import GenisisContract from "../abis/GenesisContract.json";
-import { Notification } from "../components/Notification";
-import useSWR from "swr";
+import { Fragment } from "react";
+import { Disclosure } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import ReactTooltip from "react-tooltip";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const styles = {
-  container: "p-5 flex flex-col space-y-5",
-  title: "text-3xl font-bold m-[0px]",
-  itemsContainer:
-    "space-y-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-6 md:space-y-0 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8",
-  item: "p-5 border-[1px] shadow rounded-lg flex flex-col space-y-5",
-  itemTopContainer: "grow space-y-3",
-  itemImage: "object-cover",
-  itemTitle: "text-lg leading-6 font-medium space-y-1",
-  itemInfo: "text-lg text-gray-500",
-  button:
-    "px-6 py-3 w-full h-[60px] cursor:pointer inline-flex justify-center items-center rounded-md border border-transparent bg-black text-base text-white font-medium shadow-sm hover:border-2 hover:border-black hover:bg-white hover:text-black focus:outline-black focus:ring-2 focus:ring-black focus:ring-offset-2",
+  mobileMenuContainer: "p-4 z-10 flex flex-col items-end  lg:hidden",
+  mobileMenuButton:
+    "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black",
+  mobileMenuIcon: "block h-6 w-6",
+  mobileMenuPanelContainer: "lg:hidden w-full",
+  mobileMenuPanelItems: "pt-2 pb-3 space-y-1",
+  mobileMenuNavItem: "block pl-2 py-2 text-base font-medium",
+  desktopSidebarContainer:
+    "hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0",
+  desktopSidebarContentContainer:
+    "flex flex-col border-r border-gray-200 py-[32px] pr-[30px] overflow-y-auto h-full flex-shrink-0 items-end",
+  desktopSidebarButton:
+    "w-[48px] h-[48px] border-[#D4D4D4] border-[1px] rounded-full flex justify-center items-center cursor-pointer",
+  tooltip: " !rounded-full !bg-[#1A021B] !text-white",
+  mainContainer: "lg:pl-64 flex flex-col flex-1 py-[20px] lg:pt-[207px]",
+  contentContainer: "max-w-[100%] px-4 sm:px-[40px]",
+  headerContainer: "pb-5 border-b border-gray-200 sm:pb-0",
+  headerTitle: "text-[48px]",
+  subMenuContainer: "mt-[36px]",
+  mobileSubMenu: "sm:hidden",
+  mobileSubMenuButton:
+    "block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md",
+  desktopSubMenu: "hidden sm:block",
+  desktopSubMenuNav: "-mb-px flex space-x-8",
+  desktopSubMenuActive: "border-black text-[#1A021B]",
+  desktopSubMenuInactive:
+    "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+  desktopSubMenuBase:
+    "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm",
+  benefitsContainer:
+    "mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3",
+  benefitContainer:
+    "p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px]",
+  benefitHeader: "flex items-center space-x-[12px]",
+  benefitIcon: "w-[36px] h-[36px]",
+  benefitTitle: "text-[#1A021B] text-[16px]",
+  benefitSubtitle: "text-[#9F9B9F] text-[16px]",
+  benefitBodyContainer: "mt-[36px] flex flex-col space-y-[4px]",
+  benefitStatsContainer: "flex space-x-[28px] text-[16px] text-[#9F9B9F]",
 };
 
+const navItems = [
+  {
+    text: "View all benefits",
+    href: "/benefits",
+  },
+  {
+    text: "Disconnect",
+    href: "/",
+  },
+];
+
+const tabs = [
+  { name: "Popular", href: "#", current: true },
+  { name: "Recently added", href: "#", current: false },
+];
+
 const Benefits: NextPage = () => {
-  const { data: benefits, error: benefitsError } = useSWR("/api/benefits");
-  const { walletAddress } = useStore((state) => state.user);
-  const [ownsNFT, setOwnsNFT] = useState(false);
-  const [error, setError] = useState({ show: false, title: "", message: "" });
-
-  const { isLoading } = useContractRead(
-    {
-      addressOrName: "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b",
-      contractInterface: GenisisContract.abi,
-    },
-    "balanceOf",
-    {
-      enabled: !!walletAddress,
-      args: walletAddress,
-      onSuccess(data) {
-        if (parseInt(data._hex) > 0) setOwnsNFT(true);
-        else {
-          setOwnsNFT(false);
-          setError({
-            show: true,
-            title: "DEVELOPER DAO NFT NOT FOUND",
-            message: "To redeem any benefits you need a Developer DAO NFT.",
-          });
-        }
-      },
-      onError(error) {
-        setOwnsNFT(false);
-        setError({
-          show: true,
-          title: "SOMETHING WENT WRONG",
-          message: error.toString(),
-        });
-      },
-    }
-  );
-
-  if (isLoading || !benefits) return <h1>Loading...</h1>;
-
-  if (benefitsError) return <h1>Error during fetching benefits</h1>;
-
   return (
     <>
       <Head>
@@ -69,46 +75,154 @@ const Benefits: NextPage = () => {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.container}>
-        <h2 className={styles.title}>All offers</h2>
-        <ul role="list" className={styles.itemsContainer}>
-          {benefits.map((item: any, index: number) => (
-            <li className={styles.item} key={index}>
-              <div className={styles.itemTopContainer}>
-                <img
-                  className={styles.itemImage}
-                  src={item.fields["Partner Thumbnail"]}
-                  alt=""
-                />
-                <div>
-                  <h3 className={styles.itemTitle}>
-                    {`About ${item.fields["Partner Name"]}`.toUpperCase()}
-                  </h3>
-                  <p className={styles.itemInfo}>
-                    {item.fields["Partner About"]}
-                  </p>
+      <Disclosure as={Fragment}>
+        {({ open }) => (
+          <>
+            <div className={styles.mobileMenuContainer}>
+              {/* Mobile menu button */}
+              <Disclosure.Button className={styles.mobileMenuButton}>
+                <span className="sr-only">Open main menu</span>
+                {open ? (
+                  <XIcon className={styles.mobileMenuIcon} aria-hidden="true" />
+                ) : (
+                  <MenuIcon
+                    className={styles.mobileMenuIcon}
+                    aria-hidden="true"
+                  />
+                )}
+              </Disclosure.Button>
+              {/* Mobile Navbar */}
+              <Disclosure.Panel className={styles.mobileMenuPanelContainer}>
+                <div className={styles.mobileMenuPanelItems}>
+                  {navItems.map((item) => (
+                    <a
+                      key={item.text}
+                      className={styles.mobileMenuNavItem}
+                      href={item.href}
+                    >
+                      {item.text}
+                    </a>
+                  ))}
                 </div>
-                <div>
-                  <h3 className={styles.itemTitle}>Benefit</h3>
-                  <p className={styles.itemInfo}>{item.fields["Benefit"]}</p>
+              </Disclosure.Panel>
+            </div>
+
+            {/* Static sidebar for desktop */}
+            <div className={styles.desktopSidebarContainer}>
+              <div className={styles.desktopSidebarContentContainer}>
+                <a
+                  data-tip
+                  data-for="benefits"
+                  className={styles.desktopSidebarButton}
+                >
+                  <img src="./diamond-black.png" />
+                </a>
+                {/*@ts-ignore - React tooltip is working on a fix */}
+                <ReactTooltip
+                  id="benefits"
+                  place="right"
+                  type="dark"
+                  effect="solid"
+                  backgroundColor="black"
+                  className={styles.tooltip}
+                >
+                  View all benefits
+                </ReactTooltip>
+                <div className="grow" />
+                <div
+                  data-tip
+                  data-for="disconnect"
+                  className={styles.desktopSidebarButton}
+                >
+                  J
+                </div>
+                {/*@ts-ignore - React tooltip is working on a fix */}
+                <ReactTooltip
+                  id="disconnect"
+                  place="right"
+                  type="dark"
+                  effect="solid"
+                  backgroundColor="black"
+                  className={styles.tooltip}
+                >
+                  Disconnect jazza.eth
+                </ReactTooltip>
+              </div>
+            </div>
+            <main className={styles.mainContainer}>
+              <div className={styles.contentContainer}>
+                <div className={styles.headerContainer}>
+                  <h3 className={styles.headerTitle}>All benefits</h3>
+                  <div className={styles.subMenuContainer}>
+                    <div className={styles.mobileSubMenu}>
+                      <label htmlFor="current-tab" className="sr-only">
+                        Select a tab
+                      </label>
+                      <select
+                        id="current-tab"
+                        name="current-tab"
+                        className={styles.mobileSubMenuButton}
+                        defaultValue={tabs.find((tab) => tab.current).name}
+                      >
+                        {tabs.map((tab) => (
+                          <option key={tab.name}>{tab.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={styles.desktopSubMenu}>
+                      <nav className={styles.desktopSubMenuNav}>
+                        {tabs.map((tab) => (
+                          <a
+                            key={tab.name}
+                            href={tab.href}
+                            className={classNames(
+                              tab.current
+                                ? styles.desktopSubMenuActive
+                                : styles.desktopSubMenuInactive,
+                              styles.desktopSubMenuBase
+                            )}
+                            aria-current={tab.current ? "page" : undefined}
+                          >
+                            {tab.name}
+                          </a>
+                        ))}
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.benefitsContainer}>
+                  {[...Array(12)].map((item, index) => (
+                    <div key={index} className={styles.benefitContainer}>
+                      <div className={styles.benefitHeader}>
+                        <img
+                          className={styles.benefitIcon}
+                          src="./kubera-logo.png"
+                        />
+                        <div>
+                          <div className={styles.benefitTitle}>Kubera</div>
+                          <div className={styles.benefitSubtitle}>
+                            Net worth tracker
+                          </div>
+                        </div>
+                      </div>
+                      <div className={styles.benefitBodyContainer}>
+                        <div className="grow">
+                          30% off lifetime membership on PRO plan
+                        </div>
+                        <div className={styles.benefitStatsContainer}>
+                          <div>4 days ago</div>
+                          <div>332 views</div>
+                          <div>44 uses</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              {ownsNFT && (
-                <a href={item.fields["Benefit Link"]} className={styles.button}>
-                  Redeem
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-        {error.show && (
-          <Notification
-            isError={true}
-            title={error.title}
-            body={error.message}
-          />
+            </main>
+          </>
         )}
-      </main>
+      </Disclosure>
     </>
   );
 };
