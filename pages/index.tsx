@@ -36,6 +36,10 @@ const styles = {
 const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
 
+  const handleViewBenefits = () => {
+    setOpen(true);
+  };
+
   return (
     <>
       <Head>
@@ -70,7 +74,7 @@ const Home: NextPage = () => {
               your DAO.
             </p>
             <div className={styles.buttonsContainer}>
-              <a className={styles.blackButton} onClick={() => setOpen(true)}>
+              <a className={styles.blackButton} onClick={handleViewBenefits}>
                 View benefits
               </a>
               <a className={styles.outlineButton}>Offer benefits</a>

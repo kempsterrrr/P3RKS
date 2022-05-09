@@ -24,7 +24,8 @@ const styles = {
   exclamationIcon: "h-6 w-6 text-red-400",
   checkIcon: "h-6 w-6 text-green-400",
   titleContainer: "ml-3 w-0 flex-1 pt-0.5",
-  title: "text-sm font-medium text-red-400",
+  title: "text-sm font-medium",
+  redTitle: "text-red-400",
   body: "mt-1 text-sm text-gray-500",
   buttonContainer: "ml-3 flex-shrink-0 flex",
   button:
@@ -34,6 +35,7 @@ const styles = {
 
 const Notification: React.FC<NotificationProps> = ({
   isError,
+  isSuccess,
   title,
   body,
 }) => {
@@ -63,12 +65,13 @@ const Notification: React.FC<NotificationProps> = ({
             >
               <div className={styles.modal}>
                 <div className={styles.statusIconContainer}>
-                  {isError ? (
+                  {isError && (
                     <ExclamationCircleIcon
                       className={styles.exclamationIcon}
                       aria-hidden="true"
                     />
-                  ) : (
+                  )}
+                  {isSuccess && (
                     <CheckCircleIcon
                       className={styles.checkIcon}
                       aria-hidden="true"

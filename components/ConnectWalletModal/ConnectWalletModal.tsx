@@ -1,7 +1,9 @@
-import { Fragment } from "react";
+import useStore from "../../stores/useStore";
+import shallow from "zustand/shallow";
+import { useEffect, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { useConnect } from "wagmi";
+import { useConnect, useAccount } from "wagmi";
 
 const styles = {
   dialogContainer: "fixed z-10 inset-0 overflow-y-auto",
@@ -29,7 +31,27 @@ const styles = {
 };
 
 const ConnectWalletModal = ({ open, setOpen }: any) => {
+  const { setConnected, setWalletAddress, clearUser } = useStore(
+    (state) => ({
+      setConnected: state.setConnected,
+      setWalletAddress: state.setWalletAddress,
+      clearUser: state.clearUser,
+    }),
+    shallow
+  );
   const { connect, connectors, error } = useConnect();
+  const { data: account } = useAccount();
+
+  useEffect(() => {
+    if (account) {
+      setConnected(true);
+      setWalletAddress(account.address!);
+      setOpen(false);
+    } else {
+      clearUser();
+      setOpen(false);
+    }
+  }, [account]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
