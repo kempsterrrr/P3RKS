@@ -7,7 +7,7 @@ import { ConnectWalletModal } from "../components/ConnectWalletModal";
 const styles = {
   container: "relative p-[30px] grow w-screen",
   contentContainer:
-    "h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]",
+    "h-full md:flex md:flex-col lg:flex lg:flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]",
   mobilePercentageIconsContainer: "relative flex justify-between lg:hidden",
   mobilePercentageIconOneContainer: "flex justify-center lg:hidden",
   mobilePercentageIconOne: "relative -left-3 w-[30px] h-[41px]",
