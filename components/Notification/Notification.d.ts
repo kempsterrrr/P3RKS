@@ -1,5 +1,6 @@
 export interface NotificationProps {
-  isError: boolean;
+  isError?: boolean;
+  isSuccess?: boolean;
   title: string;
   body: string;
 }
