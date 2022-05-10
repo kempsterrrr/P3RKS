@@ -1,3 +1,4 @@
+import useStore from "../stores/useStore";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { BenefitsLayout } from "../components/BenefitsLayout";
@@ -40,6 +41,7 @@ const tabs = [
 ];
 
 const Benefits: NextPage = () => {
+  const ownsDDNFT = useStore((state) => state.user.DDNFT);
   return (
     <>
       <Head>
@@ -104,16 +106,19 @@ const Benefits: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className={styles.benefitBodyContainer}>
-                    <div className="grow">
-                      30% off lifetime membership on PRO plan
+                  {ownsDDNFT ? (
+                    <div className={styles.benefitBodyContainer}>
+                      <div className="grow">
+                        30% off lifetime membership on PRO plan
+                      </div>
+
+                      <div className={styles.benefitStatsContainer}>
+                        <div>4 days ago</div>
+                        <div>332 views</div>
+                        <div>44 uses</div>
+                      </div>
                     </div>
-                    <div className={styles.benefitStatsContainer}>
-                      <div>4 days ago</div>
-                      <div>332 views</div>
-                      <div>44 uses</div>
-                    </div>
-                  </div>
+                  ) : null}
                 </div>
               ))}
             </div>

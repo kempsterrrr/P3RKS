@@ -9,8 +9,6 @@
   }
 }
 
-.fade {
-  font-size: 35px;
-  -webkit-mask: linear-gradient(#fff, transparent);
-  mask: linear-gradient(#fff, transparent);
+:root {
+  --toastify-color-progress-light: #000 !important;
 }

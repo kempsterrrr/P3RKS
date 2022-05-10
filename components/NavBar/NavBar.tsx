@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { ConnectWalletModal } from "../ConnectWalletModal";
 
 const styles = {
   container: "px-[30px] lg:px-[60px]",
@@ -66,12 +65,9 @@ const NavBar = () => {
                 ))}
               </div>
               <div className={styles.viewBenefitsButtonContainer}>
-                <a
-                  className={styles.viewBenefitsButton}
-                  onClick={() => setOpen(true)}
-                >
-                  View benefits
-                </a>
+                <Link href="/benefits">
+                  <a className={styles.viewBenefitsButton}>View benefits</a>
+                </Link>
               </div>
               <div className={styles.mobileMenuContainer}>
                 <Disclosure.Button className={styles.mobileMenuButton}>
@@ -108,7 +104,6 @@ const NavBar = () => {
         )}
       </Disclosure>
       <hr />
-      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };

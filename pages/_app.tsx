@@ -4,6 +4,8 @@ import { Provider, createClient } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { SWRConfig } from "swr";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Set up connectors
 const client = createClient({
@@ -37,10 +39,20 @@ function MyApp({ Component, pageProps }: AppProps) {
             fetch(resource, init).then((res) => res.json()),
         }}
       >
-        <div id="root" className={styles.container}>
+        <div className={styles.container}>
           {/* @ts-ignore: react-dom type issues */}
           <Component {...pageProps} />
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+        />
       </SWRConfig>
     </Provider>
   );

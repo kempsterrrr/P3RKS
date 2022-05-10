@@ -1,8 +1,7 @@
-import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Layout } from "../components/Layout";
-import { ConnectWalletModal } from "../components/ConnectWalletModal";
+import Link from "next/link";
 
 const styles = {
   container: "relative p-[30px] grow w-screen",
@@ -34,12 +33,6 @@ const styles = {
 };
 
 const Home: NextPage = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleViewBenefits = () => {
-    setOpen(true);
-  };
-
   return (
     <>
       <Head>
@@ -74,9 +67,9 @@ const Home: NextPage = () => {
               your DAO.
             </p>
             <div className={styles.buttonsContainer}>
-              <a className={styles.blackButton} onClick={handleViewBenefits}>
-                View benefits
-              </a>
+              <Link href="/benefits">
+                <a className={styles.blackButton}>View benefits</a>
+              </Link>
               <a className={styles.outlineButton}>Offer benefits</a>
             </div>
           </div>
@@ -98,7 +91,6 @@ const Home: NextPage = () => {
           src="percentage-icon-four.png"
         />
       </Layout>
-      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };
