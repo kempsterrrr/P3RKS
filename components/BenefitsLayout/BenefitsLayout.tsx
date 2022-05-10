@@ -1,6 +1,6 @@
 import { BenefitsLayoutProps } from "./BenefitsLayout.d";
 import { useState, useRef, Fragment } from "react";
-import { useContractRead, useDisconnect } from "wagmi";
+import { useContractRead, useDisconnect, useEnsName } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
@@ -82,6 +82,10 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
   const handleDisconnect = () => {
     disconnect();
   };
+
+  const ensName = useEnsName({
+    address: walletAddress,
+  })?.data
 
   const navItems = [
     {
@@ -190,7 +194,7 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
                   backgroundColor="black"
                   className={styles.tooltip}
                 >
-                  {connected ? `Disconnect ${walletAddress}` : "Connect Wallet"}
+                  {connected ? `Disconnect ${ensName || walletAddress}` : "Connect Wallet"}
                 </ReactTooltip>
               </div>
             </div>
