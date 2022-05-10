@@ -1,9 +1,11 @@
+import { ConnectWalletModalProps } from "./ConnectWalletModal.d";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect, useAccount } from "wagmi";
+import Image from "next/image";
 
 const styles = {
   dialogContainer: "fixed z-10 inset-0 overflow-y-auto",
@@ -30,7 +32,10 @@ const styles = {
     "py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 hover:border-[#3b98fc]/[0.75]",
 };
 
-const ConnectWalletModal = ({ open, setOpen }: any) => {
+const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
+  open,
+  setOpen,
+}) => {
   const { setConnected, setWalletAddress, clearUser } = useStore(
     (state) => ({
       setConnected: state.setConnected,
@@ -117,7 +122,12 @@ const ConnectWalletModal = ({ open, setOpen }: any) => {
                   key={connectors[0].id}
                   onClick={() => connect(connectors[0])}
                 >
-                  <img src="/metamask-logo.png" alt="metamask logo" />
+                  <Image
+                    width="20"
+                    height="20"
+                    src="/metamask-logo.png"
+                    alt="metamask logo"
+                  />
                   <div>Connect with {connectors[0].name}</div>
                 </button>
                 <button
@@ -126,7 +136,12 @@ const ConnectWalletModal = ({ open, setOpen }: any) => {
                   key={connectors[1].id}
                   onClick={() => connect(connectors[1])}
                 >
-                  <img src="/walletconnect-logo.png" alt="walletconnect logo" />
+                  <Image
+                    width="24"
+                    height="20"
+                    src="/walletconnect-logo.png"
+                    alt="walletconnect logo"
+                  />
                   <div>Connect with {connectors[1].name}</div>
                 </button>
 

@@ -1,9 +1,11 @@
+import { BenefitsLayoutProps } from "./BenefitsLayout.d";
 import { useState, useRef, Fragment } from "react";
 import { useContractRead, useDisconnect } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { Disclosure } from "@headlessui/react";
+import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { FaWallet } from "react-icons/fa";
@@ -12,10 +14,9 @@ import ReactTooltip from "react-tooltip";
 import { ConnectWalletModal } from "../ConnectWalletModal";
 import { toast } from "react-toastify";
 
-const BenefitsLayout = ({ children }: any) => {
+const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const [checkingWallet, setCheckingWallet] = useState(false);
-  const toastId = useRef(null);
+  const toastId = useRef<any>(null);
   const { disconnect } = useDisconnect();
   const router = useRouter();
 
@@ -42,7 +43,6 @@ const BenefitsLayout = ({ children }: any) => {
       args: walletAddress,
       onSuccess(data) {
         searchForNFT();
-        setCheckingWallet(true);
         if (parseInt(data._hex) > 0) {
           toast.update(toastId.current, { render: "Developer DAO NFT found!" });
           setDDNFT(true);
@@ -64,7 +64,7 @@ const BenefitsLayout = ({ children }: any) => {
         toast(
           <div className="space-y-1">
             <div className="font-bold">Something went wrong</div>
-            <div>{data.toSring()}</div>
+            <div>{data.toString()}</div>
           </div>
         );
       },
@@ -154,7 +154,12 @@ const BenefitsLayout = ({ children }: any) => {
                   className={styles.desktopSidebarButton}
                   onClick={handleViewHome}
                 >
-                  <img src="./diamond-black.png" />
+                  <Image
+                    width="20"
+                    height="20"
+                    src="/diamond-black.png"
+                    alt="diamong-black logo"
+                  />
                 </a>
                 {/*@ts-ignore - React tooltip is working on a fix */}
                 <ReactTooltip

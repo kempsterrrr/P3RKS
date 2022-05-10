@@ -1,3 +1,4 @@
+import { LayoutProps } from "./Layout.d";
 import { NavBar } from "../NavBar";
 import { Footer } from "../Footer";
 
@@ -5,7 +6,7 @@ const styles = {
   container: "flex grow",
 };
 
-const Layout = ({ children }: any) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <NavBar />

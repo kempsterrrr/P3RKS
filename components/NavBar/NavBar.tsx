@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
+import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const styles = {
@@ -39,8 +39,6 @@ const navItems = [
 ];
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
-
   return (
     <>
       <Disclosure as="nav" className={styles.container}>
@@ -49,7 +47,12 @@ const NavBar = () => {
             <div className={styles.navContainer}>
               <Link href="/">
                 <a className={styles.logoContainer}>
-                  <img className={styles.logoImage} src="diamond.png" />
+                  <Image
+                    width="32"
+                    height="30"
+                    src="/diamond.png"
+                    alt="diamond logo"
+                  />
                   <div className={styles.logoText}>B3NZ</div>
                 </a>
               </Link>
