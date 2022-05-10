@@ -4,7 +4,7 @@ import { Layout } from "../components/Layout";
 import Link from "next/link";
 
 const styles = {
-  container: "relative p-[30px] grow w-screen",
+  container: "relative px-[30px] pt-[30px] grow w-screen",
   contentContainer:
     "h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]",
   mobilePercentageIconsContainer: "relative flex justify-between lg:hidden",
@@ -42,13 +42,13 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <main className={styles.container}>
-          <div className={styles.mobilePercentageIconOneContainer}>
-            <img
-              className={styles.mobilePercentageIconOne}
-              src="percentage-icon-four.png"
-            />
-          </div>
           <div className={styles.contentContainer}>
+            <div className={styles.mobilePercentageIconOneContainer}>
+              <img
+                className={styles.mobilePercentageIconOne}
+                src="percentage-icon-four.png"
+              />
+            </div>
             <div className={styles.mobilePercentageIconsContainer}>
               <img
                 className={styles.mobilePercentageIconTwo}
