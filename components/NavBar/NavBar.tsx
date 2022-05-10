@@ -97,6 +97,9 @@ const NavBar = () => {
                     {item.text}
                   </a>
                 ))}
+                <Link href="/benefits">
+                  <a className={styles.mobileMenuNavItem}>View benefits</a>
+                </Link>
                 <div className={styles.mobileMenuNavItem}></div>
               </div>
             </Disclosure.Panel>
