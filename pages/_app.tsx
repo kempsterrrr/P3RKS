@@ -26,10 +26,6 @@ const client = createClient({
   },
 });
 
-const styles = {
-  container: "flex flex-col absolute inset-0",
-};
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider client={client}>
@@ -39,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             fetch(resource, init).then((res) => res.json()),
         }}
       >
-        <div className={styles.container}>
+        <div className="flex flex-col absolute inset-0">
           {/* @ts-ignore: react-dom type issues */}
           <Component {...pageProps} />
         </div>

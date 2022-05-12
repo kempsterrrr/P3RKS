@@ -7,34 +7,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const styles = {
-  mainContainer: "lg:pl-64 flex flex-col flex-1 py-[20px] lg:pt-[207px]",
-  contentContainer: "max-w-[100%] px-4 sm:px-[40px]",
-  headerContainer: "pb-5 border-b border-gray-200 sm:pb-0",
-  headerTitle: "text-[48px]",
-  subMenuContainer: "mt-[36px]",
-  mobileSubMenu: "sm:hidden",
-  mobileSubMenuButton:
-    "block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md",
-  desktopSubMenu: "hidden sm:block",
-  desktopSubMenuNav: "-mb-px flex space-x-8",
-  desktopSubMenuActive: "border-black text-[#1A021B]",
-  desktopSubMenuInactive:
-    "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-  desktopSubMenuBase:
-    "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm",
-  benefitsContainer:
-    "mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3",
-  benefitContainer:
-    "p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px]",
-  benefitHeader: "flex items-center space-x-[12px]",
-  benefitIcon: "w-[36px] h-[36px]",
-  benefitTitle: "text-[#1A021B] text-[16px]",
-  benefitSubtitle: "text-[#9F9B9F] text-[16px]",
-  benefitBodyContainer: "mt-[36px] flex flex-col space-y-[4px]",
-  benefitStatsContainer: "flex space-x-[28px] text-[16px] text-[#9F9B9F]",
-};
-
 const tabs = [
   { name: "Popular", href: "#", current: true },
   { name: "Recently added", href: "#", current: false },
@@ -50,19 +22,19 @@ const Benefits: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <BenefitsLayout>
-        <main className={styles.mainContainer}>
-          <div className={styles.contentContainer}>
-            <div className={styles.headerContainer}>
-              <h3 className={styles.headerTitle}>All benefits</h3>
-              <div className={styles.subMenuContainer}>
-                <div className={styles.mobileSubMenu}>
+        <main className="lg:pl-64 flex flex-col flex-1 py-[20px] lg:pt-[207px]">
+          <div className="max-w-[100%] px-4 sm:px-[40px]">
+            <div className="pb-5 border-b border-gray-200 sm:pb-0">
+              <h3 className="text-[48px]">All benefits</h3>
+              <div className="mt-[36px]">
+                <div className="sm:hidden">
                   <label htmlFor="current-tab" className="sr-only">
                     Select a tab
                   </label>
                   <select
                     id="current-tab"
                     name="current-tab"
-                    className={styles.mobileSubMenuButton}
+                    className="block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md"
                     defaultValue={tabs.find((tab) => tab.current).name}
                   >
                     {tabs.map((tab) => (
@@ -70,17 +42,17 @@ const Benefits: NextPage = () => {
                     ))}
                   </select>
                 </div>
-                <div className={styles.desktopSubMenu}>
-                  <nav className={styles.desktopSubMenuNav}>
+                <div className="hidden sm:block">
+                  <nav className="-mb-px flex space-x-8">
                     {tabs.map((tab) => (
                       <a
                         key={tab.name}
                         href={tab.href}
                         className={classNames(
                           tab.current
-                            ? styles.desktopSubMenuActive
-                            : styles.desktopSubMenuInactive,
-                          styles.desktopSubMenuBase
+                            ? "border-black text-[#1A021B]"
+                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                          "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"
                         )}
                         aria-current={tab.current ? "page" : undefined}
                       >
@@ -91,28 +63,31 @@ const Benefits: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.benefitsContainer}>
+            <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3">
               {[...Array(12)].map((item, index) => (
-                <div key={index} className={styles.benefitContainer}>
-                  <div className={styles.benefitHeader}>
+                <div
+                  key={index}
+                  className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px]"
+                >
+                  <div className="flex items-center space-x-[12px]">
                     <img
-                      className={styles.benefitIcon}
+                      className="w-[36px] h-[36px]"
                       src="./kubera-logo.png"
                     />
                     <div>
-                      <div className={styles.benefitTitle}>Kubera</div>
-                      <div className={styles.benefitSubtitle}>
+                      <div className="text-[#1A021B] text-[16px]">Kubera</div>
+                      <div className="text-[#9F9B9F] text-[16px]">
                         Net worth tracker
                       </div>
                     </div>
                   </div>
                   {ownsDDNFT ? (
-                    <div className={styles.benefitBodyContainer}>
+                    <div className="mt-[36px] flex flex-col space-y-[4px]">
                       <div className="grow">
                         30% off lifetime membership on PRO plan
                       </div>
 
-                      <div className={styles.benefitStatsContainer}>
+                      <div className="flex space-x-[28px] text-[16px] text-[#9F9B9F]">
                         <div>4 days ago</div>
                         <div>332 views</div>
                         <div>44 uses</div>
