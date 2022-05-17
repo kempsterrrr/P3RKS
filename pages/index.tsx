@@ -24,6 +24,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.container}>
+        <h1>Why isn't this shit working?</h1>
         <div className={styles.column}>
           <div className={styles.titleContainer}>
             <h1 className={styles.subtitle}>DROPPING SOON 👀</h1>
