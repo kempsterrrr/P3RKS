@@ -71,7 +71,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
     if (!connected) router.push("/");
   }, [connected]);
 
-  const handleViewHome = () => {
+  const handleAllPerks = () => {
     router.push("/perks");
   };
 
@@ -87,7 +87,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const navItems = [
     {
       text: "View all perks",
-      onClick: handleViewHome,
+      onClick: handleAllPerks,
     },
     {
       text: "Disconnect",
@@ -100,7 +100,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       <Disclosure as={Fragment}>
         {({ open }) => (
           <>
-            <div className="p-4 z-10 flex flex-col items-end  lg:hidden">
+            <div className="p-4 z-10 flex flex-col items-end lg:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
                 <span className="sr-only">Open main menu</span>
@@ -132,15 +132,22 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 <a
                   data-tip
                   data-for="benefits"
-                  className="w-[48px] h-[48px] border-[#D4D4D4] border-[1px] rounded-full flex justify-center items-center cursor-pointer"
-                  onClick={handleViewHome}
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer"
+                  onClick={handleAllPerks}
                 >
-                  <Image
-                    width="20"
-                    height="20"
-                    src="/diamond-black.png"
-                    alt="diamong-black logo"
-                  />
+                  <svg
+                    className="h-[20px] w-[20px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <path d="M6 5h12l3 5-8.5 9.5a.7.7 0 0 1-1 0L3 10l3-5" />
+                    <path d="M10 12 8 9.8l.6-1" />
+                  </svg>
                 </a>
                 {/*@ts-ignore - React tooltip is working on a fix */}
                 <ReactTooltip
@@ -151,21 +158,28 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   backgroundColor="black"
                   className="!rounded-full !bg-[#1A021B] !text-white"
                 >
-                  View Home
+                  View all perks
                 </ReactTooltip>
                 <div className="grow" />
                 <a
                   data-tip
                   data-for="disconnect"
-                  className="w-[48px] h-[48px] border-[#D4D4D4] border-[1px] rounded-full flex justify-center items-center cursor-pointer"
+                  className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer"
                   onClick={handleDisconnect}
                 >
-                  <Image
-                    width="20"
-                    height="20"
-                    src="/disconnect.svg"
-                    alt="Disconnect wallet"
-                  />
+                  <svg
+                    className="h-[20px] w-[20px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
+                    <path d="M7 12h14l-3-3m0 6 3-3" />
+                  </svg>
                 </a>
                 {/*@ts-ignore - React tooltip is working on a fix */}
                 <ReactTooltip
@@ -176,7 +190,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   backgroundColor="black"
                   className="!rounded-full !bg-[#1A021B] !text-white"
                 >
-                  Disconnect ${ensName || walletAddress}
+                  Disconnect {ensName || walletAddress}
                 </ReactTooltip>
               </div>
             </div>

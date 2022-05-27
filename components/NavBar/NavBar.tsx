@@ -8,7 +8,7 @@ import { ConnectWalletModal } from "../ConnectWalletModal";
 const navItems = [
   {
     text: "DAOs",
-    href: "/",
+    href: "https://airtable.com/shrmK5l1ZdifJAtJY",
   },
   {
     text: "Partners",

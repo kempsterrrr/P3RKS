@@ -46,7 +46,7 @@ const Home: NextPage = () => {
               </div>
             </div>
             <h1 className="text-[32px] text-[#1A021B] leading-[38px] font-medium sm:text-[36px] sm:leading-[42px] md:text-[62px] md:leading-[68px] lg:text-[100px] lg:leading-[106px]">
-              P3RKS for <br /> DAO contributors
+              Perks for <br /> DAO contributors
             </h1>
             <p className="text-[20px] text-[#908C91] leading-[30px] sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-[616px] lg:mx-auto lg:text-[28px] lg:leading-[48px]">
               Big discounts to products you’ll love, just for being a part of

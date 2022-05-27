@@ -20,3 +20,12 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+.fade-to-bottom:after {
+  border-width: 2;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  bottom: 0;
+  mask-image: linear-gradient(to top, transparent 50%, rgba(0, 0, 0, 1) 100%);
+}

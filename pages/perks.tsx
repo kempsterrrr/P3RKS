@@ -63,7 +63,7 @@ const Perks: NextPage = () => {
             {[...Array(12)].map((item, index) => (
               <div
                 key={index}
-                className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px]"
+                className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.06)]"
               >
                 <div className="flex items-center space-x-[12px]">
                   <img className="w-[36px] h-[36px]" src="./kubera-logo.png" />
@@ -74,19 +74,17 @@ const Perks: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                {true ? (
-                  <div className="mt-[36px] flex flex-col space-y-[4px]">
-                    <div className="grow">
-                      30% off lifetime membership on PRO plan
-                    </div>
-
-                    <div className="flex space-x-[28px] text-[16px] text-[#9F9B9F]">
-                      <div>4 days ago</div>
-                      <div>332 views</div>
-                      <div>44 uses</div>
-                    </div>
+                <div className="mt-[36px] flex flex-col space-y-[4px]">
+                  <div className="grow">
+                    30% off lifetime membership on PRO plan
                   </div>
-                ) : null}
+
+                  <div className="flex space-x-[28px] text-[16px] text-[#9F9B9F]">
+                    <div>4 days ago</div>
+                    <div>332 views</div>
+                    <div>44 uses</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
