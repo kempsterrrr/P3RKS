@@ -1,5 +1,7 @@
-import useStore from "../../stores/useStore";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import useStore from "../../stores/useStore";
+import { useGetPerks, useIncrementPerkView } from "../../hooks/usePerks";
 import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
 import { TwitterShareButton } from "react-share";
@@ -15,7 +17,18 @@ const tabs = [
 ];
 
 const Perks: NextPage = () => {
+  const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
+  const { data: perks, isFetching } = useGetPerks();
+  const incrementPerkView = useIncrementPerkView();
+
+  const handleSelectPerk = async (perkId, views) => {
+    const response = await incrementPerkView.mutateAsync({
+      perkId,
+      views: views + 1,
+    });
+    router.push(`/perks/${perkId}`);
+  };
 
   const RenderPerks = () => {
     return (
@@ -63,35 +76,42 @@ const Perks: NextPage = () => {
             </div>
           </div>
           <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3">
-            {[...Array(12)].map((item, index) => (
-              <div
-                key={index}
-                className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.06)] dark:bg-[#232323] dark:border-[#1A021B
-]/[0.07]"
+            {perks?.map((item) => (
+              <a
+                key={item.id}
+                onClick={() => handleSelectPerk(item.id, item.fields["Views"])}
               >
-                <div className="flex items-center space-x-[12px]">
-                  <img className="w-[42px] h-[42px]" src="./kubera-logo.png" />
-                  <div>
-                    <div className="text-[#1A021B] text-[18px] dark:text-[#ECECEC]">
-                      Kubera
-                    </div>
-                    <div className="text-[#9F9B9F] text-[18px]">
-                      Net worth tracker
+                <div
+                  className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.06)] dark:bg-[#232323] dark:border-[#1A021B
+]/[0.07]"
+                >
+                  <div className="flex items-center space-x-[12px]">
+                    <img
+                      className="w-[42px] h-[42px]"
+                      src={item.fields["Partner Logo"][0].thumbnails.full.url}
+                    />
+                    <div>
+                      <div className="text-[#1A021B] text-[18px] dark:text-[#ECECEC]">
+                        {item.fields["Partner Name"]}
+                      </div>
+                      <div className="text-[#9F9B9F] text-[18px]">
+                        {item.fields["Perk"]}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="mt-[36px] flex flex-col space-y-[4px]">
-                  <div className="grow dark:text-[#ECECEC]">
-                    30% off lifetime membership on PRO plan
-                  </div>
+                  <div className="mt-[36px] flex flex-col space-y-[4px]">
+                    <div className="grow dark:text-[#ECECEC]">
+                      {item.fields["Perk Description"]}
+                    </div>
 
-                  <div className="flex space-x-[28px] text-[16px] text-[#9F9B9F] dark:text-[#8A8A8A]">
-                    <div>4 days ago</div>
-                    <div>332 views</div>
-                    <div>44 uses</div>
+                    <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
+                      <div>4 days ago</div>
+                      <div>{item.fields["Views"]} views</div>
+                      <div>{item.fields["Uses"]} uses</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

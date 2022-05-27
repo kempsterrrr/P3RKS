@@ -1,13 +1,16 @@
 import "../styles/globals.css";
+import { Provider, createClient } from "wagmi";
+import { QueryClient, QueryClientProvider } from "react-query";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
-import { Provider, createClient } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import useStore from "../stores/useStore";
-import { SWRConfig } from "swr";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const queryClient = new QueryClient();
 
 // Set up connectors
 const client = createClient({
@@ -45,12 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider client={client}>
-      <SWRConfig
-        value={{
-          fetcher: (resource: any, init: any) =>
-            fetch(resource, init).then((res) => res.json()),
-        }}
-      >
+      <QueryClientProvider client={queryClient}>
         <div className="flex flex-col inset-0 min-h-screen dark:bg-[#1F1F1F] dark:text-[#8A8A8A]">
           {/* @ts-ignore: react-dom type issues */}
           <Component {...pageProps} />
@@ -65,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           draggable
           pauseOnHover={false}
         />
-      </SWRConfig>
+      </QueryClientProvider>
     </Provider>
   );
 }

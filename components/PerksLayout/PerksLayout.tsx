@@ -69,8 +69,6 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       },
     }
   );
-  console.log("zzz", connected);
-  useEffect(() => {}, [connected]);
 
   const handleAllPerks = () => {
     router.push("/perks");
