@@ -1,40 +1,15 @@
 import { ConnectWalletModalProps } from "./ConnectWalletModal.d";
-import { useRouter } from "next/router";
-import { useEffect, Fragment } from "react";
-import useStore from "../../stores/useStore";
-import shallow from "zustand/shallow";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { useConnect, useAccount } from "wagmi";
+import { useConnect } from "wagmi";
 import Image from "next/image";
 
 const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   open,
   setOpen,
 }) => {
-  const router = useRouter();
   const { connect, connectors, error } = useConnect();
-  const { data: account } = useAccount();
-  const { setConnected, setWalletAddress, clearUser } = useStore(
-    (state) => ({
-      setConnected: state.setConnected,
-      setWalletAddress: state.setWalletAddress,
-      clearUser: state.clearUser,
-    }),
-    shallow
-  );
-
-  useEffect(() => {
-    if (account) {
-      setConnected(true);
-      setWalletAddress(account.address!);
-      setOpen(false);
-      router.push("/perks");
-    } else {
-      clearUser();
-      setOpen(false);
-    }
-  }, [account]);
 
   return (
     <Transition.Root show={open}>

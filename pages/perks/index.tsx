@@ -1,7 +1,7 @@
-import useStore from "../stores/useStore";
+import useStore from "../../stores/useStore";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { PerksLayout } from "../components/PerksLayout";
+import { PerksLayout } from "../../components/PerksLayout";
 import { TwitterShareButton } from "react-share";
 
 function classNames(...classes) {
@@ -127,11 +127,17 @@ const Perks: NextPage = () => {
           </div>
           <div className="pt-5 space-y-[16px] lg:pt-0">
             <a href="/benefits">
-              <a className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white">
+              <a
+                href="https://airtable.com/shrmK5l1ZdifJAtJY"
+                className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+              >
                 Join DAO waitlist
               </a>
             </a>
-            <a className="flex justify-center items-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
+            <a
+              href="https://developerdao.com"
+              className="flex justify-center items-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
+            >
               Join Developer DAO
             </a>
           </div>

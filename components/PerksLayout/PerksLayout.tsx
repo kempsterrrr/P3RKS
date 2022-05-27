@@ -2,16 +2,17 @@ import { PerksLayoutProps } from "./PerksLayout.d";
 import { useEffect, useRef, Fragment } from "react";
 import { useContractRead, useDisconnect, useEnsName } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
+import { useGetUser } from "../../hooks/useGetUser";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { Disclosure } from "@headlessui/react";
-import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import ReactTooltip from "react-tooltip";
 import { toast } from "react-toastify";
 
 const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
+  useGetUser();
   const toastId = useRef<any>(null);
   const { disconnect } = useDisconnect();
   const router = useRouter();
@@ -68,10 +69,8 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       },
     }
   );
-
-  useEffect(() => {
-    if (!connected) router.push("/");
-  }, [connected]);
+  console.log("zzz", connected);
+  useEffect(() => {}, [connected]);
 
   const handleAllPerks = () => {
     router.push("/perks");
