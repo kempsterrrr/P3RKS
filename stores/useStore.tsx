@@ -50,8 +50,9 @@ const store = (set: any) => ({
       },
     })),
   clearUser: () =>
-    set(() => ({
+    set((state: any) => ({
       user: {
+        ...state.user,
         walletAddress: "",
         connected: false,
         DDNFT: false,
