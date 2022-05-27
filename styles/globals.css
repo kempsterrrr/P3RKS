@@ -5,7 +5,7 @@
 
 @layer base {
   html {
-    @apply font-lexend bg-[#FEFDFE];
+    @apply font-lexend bg-[#FEFDFE] text-[#9E9E9E];
   }
 }
 

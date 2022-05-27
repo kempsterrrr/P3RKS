@@ -6,6 +6,7 @@ interface useStore {
     walletAddress: string;
     connected: boolean;
     DDNFT: boolean;
+    darkMode: string;
   };
   setWalletAddress: (data: string) => void;
   setConnected: (data: boolean) => void;
@@ -18,6 +19,7 @@ const store = (set: any) => ({
     walletAddress: "",
     connected: false,
     DDNFT: false,
+    theme: "system",
   },
   setWalletAddress: (data: any) =>
     set((state: any) => ({
@@ -34,10 +36,17 @@ const store = (set: any) => ({
       },
     })),
   setDDNFT: (data: boolean) =>
-    set((state: useStore) => ({
+    set((state: any) => ({
       user: {
         ...state.user,
         DDNFT: data,
+      },
+    })),
+  setTheme: (data: string) =>
+    set((state: any) => ({
+      user: {
+        ...state.user,
+        theme: data,
       },
     })),
   clearUser: () =>

@@ -53,7 +53,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-[#efefef] bg-opacity-95 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0 bg-[#efefef] bg-opacity-95 transition-opacity dark:bg-[#0E0E0E]/[0.6]" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -72,35 +72,38 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="relative inline-block align-bottom w-full bg-[#FEFDFE] rounded-[30px] overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-[496px]">
+            <div className="relative inline-block align-bottom w-full bg-[#FEFDFE] rounded-[30px] overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-[496px] dark:border-[#262626] dark:bg-[#1F1F1F]">
               <div className="px-[32px] pt-[32px] pb-[20px] flex justify-between items-center">
-                <div className="text-[#1A021B] text-[24px] font-medium">
+                <div className="text-[#1A021B] text-[24px] font-medium dark:text-[#ECECEC]">
                   Connect wallet
                 </div>
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:text-[#9E9E9E] dark:bg-transparent"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
-              <hr />
-              <div className="px-[32px] pt-[24px] text-left space-y-[8px]">
-                <p className="text-[#9F9B9F] text-[18px]">
+              <hr className="dark:border-[#959595]/[0.7]" />
+              <div className="px-[32px] pt-[24px] text-[18px] text-left space-y-[8px]">
+                <p>
                   P3RKS currently only available to members of{" "}
-                  <span className="text-black">Developer DAO.</span>
-                </p>
-                <p className="text-[#9F9B9F] text-[18px]">
-                  Want us to add your DAO?{" "}
-                  <span className="underline underline-offset-1 text-black">
-                    Fill in this form!
+                  <span className="text-black dark:text-[#ECECEC]">
+                    Developer DAO.
                   </span>
                 </p>
-                <p className="text-[#9F9B9F] text-[18px]">
-                  Connect your wallet to determine your elegibility:
+                <p>
+                  Want us to add your DAO?{" "}
+                  <a
+                    href="https://airtable.com/shrmK5l1ZdifJAtJY"
+                    className="underline underline-offset-1 text-black cursor-pointer dark:text-[#ECECEC]"
+                  >
+                    Fill in this form!
+                  </a>
                 </p>
+                <p>Connect your wallet to determine your elegibility:</p>
               </div>
               <div className="px-[32px] pt-[20px] pb-[32px] space-y-[8px] flex flex-col">
                 <button

@@ -16,11 +16,13 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const { disconnect } = useDisconnect();
   const router = useRouter();
 
-  const { walletAddress, setDDNFT, connected } = useStore(
+  const { walletAddress, setDDNFT, connected, theme, setTheme } = useStore(
     (state) => ({
       walletAddress: state.user.walletAddress,
       setDDNFT: state.setDDNFT,
       connected: state.user.connected,
+      theme: state.user.theme,
+      setTheme: state.setTheme,
     }),
     shallow
   );
@@ -128,11 +130,11 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
 
             {/* Static sidebar for desktop */}
             <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
-              <div className="flex flex-col border-r border-gray-200 py-[32px] pr-[30px] overflow-y-auto h-full flex-shrink-0 items-end">
+              <div className="flex flex-col border-r border-[#1A021B]/[0.05] py-[32px] pr-[30px] overflow-y-auto h-full flex-shrink-0 items-end dark:border-[#FFFFFF]/[0.05]">
                 <a
                   data-tip
                   data-for="benefits"
-                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer"
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                   onClick={handleAllPerks}
                 >
                   <svg
@@ -149,55 +151,114 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                     <path d="M10 12 8 9.8l.6-1" />
                   </svg>
                 </a>
-                {/*@ts-ignore - React tooltip is working on a fix */}
-                <ReactTooltip
-                  id="benefits"
-                  place="right"
-                  type="dark"
-                  effect="solid"
-                  backgroundColor="black"
-                  className="!rounded-full !bg-[#1A021B] !text-white"
-                >
-                  View all perks
-                </ReactTooltip>
                 <div className="grow" />
-                <a
-                  data-tip
-                  data-for="disconnect"
-                  className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer"
-                  onClick={handleDisconnect}
-                >
-                  <svg
-                    className="h-[20px] w-[20px]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    aria-hidden="true"
+                <div className="space-y-[16px]">
+                  <a
+                    data-tip
+                    data-for="theme"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    onClick={() => {
+                      localStorage.theme = "light";
+                    }}
                   >
-                    <path d="M0 0h24v24H0z" stroke="none" />
-                    <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
-                    <path d="M7 12h14l-3-3m0 6 3-3" />
-                  </svg>
-                </a>
+                    <svg
+                      className="h-[20px] w-[20px]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M0 0h24v24H0z" stroke="none" />
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 5V3M17 7l1.4-1.4M19 12h2M17 17l1.4 1.4M12 19v2M7 17l-1.4 1.4M6 12H4M7 7 5.6 5.6" />
+                    </svg>
+                  </a>
+                  <a
+                    data-tip
+                    data-for="disconnect"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    onClick={handleDisconnect}
+                  >
+                    <svg
+                      className="h-[20px] w-[20px]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M0 0h24v24H0z" stroke="none" />
+                      <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
+                      <path d="M7 12h14l-3-3m0 6 3-3" />
+                    </svg>
+                  </a>
+                </div>
                 {/*@ts-ignore - React tooltip is working on a fix */}
-                <ReactTooltip
-                  id="disconnect"
-                  place="right"
-                  type="dark"
-                  effect="solid"
-                  backgroundColor="black"
-                  className="!rounded-full !bg-[#1A021B] !text-white"
-                >
-                  Disconnect {ensName || walletAddress}
-                </ReactTooltip>
               </div>
             </div>
             {children}
           </>
         )}
       </Disclosure>
+      {/*@ts-ignore - React tooltip is working on a fix */}
+      <ReactTooltip
+        id="benefits"
+        place="right"
+        effect="solid"
+        backgroundColor={
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+        }
+        className="!rounded-full"
+      >
+        <div className="text-white dark:text-[#FFF]/[0.50]">View all perks</div>
+      </ReactTooltip>
+      <ReactTooltip
+        clickable
+        id="theme"
+        place="right"
+        effect="solid"
+        delayHide={500}
+        delayUpdate={500}
+        backgroundColor={
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+        }
+        className="!rounded-lg !px-[18px] !py-[10px]"
+      >
+        <div
+          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          onClick={() => setTheme("system")}
+        >
+          System
+        </div>
+        <div
+          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          onClick={() => setTheme("dark")}
+        >
+          Dark
+        </div>
+        <div
+          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          onClick={() => setTheme("light")}
+        >
+          Light
+        </div>
+      </ReactTooltip>
+      <ReactTooltip
+        id="disconnect"
+        place="right"
+        effect="solid"
+        backgroundColor={
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+        }
+        className="!rounded-full"
+      >
+        <div className="text-white dark:text-[#FFF]/[0.50]">
+          Disconnect {ensName || walletAddress}
+        </div>
+      </ReactTooltip>
     </>
   );
 };

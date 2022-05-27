@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: "class",
   content: [
     "./posts/*.mdx",
     "./pages/**/*.{js,ts,jsx,tsx}",

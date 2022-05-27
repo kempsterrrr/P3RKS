@@ -21,27 +21,32 @@ const NavBar = () => {
 
   return (
     <>
-      <Disclosure as="nav" className="px-[30px] lg:px-[60px]">
+      <Disclosure as="nav" className="px-[30px] lg:px-[60px] dark:bg-[#202020]">
         {({ open }) => (
           <>
             <div className="py-3 flex justify-between items-center lg:h-[120px]">
               <Link href="/">
-                <a className="w-[220px] flex justify-start items-center space-x-[6px]">
-                  <Image
-                    width="32"
-                    height="30"
-                    src="/diamond.png"
-                    alt="diamond logo"
-                  />
-                  <div className="text-[20px] font-medium text-[#1A021B]">
-                    P3RKS
-                  </div>
+                <a className="w-[220px] flex justify-start items-center space-x-[6px] text-[#1A021B] dark:text-[#ECECEC] dark:hover:text-white">
+                  <svg
+                    className="h-[32px] w-[32px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <path d="M6 5h12l3 5-8.5 9.5a.7.7 0 0 1-1 0L3 10l3-5" />
+                    <path d="M10 12 8 9.8l.6-1" />
+                  </svg>
+                  <div className="text-[20px] font-medium">P3RKS</div>
                 </a>
               </Link>
               <div className="hidden lg:flex lg:space-x-[116px]">
                 {navItems.map((item) => (
                   <a
-                    className="text-[#908C91] text-[18px] hover:text-[#1A021B]"
+                    className="text-[#908C91] text-[18px] hover:text-[#1A021B] dark:text-[#8A8A8A] dark:hover:text-white"
                     key={item.text}
                     href={item.href}
                   >
@@ -51,7 +56,7 @@ const NavBar = () => {
               </div>
               <div className="hidden lg:flex">
                 <a
-                  className="w-[220px] flex justify-center items-center text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.05)]"
+                  className="w-[220px] flex justify-center items-center text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
                   onClick={() => setOpen(true)}
                 >
                   Connect wallet
@@ -90,7 +95,7 @@ const NavBar = () => {
           </>
         )}
       </Disclosure>
-      <hr />
+      <hr className="dark:border-[#252525]" />
       <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
