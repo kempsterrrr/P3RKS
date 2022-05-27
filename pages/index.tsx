@@ -1,10 +1,14 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 import Head from "next/head";
 import { Layout } from "../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
+import { ConnectWalletModal } from "../components/ConnectWalletModal";
 
 const Home: NextPage = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -18,81 +22,120 @@ const Home: NextPage = () => {
             <div className="flex grow justify-center lg:hidden">
               <div className="relative -left-3">
                 <Image
-                  width="30"
-                  height="41"
-                  src="/percentage-icon-four.png"
-                  alt="Mobile percentage icon one"
+                  width="35"
+                  height="40"
+                  src="/home/alchemy-mobile.png"
+                  alt="Alchemy logo"
                 />
               </div>
             </div>
-            <div className="relative flex justify-between lg:hidden">
+            <div className="ml-5 relative flex justify-between lg:hidden">
               <Image
-                width="70"
-                height="55"
-                src="/percentage-icon-two.png"
-                alt="Mobile percentage icon two"
+                width="98"
+                height="95"
+                src="/home/decentology-mobile.png"
+                alt="Decentology logo"
               />
-              <div className="absolute right-0 -top-5">
+              <div className="absolute right-10 -top-5">
                 <Image
-                  width="67"
-                  height="67"
-                  src="/percentage-icon-one.png"
-                  alt="Mobile percentage icon three"
+                  width="50"
+                  height="57"
+                  src="/home/ankr-mobile.png"
+                  alt="Ankr logo"
                 />
               </div>
             </div>
             <h1 className="text-[32px] text-[#1A021B] leading-[38px] font-medium sm:text-[36px] sm:leading-[42px] md:text-[62px] md:leading-[68px] lg:text-[100px] lg:leading-[106px]">
-              Benefits for <br /> DAO contributors
+              P3RKS for <br /> DAO contributors
             </h1>
             <p className="text-[20px] text-[#908C91] leading-[30px] sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-[616px] lg:mx-auto lg:text-[28px] lg:leading-[48px]">
-              Heavy discounts to products you’ll love, just for being a part of
+              Big discounts to products you’ll love, just for being a part of
               your DAO.
             </p>
             <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
-              <Link href="/benefits">
-                <a className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)]">
-                  View benefits
+              <a
+                className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)]"
+                onClick={() => setOpen(true)}
+              >
+                Connect wallet
+              </a>
+              <Link href="https://airtable.com/shrZZn6ZKZfvrUqDX">
+                <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)]">
+                  Offer a perk
                 </a>
               </Link>
-              <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)]">
-                Offer benefits
-              </a>
             </div>
           </div>
         </main>
-        <div className="hidden lg:flex absolute bottom-20 left-32">
+        <div className="hidden lg:flex absolute top-44 left-[38%]">
+          <Image width="39" height="40" src="/home/f.png" alt="f logo" />
+        </div>
+        <div className="hidden lg:flex absolute top-44 right-[34%]">
           <Image
-            width="201"
-            height="203"
-            src="/percentage-icon-one.png"
-            alt="Desktop percentage icon one"
+            width="54"
+            height="57"
+            src="/home/koinly.png"
+            alt="Koinly logo"
           />
         </div>
-        <div className="hidden lg:flex absolute top-96 right-14">
+        <div className="hidden lg:flex absolute top-[25%] left-[17%]">
           <Image
-            width="129"
-            height="101"
-            src="/percentage-icon-two.png"
+            width="98"
+            height="90"
+            src="/home/tenderly.png"
+            alt="Tenderly logo"
+          />
+        </div>
+        <div className="hidden lg:flex absolute top-[27%] right-[15%]">
+          <Image
+            width="110"
+            height="100"
+            src="/home/cryptotax.png"
+            alt="Cryptotax logo"
+          />
+        </div>
+        <div className="hidden lg:flex absolute top-[48%] left-[4%]">
+          <Image
+            width="127"
+            height="136"
+            src="/home/kubera.png"
+            alt="Kubera logo"
+          />
+        </div>
+        <div className="hidden lg:flex absolute top-[48%] right-[4%]">
+          <Image
+            width="139"
+            height="157"
+            src="/home/ankr.png"
             alt="Desktop percentage icon two"
           />
         </div>
-        <div className="hidden lg:flex absolute bottom-0 right-36">
+        <div className="hidden lg:flex absolute -bottom-[0%] left-[13%]">
           <Image
-            width="247"
-            height="247"
-            src="/percentage-icon-three.png"
-            alt="Desktop percentage icon three"
+            width="233"
+            height="204"
+            src="/home/consensys.png"
+            alt="Consensys logo"
           />
         </div>
-        <div className="hidden lg:flex absolute top-44 left-80">
+        <div className="hidden lg:flex absolute -bottom-[0%] right-[15%]">
           <Image
-            width="64"
-            height="86"
-            src="/percentage-icon-four.png"
-            alt="Desktop percentage icon four"
+            width="250"
+            height="180"
+            src="/home/decentology.png"
+            alt="Decentology logo"
+          />
+        </div>
+        <div className="hidden lg:flex absolute -bottom-[0%] right-[49%]">
+          <Image
+            width="150"
+            height="100"
+            src="/home/alchemy.png"
+            alt="Alchemy logo"
           />
         </div>
       </Layout>
+      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { BenefitsLayoutProps } from "./BenefitsLayout.d";
-import { useState, useRef, Fragment } from "react";
+import { PerksLayoutProps } from "./PerksLayout.d";
+import { useEffect, useRef, Fragment } from "react";
 import { useContractRead, useDisconnect, useEnsName } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
 import useStore from "../../stores/useStore";
@@ -7,15 +7,11 @@ import shallow from "zustand/shallow";
 import { Disclosure } from "@headlessui/react";
 import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { VscDebugDisconnect } from "react-icons/vsc";
-import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/router";
 import ReactTooltip from "react-tooltip";
-import { ConnectWalletModal } from "../ConnectWalletModal";
 import { toast } from "react-toastify";
 
-const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
-  const [open, setOpen] = useState(false);
+const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const toastId = useRef<any>(null);
   const { disconnect } = useDisconnect();
   const router = useRouter();
@@ -71,16 +67,17 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
     }
   );
 
-  const handleViewHome = () => {
-    router.push("/");
-  };
+  useEffect(() => {
+    if (!connected) router.push("/");
+  }, [connected]);
 
-  const handleConnect = () => {
-    setOpen(true);
+  const handleViewHome = () => {
+    router.push("/perks");
   };
 
   const handleDisconnect = () => {
     disconnect();
+    router.push("/");
   };
 
   const ensName = useEnsName({
@@ -89,12 +86,12 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
 
   const navItems = [
     {
-      text: "View Home",
+      text: "View all perks",
       onClick: handleViewHome,
     },
     {
-      text: connected ? "Disconnect" : "Connect",
-      onClick: connected ? handleDisconnect : handleConnect,
+      text: "Disconnect",
+      onClick: handleDisconnect,
     },
   ];
 
@@ -161,9 +158,14 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
                   data-tip
                   data-for="disconnect"
                   className="w-[48px] h-[48px] border-[#D4D4D4] border-[1px] rounded-full flex justify-center items-center cursor-pointer"
-                  onClick={connected ? handleDisconnect : handleConnect}
+                  onClick={handleDisconnect}
                 >
-                  {connected ? <VscDebugDisconnect /> : <FaWallet />}
+                  <Image
+                    width="20"
+                    height="20"
+                    src="/disconnect.svg"
+                    alt="Disconnect wallet"
+                  />
                 </a>
                 {/*@ts-ignore - React tooltip is working on a fix */}
                 <ReactTooltip
@@ -174,9 +176,7 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
                   backgroundColor="black"
                   className="!rounded-full !bg-[#1A021B] !text-white"
                 >
-                  {connected
-                    ? `Disconnect ${ensName || walletAddress}`
-                    : "Connect Wallet"}
+                  Disconnect ${ensName || walletAddress}
                 </ReactTooltip>
               </div>
             </div>
@@ -184,9 +184,8 @@ const BenefitsLayout: React.FC<BenefitsLayoutProps> = ({ children }) => {
           </>
         )}
       </Disclosure>
-      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };
 
-export default BenefitsLayout;
+export default PerksLayout;

@@ -1,24 +1,24 @@
+import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { ConnectWalletModal } from "../ConnectWalletModal";
 
 const navItems = [
-  {
-    text: "Blog",
-    href: "/blog",
-  },
   {
     text: "DAOs",
     href: "/",
   },
   {
     text: "Partners",
-    href: "/partners",
+    href: "https://airtable.com/shrZZn6ZKZfvrUqDX",
   },
 ];
 
 const NavBar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Disclosure as="nav" className="px-[30px] lg:px-[60px]">
@@ -26,7 +26,7 @@ const NavBar = () => {
           <>
             <div className="py-3 flex justify-between items-center lg:h-[120px]">
               <Link href="/">
-                <a className="flex justify-center items-center space-x-[6px]">
+                <a className="w-[220px] flex justify-start items-center space-x-[6px]">
                   <Image
                     width="32"
                     height="30"
@@ -34,7 +34,7 @@ const NavBar = () => {
                     alt="diamond logo"
                   />
                   <div className="text-[20px] font-medium text-[#1A021B]">
-                    B3NZ
+                    P3RKS
                   </div>
                 </a>
               </Link>
@@ -50,11 +50,12 @@ const NavBar = () => {
                 ))}
               </div>
               <div className="hidden lg:flex">
-                <Link href="/benefits">
-                  <a className="text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.05)]">
-                    View benefits
-                  </a>
-                </Link>
+                <a
+                  className="w-[220px] flex justify-center items-center text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.05)]"
+                  onClick={() => setOpen(true)}
+                >
+                  Connect wallet
+                </a>
               </div>
               <div className="flex items-center lg:hidden">
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
@@ -90,6 +91,7 @@ const NavBar = () => {
         )}
       </Disclosure>
       <hr />
+      <ConnectWalletModal open={open} setOpen={setOpen} />
     </>
   );
 };

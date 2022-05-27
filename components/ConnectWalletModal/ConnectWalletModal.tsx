@@ -1,7 +1,8 @@
 import { ConnectWalletModalProps } from "./ConnectWalletModal.d";
+import { useRouter } from "next/router";
+import { useEffect, Fragment } from "react";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
-import { useEffect, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect, useAccount } from "wagmi";
@@ -11,6 +12,9 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   open,
   setOpen,
 }) => {
+  const router = useRouter();
+  const { connect, connectors, error } = useConnect();
+  const { data: account } = useAccount();
   const { setConnected, setWalletAddress, clearUser } = useStore(
     (state) => ({
       setConnected: state.setConnected,
@@ -19,14 +23,13 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
     }),
     shallow
   );
-  const { connect, connectors, error } = useConnect();
-  const { data: account } = useAccount();
 
   useEffect(() => {
     if (account) {
       setConnected(true);
       setWalletAddress(account.address!);
       setOpen(false);
+      router.push("/perks");
     } else {
       clearUser();
       setOpen(false);
@@ -34,7 +37,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   }, [account]);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={open}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
@@ -72,7 +75,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
             <div className="relative inline-block align-bottom w-full bg-[#FEFDFE] rounded-[30px] overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-[496px]">
               <div className="px-[32px] pt-[32px] pb-[20px] flex justify-between items-center">
                 <div className="text-[#1A021B] text-[24px] font-medium">
-                  View Benefits
+                  Connect wallet
                 </div>
                 <button
                   type="button"
@@ -86,12 +89,12 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
               <hr />
               <div className="px-[32px] pt-[24px] text-left space-y-[8px]">
                 <p className="text-[#9F9B9F] text-[18px]">
-                  The B3NZ benefits are currently only available to members of{" "}
+                  P3RKS currently only available to members of{" "}
                   <span className="text-black">Developer DAO.</span>
                 </p>
                 <p className="text-[#9F9B9F] text-[18px]">
                   Want us to add your DAO?{" "}
-                  <span className="underline underline-offset-1">
+                  <span className="underline underline-offset-1 text-black">
                     Fill in this form!
                   </span>
                 </p>
