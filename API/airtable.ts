@@ -6,7 +6,7 @@ const airtable = axios.create({
 
 airtable.interceptors.request.use(
   async (config) => {
-    config.headers.Authorization = `Bearer ${process.env.AIRTABLE_KEY}`;
+    config.headers.Authorization = `Bearer ${process.env.AIRTABLE_API_KEY}`;
 
     return config;
   },
