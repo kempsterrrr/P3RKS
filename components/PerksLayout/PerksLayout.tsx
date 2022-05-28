@@ -1,8 +1,9 @@
 import { PerksLayoutProps } from "./PerksLayout.d";
-import { useEffect, useRef, Fragment } from "react";
+import { useRef, Fragment } from "react";
 import { useContractRead, useDisconnect, useEnsName } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
 import { useGetUser } from "../../hooks/useGetUser";
+import { useTheme } from "../../hooks/useTheme";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { Disclosure } from "@headlessui/react";
@@ -13,17 +14,17 @@ import { toast } from "react-toastify";
 
 const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   useGetUser();
+  const { setTheme } = useTheme();
   const toastId = useRef<any>(null);
   const { disconnect } = useDisconnect();
   const router = useRouter();
 
-  const { walletAddress, setDDNFT, connected, theme, setTheme } = useStore(
+  const { walletAddress, setDDNFT, theme } = useStore(
     (state) => ({
       walletAddress: state.user.walletAddress,
       setDDNFT: state.setDDNFT,
       connected: state.user.connected,
       theme: state.user.theme,
-      setTheme: state.setTheme,
     }),
     shallow
   );

@@ -6,7 +6,7 @@ interface useStore {
     walletAddress: string;
     connected: boolean;
     DDNFT: boolean;
-    darkMode: string;
+    theme: string | null;
   };
   setWalletAddress: (data: string) => void;
   setConnected: (data: boolean) => void;

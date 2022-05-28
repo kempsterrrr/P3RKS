@@ -5,7 +5,8 @@ import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
 
-const useGetUser = (redirectIfAuthenticated: useGetUserProps) => {
+const useGetUser = (redirectIfAuthenticated?: useGetUserProps) => {
+  console.log(redirectIfAuthenticated);
   const router = useRouter();
   const { data: account } = useAccount();
   const { setConnected, setWalletAddress, clearUser } = useStore(
