@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const perks = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: process.env.NEXT_PUBLIC_BACKEND,
 });
 
 export default perks;
