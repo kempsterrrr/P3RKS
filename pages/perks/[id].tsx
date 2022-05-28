@@ -1,119 +1,55 @@
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { getPerk, incrementPerkUse } from "../../services/PerksService";
+import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useGetPerk, useIncrementPerkUse } from "../../hooks/usePerks/usePerks";
 import { PerksLayout } from "../../components/PerksLayout";
 import Link from "next/link";
 import useStore from "../../stores/useStore";
 import { ProGallery } from "pro-gallery";
 import ReactTooltip from "react-tooltip";
 
-const items = [
-  {
-    // Image item:
-    itemId: "sample-id",
-    mediaUrl:
-      "https://i.picsum.photos/id/674/200/300.jpg?hmac=kS3VQkm7AuZdYJGUABZGmnNj_3KtZ6Twgb5Qb9ITssY",
-    metaData: {
-      type: "image",
-      height: 200,
-      width: 100,
-      title: "sample-title",
-      description: "sample-description",
-      focalPoint: [0, 0],
-      link: {
-        url: "http://example.com",
-        target: "_blank",
-      },
-    },
-  },
-  {
-    // Another Image item:
-    itemId: "differentItem",
-    mediaUrl:
-      "https://i.picsum.photos/id/1003/1181/1772.jpg?hmac=oN9fHMXiqe9Zq2RM6XT-RVZkojgPnECWwyEF1RvvTZk",
-    metaData: {
-      type: "image",
-      height: 200,
-      width: 100,
-      title: "sample-title",
-      description: "sample-description",
-      focalPoint: [0, 0],
-      link: {
-        url: "http://example.com",
-        target: "_blank",
-      },
-    },
-  },
-  {
-    // HTML item:
-    itemId: "htmlItem",
-    html: "<div style='width: 300px; height: 200px; background:pink;'>I am a text block</div>",
-    metadata: {
-      type: "text",
-      height: 200,
-      width: 300,
-      title: "sample-title",
-      description: "sample-description",
-      backgroundColor: "pink",
-    },
-  },
-  {
-    // Another Image item:
-    itemId: "differentItem",
-    mediaUrl:
-      "https://i.picsum.photos/id/1003/1181/1772.jpg?hmac=oN9fHMXiqe9Zq2RM6XT-RVZkojgPnECWwyEF1RvvTZk",
-    metaData: {
-      type: "image",
-      height: 200,
-      width: 100,
-      title: "sample-title",
-      description: "sample-description",
-      focalPoint: [0, 0],
-      link: {
-        url: "http://example.com",
-        target: "_blank",
-      },
-    },
-  },
-  {
-    // HTML item:
-    itemId: "htmlItem",
-    html: "<div style='width: 300px; height: 200px; background:pink;'>I am a text block</div>",
-    metadata: {
-      type: "text",
-      height: 200,
-      width: 300,
-      title: "sample-title",
-      description: "sample-description",
-      backgroundColor: "pink",
-    },
-  },
-];
+export async function getServerSideProps(context: any) {
+  const { id } = context.query;
+  const perk = await getPerk(id);
 
-const RedeemPage = () => {
+  return {
+    props: {
+      perk,
+    },
+  };
+}
+
+const RedeemPage = ({ perk }: any) => {
   const [width, setWidth] = useState(400);
   const test = useRef(null);
   const galleryDivWidth = test.current?.clientWidth;
-  const { query, push } = useRouter();
-  const { data: perk, isLoading } = useGetPerk(query.id);
-  const incrementPerkUse = useIncrementPerkUse();
+  const router = useRouter();
   const theme = useStore((state) => state.user.theme);
 
-  const handleRedeemPerk = async (perkId, uses, website) => {
-    const response = await incrementPerkUse.mutateAsync({
-      perkId,
-      uses: uses + 1,
-    });
+  const images = perk.fields["Gallery"];
+  let items: any = [];
 
-    push(website);
+  images.forEach((item: any) => {
+    let image = {
+      itemId: item.id,
+      mediaUrl: item.url,
+    };
+
+    items.push(image);
+  });
+
+  const handleRedeemPerk = async (
+    perkId: string,
+    uses: string,
+    website: string
+  ) => {
+    await incrementPerkUse(perkId, uses + 1);
+    router.push(website);
   };
 
   useEffect(() => {
     if (galleryDivWidth) setWidth(test.current.clientWidth);
   }, [galleryDivWidth]);
-
-  if (isLoading) return <div>loading...</div>;
 
   return (
     <>

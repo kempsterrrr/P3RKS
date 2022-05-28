@@ -1,47 +1,43 @@
-import airtable from "../API/airtable";
+import perks from "../API/perks";
 
 export const getPerks = async () => {
-  const response = airtable
-    .get("/Benefits?view=Grid%20view")
-    .then((response) => response.data.records)
-    .catch((error) => error.response.data);
-
-  return response;
-};
-
-export const incrementPerkView = async ({ perkId, views }: any) => {
-  const body = {
-    fields: {
-      Views: views,
-    },
-  };
-
-  const response = await airtable
-    .patch(`/Benefits/${perkId}`, body)
+  const response = perks
+    .get("/perks")
     .then((response) => response.data)
     .catch((error) => error.response.data);
 
   return response;
 };
 
-export const getPerk = async (perkId: any) => {
-  const response = airtable
-    .get(`/Benefits/${perkId}`)
+export const incrementPerkView = async (perkId, views) => {
+  const body = {
+    views,
+  };
+
+  const response = await perks
+    .patch(`/perks/${perkId}`, body)
     .then((response) => response.data)
     .catch((error) => error.response.data);
 
   return response;
 };
 
-export const incrementPerkUse = async ({ perkId, uses }: any) => {
+export const getPerk = async (perkId) => {
+  const response = perks
+    .get(`/perks/${perkId}`)
+    .then((response) => response.data)
+    .catch((error) => error.response.data);
+
+  return response;
+};
+
+export const incrementPerkUse = async (perkId, uses) => {
   const body = {
-    fields: {
-      Uses: uses,
-    },
+    uses,
   };
 
-  const response = await airtable
-    .patch(`/Benefits/${perkId}`, body)
+  const response = await perks
+    .patch(`/perks/${perkId}`, body)
     .then((response) => response.data)
     .catch((error) => error.response.data);
 

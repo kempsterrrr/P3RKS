@@ -1,7 +1,7 @@
+import { getPerks, incrementPerkView } from "../../services/PerksService";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import useStore from "../../stores/useStore";
-import { useGetPerks, useIncrementPerkView } from "../../hooks/usePerks";
 import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
 import { TwitterShareButton } from "react-share";
@@ -9,27 +9,31 @@ import { TwitterShareButton } from "react-share";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
 const tabs = [
   { name: "All", href: "#", current: true },
   { name: "Popular", href: "#", current: false },
   { name: "Recently added", href: "#", current: false },
 ];
 
-const Perks: NextPage = () => {
+export async function getServerSideProps() {
+  const perks = await getPerks();
+
+  return {
+    props: {
+      perks,
+    },
+  };
+}
+
+const Perks: NextPage = ({ perks }) => {
   const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
-  const { data: perks, isFetching } = useGetPerks();
-  const incrementPerkView = useIncrementPerkView();
 
   const handleSelectPerk = async (perkId, views) => {
-    const response = await incrementPerkView.mutateAsync({
-      perkId,
-      views: views + 1,
-    });
+    await incrementPerkView(perkId, views + 1);
     router.push(`/perks/${perkId}`);
   };
-
+  console.log(perks);
   const RenderPerks = () => {
     return (
       <div className="lg:pt-[207px]">
