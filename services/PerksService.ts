@@ -9,7 +9,7 @@ export const getPerks = async () => {
   return response;
 };
 
-export const incrementPerkView = async ({ perkId, views }) => {
+export const incrementPerkView = async ({ perkId, views }: any) => {
   const body = {
     fields: {
       Views: views,
@@ -17,7 +17,31 @@ export const incrementPerkView = async ({ perkId, views }) => {
   };
 
   const response = await airtable
-    .patch(`Benefits/${perkId}`, body)
+    .patch(`/Benefits/${perkId}`, body)
+    .then((response) => response.data)
+    .catch((error) => error.response.data);
+
+  return response;
+};
+
+export const getPerk = async (perkId: any) => {
+  const response = airtable
+    .get(`/Benefits/${perkId}`)
+    .then((response) => response.data)
+    .catch((error) => error.response.data);
+
+  return response;
+};
+
+export const incrementPerkUse = async ({ perkId, uses }: any) => {
+  const body = {
+    fields: {
+      Uses: uses,
+    },
+  };
+
+  const response = await airtable
+    .patch(`/Benefits/${perkId}`, body)
     .then((response) => response.data)
     .catch((error) => error.response.data);
 

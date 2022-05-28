@@ -1,5 +1,5 @@
 import { PerksLayoutProps } from "./PerksLayout.d";
-import { useRef, Fragment } from "react";
+import { Fragment } from "react";
 import { useContractRead, useDisconnect, useEnsName } from "wagmi";
 import GenisisContract from "../../abis/GenesisContract.json";
 import { useGetUser } from "../../hooks/useGetUser";
@@ -13,12 +13,12 @@ import ReactTooltip from "react-tooltip";
 import { toast } from "react-toastify";
 
 const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
+  const alreadyConnected =
+    typeof window !== "undefined" ? sessionStorage.getItem("connected") : null;
   useGetUser();
   const { setTheme } = useTheme();
-  const toastId = useRef<any>(null);
   const { disconnect } = useDisconnect();
   const router = useRouter();
-
   const { walletAddress, setDDNFT, theme } = useStore(
     (state) => ({
       walletAddress: state.user.walletAddress,
@@ -29,10 +29,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
     shallow
   );
 
-  const searchForNFT = () =>
-    (toastId.current = toast("Looking for Developer DAO NFT."));
-
-  const { isLoading } = useContractRead(
+  useContractRead(
     {
       addressOrName: "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b",
       contractInterface: GenisisContract.abi,
@@ -42,21 +39,49 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       enabled: !!walletAddress,
       args: walletAddress,
       onSuccess(data) {
-        searchForNFT();
         if (parseInt(data._hex) > 0) {
-          toast.update(toastId.current, { render: "Developer DAO NFT found!" });
-          setDDNFT(true);
-        } else {
-          toast.update(toastId.current, {
-            render: (
-              <div className="space-y-[1px]">
-                <div className="font-bold">Developer DAO NFT not found!</div>
-                <div>
-                  To view and redeem benefits you need a Developer DAO NFT.
-                </div>
+          if (!alreadyConnected) {
+            toast(
+              <div className="flex items-center justify-center gap-[10px]">
+                <svg
+                  className="h-[20px] w-[20px]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  aria-hidden="true"
+                >
+                  <path d="M0 0h24v24H0z" stroke="none" />
+                  <path d="m5 12 5 5L20 7" />
+                </svg>
+
+                <div>Wallet connected successfully!</div>
               </div>
-            ),
-          });
+            );
+          }
+          setDDNFT(true);
+          sessionStorage.setItem("connected", "true");
+        } else {
+          toast.warning(
+            <div className="flex items-center justify-center gap-[10px]">
+              <svg
+                className="h-[20px] w-[20px]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="M0 0h24v24H0z" stroke="none" />
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9 10h.01M15 10h.01M9.5 15.25a3.5 3.5 0 0 1 5 0" />
+              </svg>
+              <div>Wallet connected, but no Developer DAO NFT detected</div>
+            </div>
+          );
+
           setDDNFT(false);
         }
       },
@@ -132,7 +157,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 <a
                   data-tip
                   data-for="benefits"
-                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B]  dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                   onClick={handleAllPerks}
                 >
                   <svg
@@ -154,7 +179,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   <a
                     data-tip
                     data-for="theme"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={() => {
                       localStorage.theme = "light";
                     }}
@@ -176,7 +201,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   <a
                     data-tip
                     data-for="disconnect"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] hover:text-[#1A021B] border-[1px] rounded-full flex justify-center items-center cursor-pointer dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={handleDisconnect}
                   >
                     <svg
@@ -197,7 +222,9 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 {/*@ts-ignore - React tooltip is working on a fix */}
               </div>
             </div>
-            {children}
+            <main className="lg:pl-64 lg:py-[32px] flex flex-col flex-1">
+              <div className="max-w-[100%] px-4 sm:px-[40px]">{children}</div>
+            </main>
           </>
         )}
       </Disclosure>
@@ -213,6 +240,8 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       >
         <div className="text-white dark:text-[#FFF]/[0.50]">View all perks</div>
       </ReactTooltip>
+
+      {/*@ts-ignore - React tooltip is working on a fix */}
       <ReactTooltip
         clickable
         id="theme"
@@ -244,6 +273,8 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
           Light
         </div>
       </ReactTooltip>
+
+      {/*@ts-ignore - React tooltip is working on a fix */}
       <ReactTooltip
         id="disconnect"
         place="right"

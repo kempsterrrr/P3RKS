@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "ethers": "^5.6.4",
     "next": "12.1.5",
+    "pro-gallery": "^3.1.38",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
@@ -21,7 +22,7 @@
     "react-share": "^4.4.0",
     "react-toastify": "^9.0.1",
     "react-tooltip": "^4.2.21",
-    "wagmi": "^0.3.0",
+    "wagmi": "^0.4.3",
     "zustand": "^4.0.0-rc.0"
   },
   "devDependencies": {

@@ -32,88 +32,86 @@ const Perks: NextPage = () => {
 
   const RenderPerks = () => {
     return (
-      <div className="py-[20px] lg:pt-[207px]">
-        <div className="max-w-[100%] px-4 sm:px-[40px]">
-          <div className="pb-5 border-b border-gray-200 sm:pb-0 dark:border-[#FFFFFF]/[0.05]">
-            <h3 className="text-[48px] text-[#171717] dark:text-[#ECECEC]">
-              Perks
-            </h3>
-            <div className="mt-[36px]">
-              <div className="sm:hidden">
-                <label htmlFor="current-tab" className="sr-only">
-                  Select a tab
-                </label>
-                <select
-                  id="current-tab"
-                  name="current-tab"
-                  className="block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md"
-                  defaultValue={tabs.find((tab) => tab.current).name}
-                >
-                  {tabs.map((tab) => (
-                    <option key={tab.name}>{tab.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="hidden sm:block">
-                <nav className="-mb-px flex space-x-8">
-                  {tabs.map((tab) => (
-                    <a
-                      key={tab.name}
-                      href={tab.href}
-                      className={classNames(
-                        tab.current
-                          ? "border-black text-[#1A021B] dark:text-[#ECECEC] dark:border-[#ECECEC]"
-                          : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:hover:text-[#ECECEC]",
-                        "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"
-                      )}
-                      aria-current={tab.current ? "page" : undefined}
-                    >
-                      {tab.name}
-                    </a>
-                  ))}
-                </nav>
-              </div>
+      <div className="lg:pt-[207px]">
+        <div className="pb-5 border-b border-gray-200 sm:pb-0 dark:border-[#FFFFFF]/[0.05]">
+          <h3 className="text-[48px] text-[#171717] dark:text-[#ECECEC]">
+            Perks
+          </h3>
+          <div className="mt-[36px]">
+            <div className="sm:hidden">
+              <label htmlFor="current-tab" className="sr-only">
+                Select a tab
+              </label>
+              <select
+                id="current-tab"
+                name="current-tab"
+                className="block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md"
+                defaultValue={tabs.find((tab) => tab.current).name}
+              >
+                {tabs.map((tab) => (
+                  <option key={tab.name}>{tab.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="hidden sm:block">
+              <nav className="-mb-px flex space-x-8">
+                {tabs.map((tab) => (
+                  <a
+                    key={tab.name}
+                    href={tab.href}
+                    className={classNames(
+                      tab.current
+                        ? "border-black text-[#1A021B] dark:text-[#ECECEC] dark:border-[#ECECEC]"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:hover:text-[#ECECEC]",
+                      "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"
+                    )}
+                    aria-current={tab.current ? "page" : undefined}
+                  >
+                    {tab.name}
+                  </a>
+                ))}
+              </nav>
             </div>
           </div>
-          <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3">
-            {perks?.map((item) => (
-              <a
-                key={item.id}
-                onClick={() => handleSelectPerk(item.id, item.fields["Views"])}
-              >
-                <div
-                  className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.06)] dark:bg-[#232323] dark:border-[#1A021B
+        </div>
+        <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3">
+          {perks?.map((item) => (
+            <a
+              key={item.id}
+              onClick={() => handleSelectPerk(item.id, item.fields["Views"])}
+            >
+              <div
+                className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer hover:shadow-[0_0_25px_rgba(0,0,0,0.06)] dark:bg-[#232323] dark:border-[#1A021B
 ]/[0.07]"
-                >
-                  <div className="flex items-center space-x-[12px]">
-                    <img
-                      className="w-[42px] h-[42px]"
-                      src={item.fields["Partner Logo"][0].thumbnails.full.url}
-                    />
-                    <div>
-                      <div className="text-[#1A021B] text-[18px] dark:text-[#ECECEC]">
-                        {item.fields["Partner Name"]}
-                      </div>
-                      <div className="text-[#9F9B9F] text-[18px]">
-                        {item.fields["Perk"]}
-                      </div>
+              >
+                <div className="flex items-center space-x-[12px]">
+                  <img
+                    className="w-[42px] h-[42px]"
+                    src={item.fields["Partner Logo"][0].thumbnails.full.url}
+                  />
+                  <div>
+                    <div className="text-[#1A021B] text-[18px] dark:text-[#ECECEC]">
+                      {item.fields["Partner Name"]}
                     </div>
-                  </div>
-                  <div className="mt-[36px] flex flex-col space-y-[4px]">
-                    <div className="grow dark:text-[#ECECEC]">
-                      {item.fields["Perk Description"]}
-                    </div>
-
-                    <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
-                      <div>4 days ago</div>
-                      <div>{item.fields["Views"]} views</div>
-                      <div>{item.fields["Uses"]} uses</div>
+                    <div className="text-[#9F9B9F] text-[18px]">
+                      {item.fields["Perk"]}
                     </div>
                   </div>
                 </div>
-              </a>
-            ))}
-          </div>
+                <div className="mt-[36px] flex flex-col space-y-[4px]">
+                  <div className="grow dark:text-[#ECECEC]">
+                    {item.fields["Perk Description"]}
+                  </div>
+
+                  <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
+                    <div>4 days ago</div>
+                    <div>{item.fields["Views"]} views</div>
+                    <div>{item.fields["Uses"]} uses</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     );
@@ -121,7 +119,7 @@ const Perks: NextPage = () => {
 
   const RenderNotQualified = () => {
     return (
-      <div className="px-10 h-full my-auto lg:flex lg:justify-center lg:items-center">
+      <div className="px-10 absolute inset-y-0 my-auto lg:flex lg:justify-center lg:items-center">
         <div className="text-center space-y-[10px] lg:space-y-[34px] lg:text-left lg:w-[40%]">
           <div className="text-[#171717] text-[32px] sm:text-[36px] md:text-[40px] lg:text-[48px] dark:text-[#ECECEC]">
             Access perks
@@ -177,9 +175,7 @@ const Perks: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PerksLayout>
-        <main className="lg:pl-64 flex flex-col flex-1">
-          {ownsDDNFT ? <RenderPerks /> : <RenderNotQualified />}
-        </main>
+        {ownsDDNFT ? <RenderPerks /> : <RenderNotQualified />}
       </PerksLayout>
     </>
   );

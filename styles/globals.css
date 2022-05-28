@@ -11,6 +11,7 @@
 
 :root {
   --toastify-color-progress-light: #000 !important;
+  --toastify-toast-width: flex !important;
 }
 
 .fade {
@@ -22,10 +23,18 @@
 }
 
 .fade-to-bottom:after {
-  border-width: 2;
   height: 100px;
   width: 100px;
   position: absolute;
   bottom: 0;
   mask-image: linear-gradient(to top, transparent 50%, rgba(0, 0, 0, 1) 100%);
+}
+
+.Toastify__toast-container {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.Toastify__toast-icon {
+  display: none !important;
 }
