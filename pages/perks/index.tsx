@@ -33,7 +33,7 @@ const Perks: NextPage = ({ perks }) => {
     await incrementPerkView(perkId, views + 1);
     router.push(`/perks/${perkId}`);
   };
-  console.log(perks);
+
   const RenderPerks = () => {
     return (
       <div className="lg:pt-[207px]">
