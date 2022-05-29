@@ -53,8 +53,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   Connect wallet
                 </div>
                 <button
-                  type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:text-[#9E9E9E] dark:bg-transparent"
+                  className="bg-white rounded-md text-gray-400 transition duration-150 hover:ease-in-out hover:text-gray-500 dark:text-[#9E9E9E] dark:bg-transparent dark:hover:text-[#ECECEC]"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close</span>
@@ -82,7 +81,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
               </div>
               <div className="px-[32px] pt-[20px] pb-[32px] space-y-[8px] flex flex-col">
                 <button
-                  className="py-[16px] px-[48px] bg-[#f6851b]/[.06] border-[2px] border-[#f6851b]/[0.1] rounded-full text-[#F6851B] text-[18px] flex justify-center items-center space-x-2 hover:border-[#f6851b]/[0.75]"
+                  className="py-[16px] px-[48px] bg-[#f6851b]/[.06] border-[2px] border-[#f6851b]/[0.1] rounded-full text-[#F6851B] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#f6851b]/[0.75]"
                   disabled={!connectors[0].ready}
                   key={connectors[0].id}
                   onClick={() => connect(connectors[0])}
@@ -96,7 +95,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   <div>Connect with {connectors[0].name}</div>
                 </button>
                 <button
-                  className="py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 hover:border-[#3b98fc]/[0.75]"
+                  className="py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#3b98fc]/[0.75]"
                   disabled={!connectors[1].ready}
                   key={connectors[1].id}
                   onClick={() => connect(connectors[1])}

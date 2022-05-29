@@ -157,11 +157,11 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 <a
                   data-tip
                   data-for="benefits"
-                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B]  dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B]  dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                   onClick={handleAllPerks}
                 >
                   <svg
-                    className="h-[20px] w-[20px]"
+                    className="h-[24px] w-[24px]"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -179,13 +179,13 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   <a
                     data-tip
                     data-for="theme"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={() => {
                       localStorage.theme = "light";
                     }}
                   >
                     <svg
-                      className="h-[20px] w-[20px]"
+                      className="h-[26px] w-[26px]"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -201,7 +201,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   <a
                     data-tip
                     data-for="disconnect"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={handleDisconnect}
                   >
                     <svg
@@ -238,7 +238,9 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         }
         className="!rounded-full"
       >
-        <div className="text-white dark:text-[#FFF]/[0.50]">View all perks</div>
+        <div className="text-white  dark:text-[#FFF]/[0.50]">
+          View all perks
+        </div>
       </ReactTooltip>
 
       {/*@ts-ignore - React tooltip is working on a fix */}
@@ -255,19 +257,19 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         className="!rounded-lg !px-[18px] !py-[10px]"
       >
         <div
-          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
           onClick={() => setTheme("system")}
         >
           System
         </div>
         <div
-          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
           onClick={() => setTheme("dark")}
         >
           Dark
         </div>
         <div
-          className="py-1 cursor-pointer text-white dark:text-[#FFF]/[0.50] dark:hover:text-white"
+          className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
           onClick={() => setTheme("light")}
         >
           Light
