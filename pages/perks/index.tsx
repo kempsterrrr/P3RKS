@@ -29,9 +29,12 @@ const Perks: NextPage = ({ perks }) => {
   const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
 
-  const handleSelectPerk = async (perkId, views) => {
+  const handleSelectPerk = async (partnerName, perkId, views) => {
     await incrementPerkView(perkId, views + 1);
-    router.push(`/perks/${perkId}`);
+    router.push({
+      pathname: `/perks/${partnerName.toLowerCase()}`,
+      query: { id: perkId },
+    });
   };
 
   const RenderPerks = () => {
@@ -82,7 +85,13 @@ const Perks: NextPage = ({ perks }) => {
           {perks?.map((item) => (
             <a
               key={item.id}
-              onClick={() => handleSelectPerk(item.id, item.fields["Views"])}
+              onClick={() =>
+                handleSelectPerk(
+                  item.fields["Partner Name"],
+                  item.id,
+                  item.fields["Views"]
+                )
+              }
             >
               <div
                 className="p-[24px] border-[1px] border-[#1A021B]/[0.07] rounded-[16px] cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:shadow-[0_0_25px_rgba(0,0,0,0.06)] dark:bg-[#232323] dark:border-[#1A021B
