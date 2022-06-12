@@ -18,7 +18,7 @@ const store = (set: any) => ({
   user: {
     walletAddress: "",
     connected: false,
-    DDNFT: false,
+    DDNFT: undefined,
     theme: "system",
   },
   setWalletAddress: (data: any) =>

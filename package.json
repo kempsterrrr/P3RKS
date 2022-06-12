@@ -16,6 +16,7 @@
     "next": "12.1.5",
     "pro-gallery": "^3.1.38",
     "react": "17.0.2",
+    "react-content-loader": "^6.2.0",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "react-share": "^4.4.0",

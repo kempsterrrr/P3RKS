@@ -1,9 +1,11 @@
 import { getPerks, incrementPerkView } from "../../services/PerksService";
 import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import useStore from "../../stores/useStore";
 import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
+import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
 
 function classNames(...classes) {
@@ -26,8 +28,13 @@ export async function getServerSideProps() {
 }
 
 const Perks: NextPage = ({ perks }) => {
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
+
+  useEffect(() => {
+    if (ownsDDNFT != undefined) setLoading(false);
+  }, [ownsDDNFT]);
 
   const handleSelectPerk = async (partnerName, perkId, views) => {
     await incrementPerkView(perkId, views + 1);
@@ -35,6 +42,24 @@ const Perks: NextPage = ({ perks }) => {
       pathname: `/perks/${partnerName.toLowerCase()}`,
       query: { id: perkId },
     });
+  };
+
+  const RenderLoading = () => {
+    return (
+      <div className="pt-[100px] lg:pt-[307px] absolute inset-y-0">
+        <ContentLoader
+          speed={2}
+          height="70vh"
+          width="90%"
+          backgroundColor="#8a8a8a"
+          foregroundColor="#ECECEC"
+        >
+          <rect x="0" y="0" rx="10" width="200" height="30" />
+          <rect x="0" y="70" rx="10" width="300" height="30" />
+          <rect x="0" y="150" rx="10" width="100%" height="450" />
+        </ContentLoader>
+      </div>
+    );
   };
 
   const RenderPerks = () => {
@@ -188,7 +213,13 @@ const Perks: NextPage = ({ perks }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PerksLayout>
-        {ownsDDNFT ? <RenderPerks /> : <RenderNotQualified />}
+        {loading ? (
+          <RenderLoading />
+        ) : ownsDDNFT ? (
+          <RenderPerks />
+        ) : (
+          <RenderNotQualified />
+        )}
       </PerksLayout>
     </>
   );
