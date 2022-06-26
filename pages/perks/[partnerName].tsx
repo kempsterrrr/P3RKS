@@ -6,6 +6,9 @@ import { PerksLayout } from "../../components/PerksLayout";
 import Link from "next/link";
 import useStore from "../../stores/useStore";
 import ReactTooltip from "react-tooltip";
+import md from "markdown-it";
+
+// Components
 import { Carousel } from "../../components/Carousel";
 
 export async function getStaticPaths() {
@@ -175,9 +178,14 @@ const RedeemPage = ({ perk }: any) => {
                   <div className="text-[18px] text-[#171717] dark:text-[#ECECEC]">
                     Redemption instructions
                   </div>
-                  <div className="text-[16px]">
-                    {perk?.fields["Redemption Instructions"]}
-                  </div>
+                  <div
+                    className="text-[16px] child:list-decimal child:ml-4 child:mt-4"
+                    dangerouslySetInnerHTML={{
+                      __html: md().render(
+                        perk?.fields["Redemption Instructions"]
+                      ),
+                    }}
+                  ></div>
                 </div>
               </div>
               <div className="text-[16px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
@@ -263,9 +271,14 @@ const RedeemPage = ({ perk }: any) => {
                 <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
                   Redemption instructions
                 </div>
-                <div className="text-[18px]">
-                  {perk?.fields["Redemption Instructions"]}
-                </div>
+                <div
+                  className="text-[18px] child:list-decimal child:ml-6 child:mt-4"
+                  dangerouslySetInnerHTML={{
+                    __html: md().render(
+                      perk?.fields["Redemption Instructions"]
+                    ),
+                  }}
+                ></div>
               </div>
               <a
                 className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
