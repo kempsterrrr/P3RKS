@@ -285,7 +285,6 @@ const RedeemPage = ({ perk }: any) => {
                 <ul className="list-none max-w-fit">
                   <div className="text-[18px]">
                     {perk?.fields["Redemption Instructions"].split(fieldSplitRegex).map((field: string) => {
-
                       return <li>{field}<br /></li>
                     })}
                   </div>
