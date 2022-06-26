@@ -15,6 +15,7 @@ import type { AppProps } from "next/app";
 import { useTheme } from "../hooks/useTheme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const infuraId = process.env.PUBLIC_NEXT_INFURA_ID;
 

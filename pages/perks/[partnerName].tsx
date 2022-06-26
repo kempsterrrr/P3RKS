@@ -7,6 +7,7 @@ import Link from "next/link";
 import useStore from "../../stores/useStore";
 import { ProGallery } from "pro-gallery";
 import ReactTooltip from "react-tooltip";
+import { Carousel } from "react-responsive-carousel";
 
 export async function getStaticPaths() {
   const perks = await getPerks();
@@ -100,24 +101,87 @@ const RedeemPage = ({ perk }: any) => {
           </a>
         </Link>
 
-        <div className="flex mt-[109px] space-x-[60px]">
-          <div className="flex-1 space-y-[60px]">
-            <div>
-              <div className="text-[48px] text-[#171717] dark:text-[#ECECEC]">
-                {perk?.fields["Partner Name"]}
+        <div className="flex space-x-[60px] lg:mt-[109px]">
+          <div className="flex-1 space-y-[30px] lg:space-y-[60px]">
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="text-[32px] lg:text-[48px] text-[#171717] dark:text-[#ECECEC]">
+                  {perk?.fields["Partner Name"]}
+                </div>
+                <div className="text-[20px] lg:text-[24px]">
+                  {perk?.fields["Perk"]}
+                </div>
               </div>
-              <div className="text-[24px]">{perk?.fields["Perk"]}</div>
+              <div className="flex justify-end gap-[16px] lg:hidden">
+                <a
+                  data-tip
+                  data-for="website"
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                  onClick={() => router.push(perk?.fields["Website"])}
+                >
+                  <svg
+                    className="h-[20px] w-[20px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <rect x="3" y="4" width="18" height="12" rx="1" />
+                    <path d="M7 20h10M9 16v4M15 16v4" />
+                  </svg>
+                </a>
+                <a
+                  data-tip
+                  data-for="twitter"
+                  className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                  onClick={() => router.push(perk?.fields["Twitter"])}
+                >
+                  <svg
+                    className="h-[20px] w-[20px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z" />
+                  </svg>
+                </a>
+              </div>
             </div>
             <div className="space-y-[20px]">
               <div className="space-y-[4px]">
-                <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
+                <div className="text-[18px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
                   About {perk?.fields["Partner Name"]}
                 </div>
-                <div className="text-[18px]">
+                <div className="text-[16px] lg:text-[18px]">
                   {perk?.fields["Partner About"]}
                 </div>
               </div>
-              <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
+              <div className="lg:hidden ">
+                <div className="space-y-[4px]">
+                  <div className="text-[18px] text-[#171717] dark:text-[#ECECEC]">
+                    Description
+                  </div>
+                  <div className="text-[16px]">
+                    {perk?.fields["Perk Description"]}
+                  </div>
+                </div>
+                <div className="my-[20px] space-y-[4px]">
+                  <div className="text-[18px] text-[#171717] dark:text-[#ECECEC]">
+                    Redemption instructions
+                  </div>
+                  <div className="text-[16px]">
+                    {perk?.fields["Redemption Instructions"]}
+                  </div>
+                </div>
+              </div>
+              <div className="text-[16px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
                 Gallery
               </div>
               <div
@@ -140,9 +204,10 @@ const RedeemPage = ({ perk }: any) => {
                   }}
                 />
               </div>
+              <div className="h-[80px] lg:hidden" />
             </div>
           </div>
-          <div className="!mr-[150px] py-[50px] flex-1 flex flex-col justify-between space-y-[60px]">
+          <div className="hidden !mr-[150px] py-[50px] flex-1 flex flex-col justify-between space-y-[60px] lg:flex">
             <div className="flex justify-end gap-[16px]">
               <a
                 data-tip

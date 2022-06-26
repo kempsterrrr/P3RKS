@@ -38,3 +38,15 @@
 .Toastify__toast-icon {
   display: none !important;
 }
+
+.thumbs-wrapper {
+  margin: 0px !important;
+}
+
+.thumb {
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
