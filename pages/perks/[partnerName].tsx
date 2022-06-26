@@ -179,8 +179,8 @@ const RedeemPage = ({ perk }: any) => {
                   </div>
                   <ul className="list-none">
                     <div className="text-[16px]">
-                      {perk?.fields["Redemption Instructions"].split(fieldSplitRegex).map((field: string) => {
-                        return <li>{field}<br /></li>
+                      {perk?.fields["Redemption Instructions"].split(fieldSplitRegex).map((field: string, i: number) => {
+                        return <li key={`redemption-instruction-${i}`}>{field + "\n"}</li>
                       })}
                     </div>
                   </ul>
@@ -284,8 +284,8 @@ const RedeemPage = ({ perk }: any) => {
                 </div>
                 <ul className="list-none max-w-fit">
                   <div className="text-[18px]">
-                    {perk?.fields["Redemption Instructions"].split(fieldSplitRegex).map((field: string) => {
-                      return <li>{field}<br /></li>
+                    {perk?.fields["Redemption Instructions"].split(fieldSplitRegex).map((field: string, i: number) => {
+                      return <li key={`redemption-instruction-${i}`}>{field + "\n"}</li>
                     })}
                   </div>
                 </ul>
