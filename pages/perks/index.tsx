@@ -40,7 +40,7 @@ const Perks: NextPage = ({ perks }) => {
     await incrementPerkView(perkId, views + 1);
     router.push({
       pathname: `/perks/${partnerName.toLowerCase()}`,
-      query: { id: perkId },
+      // query: { id: perkId },
     });
   };
 

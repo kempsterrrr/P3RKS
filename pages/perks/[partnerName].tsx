@@ -1,4 +1,4 @@
-import { getPerk, incrementPerkUse } from "../../services/PerksService";
+import { getPerks, incrementPerkUse } from "../../services/PerksService";
 import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -8,9 +8,23 @@ import useStore from "../../stores/useStore";
 import { ProGallery } from "pro-gallery";
 import ReactTooltip from "react-tooltip";
 
-export async function getServerSideProps(context: any) {
-  const { id } = context.query;
-  const perk = await getPerk(id);
+export async function getStaticPaths() {
+  const perks = await getPerks();
+  const paths = perks.map((perk) => ({
+    params: { partnerName: perk.fields["Partner Name"].toLowerCase() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const perks = await getPerks();
+  const perk = perks.find(
+    (perk) => perk.fields["Partner Name"].toLowerCase() === params.partnerName
+  );
 
   return {
     props: {
