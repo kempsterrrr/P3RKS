@@ -5,9 +5,11 @@ import { useRouter } from "next/router";
 import { PerksLayout } from "../../components/PerksLayout";
 import Link from "next/link";
 import useStore from "../../stores/useStore";
-import { ProGallery } from "pro-gallery";
 import ReactTooltip from "react-tooltip";
-import { Carousel } from "react-responsive-carousel";
+import md from "markdown-it";
+
+// Components
+import { Carousel } from "../../components/Carousel";
 
 export async function getStaticPaths() {
   const perks = await getPerks();
@@ -50,8 +52,8 @@ const RedeemPage = ({ perk }: any) => {
     let image = {
       itemId: item.id,
       mediaUrl: item.url,
-      // width: 600,
-      // height: 400,
+      width: 600,
+      height: 400,
     };
 
     items.push(image);
@@ -174,11 +176,16 @@ const RedeemPage = ({ perk }: any) => {
                 </div>
                 <div className="my-[20px] space-y-[4px]">
                   <div className="text-[18px] text-[#171717] dark:text-[#ECECEC]">
-                    Redemption instructions
+                    How to redeem?
                   </div>
-                  <div className="text-[16px]">
-                    {perk?.fields["Redemption Instructions"]}
-                  </div>
+                  <div
+                    className="text-[16px] child:list-decimal child:ml-4 child:mt-2"
+                    dangerouslySetInnerHTML={{
+                      __html: md().render(
+                        perk?.fields["Redemption Instructions"]
+                      ),
+                    }}
+                  ></div>
                 </div>
               </div>
               <div className="text-[16px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
@@ -188,23 +195,10 @@ const RedeemPage = ({ perk }: any) => {
                 ref={ref}
                 className="rounded-[16px] overflow-hidden border-[1px] border-[#F3F1F3] dark:border-[#2E2E2E] w-full h-full"
               >
-                <ProGallery
-                  items={items}
-                  options={{
-                    galleryLayout: 3,
-                    showArrows: false,
-                    isAutoSlideshow: true,
-                    thumbnailSpacings: 0,
-                    slideshowLoop: true,
-                  }}
-                  container={{
-                    width,
-                    height: 400,
-                  }}
-                />
+                <Carousel images={images} />
               </div>
               <a
-                className="fixed bottom-[20px] w-[90%] flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+                className="fixed lg:hidden bottom-[20px] w-[90%] flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
                 onClick={() =>
                   handleRedeemPerk(
                     perk?.id,
@@ -275,11 +269,16 @@ const RedeemPage = ({ perk }: any) => {
               </div>
               <div className="my-[20px] space-y-[4px]">
                 <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
-                  Redemption instructions
+                  How to redeem?
                 </div>
-                <div className="text-[18px]">
-                  {perk?.fields["Redemption Instructions"]}
-                </div>
+                <div
+                  className="text-[18px] child:list-decimal child:ml-6 child:mt-2"
+                  dangerouslySetInnerHTML={{
+                    __html: md().render(
+                      perk?.fields["Redemption Instructions"]
+                    ),
+                  }}
+                ></div>
               </div>
               <a
                 className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
