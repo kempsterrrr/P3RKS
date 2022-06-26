@@ -196,7 +196,6 @@ const RedeemPage = ({ perk }: any) => {
                     isAutoSlideshow: true,
                     thumbnailSpacings: 0,
                     slideshowLoop: true,
-                    infiniteScroll: true,
                   }}
                   container={{
                     width,
@@ -204,6 +203,19 @@ const RedeemPage = ({ perk }: any) => {
                   }}
                 />
               </div>
+              <a
+                className="fixed bottom-[20px] w-[90%] flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+                onClick={() =>
+                  handleRedeemPerk(
+                    perk?.id,
+                    perk?.fields["Uses"],
+                    perk?.fields["Redemption Link"]
+                  )
+                }
+              >
+                Redeem perk
+              </a>
+
               <div className="h-[80px] lg:hidden" />
             </div>
           </div>
