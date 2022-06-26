@@ -7,6 +7,7 @@ import Link from "next/link";
 import useStore from "../../stores/useStore";
 import { ProGallery } from "pro-gallery";
 import ReactTooltip from "react-tooltip";
+import { Carousel } from "react-responsive-carousel";
 
 export async function getServerSideProps(context: any) {
   const { id } = context.query;
@@ -46,10 +47,6 @@ const RedeemPage = ({ perk }: any) => {
     await incrementPerkUse(perkId, uses + 1);
     router.push(website);
   };
-
-  useEffect(() => {
-    if (galleryDivWidth) setWidth(test.current.clientWidth);
-  }, [galleryDivWidth]);
 
   return (
     <>
@@ -97,25 +94,22 @@ const RedeemPage = ({ perk }: any) => {
               <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
                 Gallery
               </div>
-              <div
-                ref={test}
-                className="rounded-[16px] overflow-hidden border-[1px] border-[#F3F1F3] dark:border-[#2E2E2E]"
-              >
-                <ProGallery
-                  items={items}
-                  options={{
-                    galleryLayout: 3,
-                    showArrows: false,
-                    isAutoSlideshow: true,
-                    thumbnailSpacings: 0,
-                    slideshowLoop: true,
-                    infiniteScroll: true,
-                  }}
-                  container={{
-                    width,
-                    height: 400,
-                  }}
-                />
+              <div className="rounded-[16px] overflow-hidden border-[1px] border-[#F3F1F3] dark:border-[#2E2E2E]">
+                <Carousel
+                  showArrows={false}
+                  renderIndicator={false}
+                  swipeable={true}
+                >
+                  <div>
+                    <img src="https://images.unsplash.com/photo-1656111928638-2fb2501019dc" />
+                  </div>
+                  <div>
+                    <img src="https://images.unsplash.com/photo-1656111928638-2fb2501019dc" />
+                  </div>
+                  <div>
+                    <img src="https://images.unsplash.com/photo-1656111928638-2fb2501019dc" />
+                  </div>
+                </Carousel>
               </div>
             </div>
           </div>
