@@ -17,7 +17,7 @@ const tabs = [
   { name: "Recently added", href: "#", current: false },
 ];
 
-export async function getServerSideProps() {
+export async function getStaticProps({ params }) {
   const perks = await getPerks();
 
   return {
@@ -40,7 +40,7 @@ const Perks: NextPage = ({ perks }) => {
     await incrementPerkView(perkId, views + 1);
     router.push({
       pathname: `/perks/${partnerName.toLowerCase()}`,
-      query: { id: perkId },
+      // query: { id: perkId },
     });
   };
 
