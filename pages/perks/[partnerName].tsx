@@ -176,10 +176,10 @@ const RedeemPage = ({ perk }: any) => {
                 </div>
                 <div className="my-[20px] space-y-[4px]">
                   <div className="text-[18px] text-[#171717] dark:text-[#ECECEC]">
-                    Redemption instructions
+                    How to redeem?
                   </div>
                   <div
-                    className="text-[16px] child:list-decimal child:ml-4 child:mt-4"
+                    className="text-[16px] child:list-decimal child:ml-4 child:mt-2"
                     dangerouslySetInnerHTML={{
                       __html: md().render(
                         perk?.fields["Redemption Instructions"]
@@ -269,10 +269,10 @@ const RedeemPage = ({ perk }: any) => {
               </div>
               <div className="my-[20px] space-y-[4px]">
                 <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
-                  Redemption instructions
+                  How to redeem?
                 </div>
                 <div
-                  className="text-[18px] child:list-decimal child:ml-6 child:mt-4"
+                  className="text-[18px] child:list-decimal child:ml-6 child:mt-2"
                   dangerouslySetInnerHTML={{
                     __html: md().render(
                       perk?.fields["Redemption Instructions"]
