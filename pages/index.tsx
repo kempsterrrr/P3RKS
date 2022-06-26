@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import Head from "next/head";
 import { Layout } from "../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,14 +10,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>P3RKS | Rewards for DAO Contributors</title>
-        <meta
-          name="description"
-          content="P3RKS | Rewards for DAO Contributors."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Layout>
         <main className="relative px-[30px] pt-[30px] grow w-screen">
           <div className="h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]">

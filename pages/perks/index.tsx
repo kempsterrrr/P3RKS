@@ -17,7 +17,7 @@ const tabs = [
   { name: "Recently added", href: "#", current: false },
 ];
 
-export async function getServerSideProps() {
+export async function getStaticProps({ params }) {
   const perks = await getPerks();
 
   return {
