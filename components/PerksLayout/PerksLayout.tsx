@@ -178,6 +178,28 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 <div className="space-y-[16px]">
                   <a
                     data-tip
+                    data-for="feedback"
+                    href="https://airtable.com/shr5pSh4Xx6HN5a70"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B]  dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                    onClick={() => {
+                      localStorage.theme = "light";
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-[26px] w-[26px] icon icon-tabler icon-tabler-message-circle"
+                      width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"></path>
+                      <line x1="16" y1="12" x2="16" y2="12.01"></line>
+                      <line x1="8" y1="12" x2="8" y2="12.01"></line>
+                      <line x1="12" y1="12" x2="12" y2="12.01"></line>
+                    </svg>
+                  </a>
+                  <a
+                    data-tip
                     data-for="theme"
                     className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={() => {
@@ -240,6 +262,20 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       >
         <div className="text-white  dark:text-[#FFF]/[0.50]">
           View all perks
+        </div>
+      </ReactTooltip>
+
+      <ReactTooltip
+        id="feedback"
+        place="right"
+        effect="solid"
+        backgroundColor={
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+        }
+        className="!rounded-full"
+      >
+        <div className="text-white dark:text-[#FFF]/[0.50]">
+          Feedback
         </div>
       </ReactTooltip>
 
