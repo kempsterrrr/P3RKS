@@ -145,10 +145,10 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   {navItems.map((item) => (
                     <a
                       key={item.text}
-                      href={item.href ? item.href : null}
-                      target={item.href ? "_blank" : null}
-                      rel={item.href ? "noreferrer" : null}
                       className="block pl-2 py-2 text-base font-medium"
+                      href={item?.href ? item.href : null}
+                      target={item?.href ? "_blank" : null}
+                      rel="noreferrer"
                       onClick={item.onClick}
                     >
                       {item.text}
