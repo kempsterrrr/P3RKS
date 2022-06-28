@@ -115,6 +115,10 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       onClick: handleAllPerks,
     },
     {
+      text: "Feedback",
+      href: "https://airtable.com/shr5pSh4Xx6HN5a70"
+    },
+    {
       text: "Disconnect",
       onClick: handleDisconnect,
     },
@@ -141,6 +145,9 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   {navItems.map((item) => (
                     <a
                       key={item.text}
+                      href={item.href ? item.href : null}
+                      target={item.href ? "_blank" : null}
+                      rel={item.href ? "noreferrer" : null}
                       className="block pl-2 py-2 text-base font-medium"
                       onClick={item.onClick}
                     >
