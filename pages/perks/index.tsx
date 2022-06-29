@@ -35,15 +35,13 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   useEffect(() => {
     const tempTabs = [...tabs];
-    categories
-      ? categories.map((category, index) => {
-          tempTabs.push({
-            name: category.fields["Name"],
-            id: category.id,
-            active: false,
-          });
-        })
-      : null;
+    categories.map((category, index) => {
+      tempTabs.push({
+        name: category.fields["Name"],
+        id: category.id,
+        active: false,
+      });
+    });
 
     setTabs(tempTabs);
   }, []);
@@ -59,7 +57,7 @@ const Perks: NextPage = ({ perks, categories }) => {
     );
 
     return setPerksToDisplay(filteredPerks);
-  }, [tabs]);
+  }, [tabs, perks]);
 
   const handleActiveTab = (index) => {
     console.log(index);

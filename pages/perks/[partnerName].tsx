@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const perks = await getPerks();
   const perk = perks.find(
-    (perk) => perk.fields["Partner Name"].toLowerCase() === params.partnerName
+    (item) => item.fields["Partner Name"].toLowerCase() === params.partnerName
   );
 
   return {
@@ -37,6 +37,7 @@ export async function getStaticProps({ params }) {
 }
 
 const RedeemPage = ({ perk }: any) => {
+  console.log(perk);
   const ref = useRef(null);
   const router = useRouter();
   const theme = useStore((state) => state.user.theme);
@@ -46,18 +47,18 @@ const RedeemPage = ({ perk }: any) => {
 
   console.log(items);
 
-  images
-    ? images.map((item: any) => {
-        let image = {
-          itemId: item.id,
-          mediaUrl: item.url,
-          width: 600,
-          height: 400,
-        };
+  useEffect(() => {
+    images.map((item: any) => {
+      let image = {
+        itemId: item.id,
+        mediaUrl: item.url,
+        width: 600,
+        height: 400,
+      };
 
-        items.push(image);
-      })
-    : null;
+      items.push(image);
+    });
+  }, []);
 
   const handleRedeemPerk = async (
     perkId: string,
