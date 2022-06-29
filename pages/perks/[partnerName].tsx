@@ -37,15 +37,12 @@ export async function getStaticProps({ params }) {
 }
 
 const RedeemPage = ({ perk }: any) => {
-  console.log(perk);
   const ref = useRef(null);
   const router = useRouter();
   const theme = useStore((state) => state.user.theme);
 
   const images = perk.fields["Gallery"];
   let items: any = [];
-
-  console.log(items);
 
   useEffect(() => {
     images.map((item: any) => {

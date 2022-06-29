@@ -17,7 +17,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       perks,
-      categories,
+      categories: [...categories],
     },
   };
 }
@@ -41,7 +41,7 @@ const Perks: NextPage = ({ perks, categories }) => {
         id: category.id,
         active: false,
       });
-    });
+    }, []);
 
     setTabs(tempTabs);
   }, []);
@@ -60,7 +60,6 @@ const Perks: NextPage = ({ perks, categories }) => {
   }, [tabs, perks]);
 
   const handleActiveTab = (index) => {
-    console.log(index);
     const tempTabs = [...tabs];
     // update the array item that has active true to false
     // update the array item that has index ==== index to true
