@@ -40,13 +40,15 @@ const Perks: NextPage = ({ perks, categories }) => {
       proof: "this is my error",
       type: typeof categories,
     });
-    categories.forEach((category) => {
-      tempTabs.push({
-        name: category.fields["Name"],
-        id: category.id,
-        active: false,
-      });
-    });
+    categories !== undefined
+      ? categories.forEach((category) => {
+          tempTabs.push({
+            name: category.fields["Name"],
+            id: category.id,
+            active: false,
+          });
+        })
+      : null;
 
     setTabs(tempTabs);
   }, [categories]);
