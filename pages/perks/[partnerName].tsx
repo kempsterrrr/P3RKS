@@ -48,7 +48,7 @@ const RedeemPage = ({ perk }: any) => {
   console.log(items);
 
   useEffect(() => {
-    images.forEach((item: any) => {
+    images.map((item: any) => {
       let image = {
         itemId: item.id,
         mediaUrl: item.url,
