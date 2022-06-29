@@ -10,7 +10,7 @@ import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const perks = await getPerks();
   const categories = await getCategories();
 
@@ -34,9 +34,13 @@ const Perks: NextPage = ({ perks, categories }) => {
   }, [ownsDDNFT]);
 
   useEffect(() => {
-    const tempTabs = [...tabs];
-    console.log(categories);
-    categories.forEach((category, index) => {
+    const tempTabs = [{ name: "All", id: "all", active: true }];
+    console.log({
+      categories,
+      proof: "this is my error",
+      type: typeof categories,
+    });
+    categories.forEach((category) => {
       tempTabs.push({
         name: category.fields["Name"],
         id: category.id,
