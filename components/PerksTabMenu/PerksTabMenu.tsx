@@ -29,7 +29,6 @@ export default function PerksTabMenu({ tabs, handleActiveTab }) {
         <div className="hidden sm:block">
           <nav className="-mb-px flex space-x-8">
             {tabs.map((tab, index: Number) => {
-              console.log(tab);
               return (
                 <button
                   key={tab.name}

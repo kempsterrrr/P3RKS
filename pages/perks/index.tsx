@@ -35,7 +35,7 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   useEffect(() => {
     const tempTabs = [...tabs];
-    categories?.forEach((category, index) => {
+    categories.map((category, index) => {
       tempTabs.push({
         name: category.fields["Name"],
         id: category.id,
