@@ -22,7 +22,5 @@ export default async function getCategories() {
   const records = await table.select({}).all();
   const minifiedRecords = getMinifiedRecords(records);
 
-  console.log(minifiedRecords);
-
   return minifiedRecords;
 }

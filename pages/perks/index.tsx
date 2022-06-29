@@ -35,11 +35,6 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   useEffect(() => {
     const tempTabs = [{ name: "All", id: "all", active: true }];
-    console.log({
-      categories,
-      proof: "this is my error",
-      type: typeof categories,
-    });
     categories !== undefined
       ? categories.forEach((category) => {
           tempTabs.push({
