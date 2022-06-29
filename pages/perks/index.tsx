@@ -17,7 +17,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       perks,
-      categories: [...categories],
+      categories,
     },
   };
 }
