@@ -1,5 +1,5 @@
 import { getPerks, incrementPerkView } from "../../services/PerksService";
-import { getCategories } from "../../services/CategoriesService";
+import getCategories from "../../services/CategoriesService";
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
