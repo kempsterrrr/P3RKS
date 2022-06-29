@@ -198,6 +198,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                       <line x1="12" y1="12" x2="12" y2="12.01"></line>
                     </svg>
                   </a>
+                  <div className="border-b border-[#ECEBEC] my-[-10px]"></div>
                   <a
                     data-tip
                     data-for="theme"
