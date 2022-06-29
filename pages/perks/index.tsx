@@ -1,4 +1,5 @@
 import { getPerks, incrementPerkView } from "../../services/PerksService";
+import getCategories from "../../services/CategoriesService";
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -7,40 +8,79 @@ import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
+import { PerksTabMenu } from "../../components/PerksTabMenu";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-const tabs = [
-  { name: "All", href: "#", current: true },
-  { name: "Popular", href: "#", current: false },
-  { name: "Recently added", href: "#", current: false },
-];
-
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const perks = await getPerks();
+  const categories = await getCategories();
 
   return {
     props: {
       perks,
+      categories,
     },
   };
 }
 
-const Perks: NextPage = ({ perks }) => {
+const Perks: NextPage = ({ perks, categories }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
+  const [tabs, setTabs] = useState([{ name: "All", id: "all", active: true }]);
+  const [perksToDisplay, setPerksToDisplay] = useState(perks);
 
   useEffect(() => {
     if (ownsDDNFT != undefined) setLoading(false);
   }, [ownsDDNFT]);
 
+  useEffect(() => {
+    const tempTabs = [{ name: "All", id: "all", active: true }];
+    categories !== undefined
+      ? categories.forEach((category) => {
+          tempTabs.push({
+            name: category.fields["Name"],
+            id: category.id,
+            active: false,
+          });
+        })
+      : null;
+
+    setTabs(tempTabs);
+  }, [categories]);
+
+  useEffect(() => {
+    const tempPerks = [...perks];
+    const activeTab = tabs.find((tab) => tab.active);
+
+    if (activeTab.name === "All") return setPerksToDisplay(perks);
+
+    const filteredPerks = tempPerks.filter((perk) =>
+      perk.fields["category"].find((el) => el === activeTab.name)
+    );
+
+    return setPerksToDisplay(filteredPerks);
+  }, [tabs, perks]);
+
+  const handleActiveTab = (index) => {
+    const tempTabs = [...tabs];
+    // update the array item that has active true to false
+    // update the array item that has index ==== index to true
+
+    tempTabs.map((item, i) =>
+      item.active
+        ? (item.active = false)
+        : i === index
+        ? (item.active = true)
+        : null
+    );
+
+    setTabs(tempTabs);
+  };
+
   const handleSelectPerk = async (partnerName, perkId, views) => {
     await incrementPerkView(perkId, views + 1);
     router.push({
       pathname: `/perks/${partnerName.toLowerCase()}`,
-      // query: { id: perkId },
     });
   };
 
@@ -65,49 +105,9 @@ const Perks: NextPage = ({ perks }) => {
   const RenderPerks = () => {
     return (
       <div className="lg:pt-[207px]">
-        <div className="pb-5 border-b border-gray-200 sm:pb-0 dark:border-[#FFFFFF]/[0.05]">
-          <h3 className="text-[48px] text-[#171717] dark:text-[#ECECEC]">
-            Perks
-          </h3>
-          <div className="mt-[36px]">
-            <div className="sm:hidden">
-              <label htmlFor="current-tab" className="sr-only">
-                Select a tab
-              </label>
-              <select
-                id="current-tab"
-                name="current-tab"
-                className="block w-full pl-3 pr-10 py-2 text-base border-black focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md"
-                defaultValue={tabs.find((tab) => tab.current).name}
-              >
-                {tabs.map((tab) => (
-                  <option key={tab.name}>{tab.name}</option>
-                ))}
-              </select>
-            </div>
-            <div className="hidden sm:block">
-              <nav className="-mb-px flex space-x-8">
-                {tabs.map((tab) => (
-                  <a
-                    key={tab.name}
-                    href={tab.href}
-                    className={classNames(
-                      tab.current
-                        ? "border-black text-[#1A021B] dark:text-[#ECECEC] dark:border-[#ECECEC]"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:hover:text-[#ECECEC]",
-                      "whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm transition duration-150 hover:ease-in-out"
-                    )}
-                    aria-current={tab.current ? "page" : undefined}
-                  >
-                    {tab.name}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </div>
-        <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-3">
-          {perks?.map((item) => (
+        <PerksTabMenu tabs={tabs} handleActiveTab={handleActiveTab} />
+        <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+          {perksToDisplay?.map((item) => (
             <a
               key={item.id}
               onClick={() =>

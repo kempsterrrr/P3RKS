@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const perks = await getPerks();
   const perk = perks.find(
-    (perk) => perk.fields["Partner Name"].toLowerCase() === params.partnerName
+    (item) => item.fields["Partner Name"].toLowerCase() === params.partnerName
   );
 
   return {
@@ -38,26 +38,24 @@ export async function getStaticProps({ params }) {
 
 const RedeemPage = ({ perk }: any) => {
   const ref = useRef(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   const router = useRouter();
   const theme = useStore((state) => state.user.theme);
 
   const images = perk.fields["Gallery"];
   let items: any = [];
 
-  console.log(items);
+  useEffect(() => {
+    images.map((item: any) => {
+      let image = {
+        itemId: item.id,
+        mediaUrl: item.url,
+        width: 600,
+        height: 400,
+      };
 
-  images.forEach((item: any) => {
-    let image = {
-      itemId: item.id,
-      mediaUrl: item.url,
-      width: 600,
-      height: 400,
-    };
-
-    items.push(image);
-  });
+      items.push(image);
+    });
+  }, []);
 
   const handleRedeemPerk = async (
     perkId: string,
@@ -67,15 +65,6 @@ const RedeemPage = ({ perk }: any) => {
     await incrementPerkUse(perkId, uses + 1);
     router.push(website);
   };
-
-  useEffect(() => {
-    setHeight(ref.current.parentElement.offsetHeight);
-    setWidth(ref.current.parentElement.offsetWidth);
-
-    console.log(ref.current.parentElement);
-    console.log(ref.current.parentElement.offsetHeight);
-    console.log(ref.current.parentElement.offsetWidth);
-  }, []);
 
   return (
     <>
