@@ -116,7 +116,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
     },
     {
       text: "Feedback",
-      href: "https://airtable.com/shr5pSh4Xx6HN5a70"
+      href: "https://airtable.com/shr5pSh4Xx6HN5a70",
     },
     {
       text: "Disconnect",
@@ -125,7 +125,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <>
+    <div className="flex flex-col lg:flex-row">
       <Disclosure as={Fragment}>
         {({ open }) => (
           <>
@@ -159,7 +159,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
             </div>
 
             {/* Static sidebar for desktop */}
-            <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
+            <div className="hidden lg:flex lg:w-40 lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:inset-y-0">
               <div className="flex flex-col border-r border-[#1A021B]/[0.05] py-[32px] pr-[30px] overflow-y-auto h-full flex-shrink-0 items-end dark:border-[#FFFFFF]/[0.05]">
                 <a
                   data-tip
@@ -197,7 +197,15 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-[26px] w-[26px] icon icon-tabler icon-tabler-message-circle"
-                      width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                       <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"></path>
                       <line x1="16" y1="12" x2="16" y2="12.01"></line>
@@ -252,7 +260,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 {/*@ts-ignore - React tooltip is working on a fix */}
               </div>
             </div>
-            <main className="lg:pl-64 lg:py-[32px] flex flex-col flex-1">
+            <main className="lg:px-12 lg:py-[32px] flex flex-col flex-1">
               <div className="max-w-[100%] px-4 sm:px-[40px]">{children}</div>
             </main>
           </>
@@ -282,9 +290,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         }
         className="!rounded-full"
       >
-        <div className="text-white dark:text-[#FFF]/[0.50]">
-          Feedback
-        </div>
+        <div className="text-white dark:text-[#FFF]/[0.50]">Feedback</div>
       </ReactTooltip>
 
       {/*@ts-ignore - React tooltip is working on a fix */}
@@ -334,7 +340,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
           Disconnect {ensName || walletAddress}
         </div>
       </ReactTooltip>
-    </>
+    </div>
   );
 };
 
