@@ -1,20 +1,52 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@layer base {
+  html {
+    @apply font-lexend bg-[#FEFDFE] text-[#9E9E9E];
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  --toastify-color-progress-light: #000 !important;
+  --toastify-toast-width: flex !important;
 }
 
-* {
-  box-sizing: border-box;
+.fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 24%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.fade-to-bottom:after {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  bottom: 0;
+  mask-image: linear-gradient(to top, transparent 50%, rgba(0, 0, 0, 1) 100%);
+}
+
+.Toastify__toast-container {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.Toastify__toast-icon {
+  display: none !important;
+}
+
+.thumbs-wrapper {
+  margin: 0px !important;
+}
+
+.thumb {
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
+  height: 100% !important;
+  overflow: visible !important;
 }
