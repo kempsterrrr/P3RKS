@@ -125,7 +125,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <>
+    <div className="flex flex-col lg:flex-row">
       <Disclosure as={Fragment}>
         {({ open }) => (
           <>
@@ -340,7 +340,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
           Disconnect {ensName || walletAddress}
         </div>
       </ReactTooltip>
-    </>
+    </div>
   );
 };
 
