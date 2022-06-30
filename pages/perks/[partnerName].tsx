@@ -202,8 +202,8 @@ const RedeemPage = ({ perk }: any) => {
               <div className="h-[80px] lg:hidden" />
             </div>
           </div>
-          <div className="hidden py-[50px] flex-1 flex flex-col justify-between space-y-[60px] lg:flex">
-            <div className="flex justify-end gap-[16px]">
+          <div className="hidden py-[50px] flex-1 flex flex-col justify-between space-y-[60px] lg:flex ">
+            <div className="flex justify-end gap-[16px] ">
               <a
                 data-tip
                 data-for="website"
@@ -244,43 +244,45 @@ const RedeemPage = ({ perk }: any) => {
                 </svg>
               </a>
             </div>
-            <div>
-              <div className="pb-[40px] text-[26px] text-[#171717] dark:text-[#ECECEC]">
+            <div className="border-[1px] border-[#1A021B]/[0.07] rounded-[16px] dark:bg-[#232323] dark:border-[#1A021B]/[0.07]  py-8">
+              <div className="text-[26px] text-[#171717] dark:text-[#ECECEC] border-b-[1px] border-[#1A021B]/[0.07] dark:bg-[#232323] dark:border-[#1A021B]/[0.07]  bg-white px-8 pb-4">
                 Perk details
               </div>
-              <div className="space-y-[4px]">
-                <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
-                  Description
+              <div className="p-8">
+                <div className="space-y-[4px]">
+                  <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
+                    Description
+                  </div>
+                  <div className="text-[18px]">
+                    {perk?.fields["Perk Description"]}
+                  </div>
                 </div>
-                <div className="text-[18px]">
-                  {perk?.fields["Perk Description"]}
+                <div className="my-[20px] space-y-[4px]">
+                  <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
+                    How to redeem?
+                  </div>
+                  <div
+                    className="text-[18px] child:list-decimal child:ml-6 child:mt-2 leading-8"
+                    dangerouslySetInnerHTML={{
+                      __html: md().render(
+                        perk?.fields["Redemption Instructions"]
+                      ),
+                    }}
+                  ></div>
                 </div>
+                <a
+                  className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white "
+                  onClick={() =>
+                    handleRedeemPerk(
+                      perk?.id,
+                      perk?.fields["Uses"],
+                      perk?.fields["Redemption Link"]
+                    )
+                  }
+                >
+                  Redeem perk
+                </a>
               </div>
-              <div className="my-[20px] space-y-[4px]">
-                <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
-                  How to redeem?
-                </div>
-                <div
-                  className="text-[18px] child:list-decimal child:ml-6 child:mt-2 leading-8"
-                  dangerouslySetInnerHTML={{
-                    __html: md().render(
-                      perk?.fields["Redemption Instructions"]
-                    ),
-                  }}
-                ></div>
-              </div>
-              <a
-                className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
-                onClick={() =>
-                  handleRedeemPerk(
-                    perk?.id,
-                    perk?.fields["Uses"],
-                    perk?.fields["Redemption Link"]
-                  )
-                }
-              >
-                Redeem perk
-              </a>
             </div>
           </div>
         </div>
