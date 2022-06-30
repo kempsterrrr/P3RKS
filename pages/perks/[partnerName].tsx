@@ -92,7 +92,7 @@ const RedeemPage = ({ perk }: any) => {
           </a>
         </Link>
 
-        <div className="flex space-x-[60px] lg:mt-[109px]">
+        <div className="flex space-x-[60px] lg:mt-[109px] lg:pr-12">
           <div className="flex-1 space-y-[30px] lg:space-y-[60px]">
             <div className="flex justify-between items-center">
               <div>
@@ -202,7 +202,7 @@ const RedeemPage = ({ perk }: any) => {
               <div className="h-[80px] lg:hidden" />
             </div>
           </div>
-          <div className="hidden !mr-[150px] py-[50px] flex-1 flex flex-col justify-between space-y-[60px] lg:flex">
+          <div className="hidden py-[50px] flex-1 flex flex-col justify-between space-y-[60px] lg:flex">
             <div className="flex justify-end gap-[16px]">
               <a
                 data-tip

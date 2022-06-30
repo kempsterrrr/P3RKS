@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps, fallback }: AppProps) {
 
   return (
     <WagmiConfig client={client}>
-      <div className="flex flex-col inset-0 min-h-screen dark:bg-[#1F1F1F] dark:text-[#8A8A8A]">
+      <div className="flex flex-col lg:flex-row inset-0 min-h-screen dark:bg-[#1F1F1F] dark:text-[#8A8A8A]">
         {/* @ts-ignore: react-dom type issues */}
         <Component {...pageProps} />
       </div>
