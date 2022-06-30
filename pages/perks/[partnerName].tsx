@@ -92,7 +92,7 @@ const RedeemPage = ({ perk }: any) => {
           </a>
         </Link>
 
-        <div className="flex space-x-[60px] lg:mt-[109px] lg:pr-12">
+        <div className="flex space-x-[60px] lg:mt-14 xl:mt-16 lg:pr-12">
           <div className="flex-1 space-y-[30px] lg:space-y-[60px]">
             <div className="flex justify-between items-center">
               <div>
