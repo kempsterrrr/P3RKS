@@ -104,7 +104,7 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   const RenderPerks = () => {
     return (
-      <div className="lg:pt-[207px]">
+      <div className="lg:pt-40">
         <PerksTabMenu tabs={tabs} handleActiveTab={handleActiveTab} />
         <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
           {perksToDisplay?.map((item) => (
