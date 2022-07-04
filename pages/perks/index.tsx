@@ -61,17 +61,17 @@ const Perks: NextPage = ({ perks, categories }) => {
     return setPerksToDisplay(filteredPerks);
   }, [tabs, perks]);
 
-  const handleActiveTab = (index) => {
+  const handleActiveTab = (index: number) => {
     const tempTabs = [...tabs];
     // update the array item that has active true to false
     // update the array item that has index ==== index to true
 
     tempTabs.map((item, i) =>
-      item.active
+      item.active && i !== index
         ? (item.active = false)
         : i === index
         ? (item.active = true)
-        : null
+        : (item.active = false)
     );
 
     setTabs(tempTabs);

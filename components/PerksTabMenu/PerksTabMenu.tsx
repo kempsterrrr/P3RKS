@@ -3,6 +3,7 @@ function classNames(...classes) {
 }
 
 export default function PerksTabMenu({ tabs, handleActiveTab }) {
+  console.log(tabs);
   return (
     <div className="pb-5 border-b border-gray-200 sm:pb-0 dark:border-[#FFFFFF]/[0.05]">
       <h3 className="text-[48px] text-[#171717] dark:text-[#ECECEC]">Perks</h3>
