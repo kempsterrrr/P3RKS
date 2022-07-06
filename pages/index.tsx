@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 
   const handleCTA = () => {
     setOpen(true);
-    // Add mixpanel call for CTA click
+    MixpanelTracking.getInstance().ctaClicked();
   }
 
   useEffect(() => {

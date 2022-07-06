@@ -1,15 +1,20 @@
 import { ConnectWalletModalProps } from "./ConnectWalletModal.d";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect } from "wagmi";
 import Image from "next/image";
+import { MixpanelTracking } from "../../services/mixpanel";
 
 const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   open,
   setOpen,
 }) => {
   const { connect, connectors, error } = useConnect();
+
+  if (open) {
+    MixpanelTracking.getInstance().modalOpen();
+  }
 
   return (
     <Transition.Root show={open}>

@@ -11,7 +11,7 @@ export class MixpanelTracking {
 
   public constructor() {
     if (MixpanelTracking._instance) {
-      throw new Error("Error: Instance creation of MixpanelTracking is not allowed")
+      throw new Error("Error: Instance creation of MixpanelTracking is not allowed");
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_ID || "",
       { debug: true, ignore_dnt: true }
@@ -26,7 +26,11 @@ export class MixpanelTracking {
     this.track("page_viewed");
   }
 
-  public ctaClicked() {
-    this.track("")
+  public ctaClicked(type: string = "primary") {
+    this.track(`cta_${type}_clicked`);
+  }
+
+  public modalOpen() {
+    this.track("sign_up_modal_open");
   }
 }

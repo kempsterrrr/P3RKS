@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ConnectWalletModal } from "../ConnectWalletModal";
+import { MixpanelTracking } from "../../services/mixpanel"
 
 const navItems = [
   {
@@ -18,6 +19,11 @@ const navItems = [
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+
+  const handleCTA = () => {
+    setOpen(true);
+    MixpanelTracking.getInstance().ctaClicked("secondary");
+  }
 
   return (
     <>
@@ -57,7 +63,7 @@ const NavBar = () => {
               <div className="hidden lg:flex">
                 <a
                   className="w-[220px] flex justify-center items-center text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer transition duration-150 hover:ease-in-out hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
-                  onClick={() => setOpen(true)}
+                  onClick={() => handleCTA(true)}
                 >
                   Connect wallet
                 </a>
