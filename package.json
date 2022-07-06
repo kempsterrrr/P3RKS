@@ -16,6 +16,7 @@
     "embla-carousel-react": "^6.2.0",
     "ethers": "^5.6.4",
     "markdown-it": "^13.0.1",
+    "mixpanel-browser": "^2.45.0",
     "next": "12.1.5",
     "pro-gallery": "^3.1.38",
     "react": "17.0.2",
@@ -29,6 +30,7 @@
     "zustand": "^4.0.0-rc.0"
   },
   "devDependencies": {
+    "@types/mixpanel-browser": "^2.38.0",
     "@types/node": "17.0.25",
     "@types/react": "17.0.2",
     "@types/react-dom": "^18.0.3",
