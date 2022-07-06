@@ -1,12 +1,22 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import { ConnectWalletModal } from "../components/ConnectWalletModal";
+import { MixpanelTracking } from '../services/mixpanel';
 
 const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
+
+  const handleCTA = () => {
+    setOpen(true);
+    // Add mixpanel call for CTA click
+  }
+
+  useEffect(() => {
+    MixpanelTracking.getInstance().pageViewed();
+  }, [])
 
   return (
     <>
@@ -49,7 +59,7 @@ const Home: NextPage = () => {
             <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
               <a
                 className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
-                onClick={() => setOpen(true)}
+                onClick={() => handleCTA()}
               >
                 Connect wallet
               </a>
