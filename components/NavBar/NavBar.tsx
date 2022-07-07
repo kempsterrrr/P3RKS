@@ -5,26 +5,26 @@ import Image from "next/image";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ConnectWalletModal } from "../ConnectWalletModal";
 import { MixpanelTracking } from "../../services/mixpanel"
-
 const navItems = [
   {
     text: "DAOs",
     href: "https://airtable.com/shrmK5l1ZdifJAtJY",
+    function: () => MixpanelTracking.getInstance().daosLink()
   },
   {
     text: "Partners",
     href: "https://airtable.com/shrZZn6ZKZfvrUqDX",
+    function: () => MixpanelTracking.getInstance().partnersLink()
   },
 ];
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
-  const handleCTA = () => {
+  const handleCTA = (source: string) => {
     setOpen(true);
-    MixpanelTracking.getInstance().ctaClicked("secondary");
+    MixpanelTracking.getInstance().connectWallet(source);
   }
-
   return (
     <>
       <Disclosure as="nav" className="px-[30px] lg:px-[60px] dark:bg-[#202020]">
@@ -53,6 +53,7 @@ const NavBar = () => {
                 {navItems.map((item) => (
                   <a
                     className="text-[#908C91] text-[18px] transition duration-150 hover:ease-in-out hover:text-[#1A021B] dark:text-[#8A8A8A] dark:hover:text-white"
+                    onClick={item.function}
                     key={item.text}
                     href={item.href}
                   >
@@ -63,7 +64,7 @@ const NavBar = () => {
               <div className="hidden lg:flex">
                 <a
                   className="w-[220px] flex justify-center items-center text-center text-[#1A021B] text-[18px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[42px] cursor-pointer transition duration-150 hover:ease-in-out hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
-                  onClick={() => handleCTA(true)}
+                  onClick={() => handleCTA("secondary")}
                 >
                   Connect wallet
                 </a>
@@ -83,6 +84,7 @@ const NavBar = () => {
               <div className="pt-2 pb-3 space-y-1">
                 {navItems.map((item) => (
                   <a
+                    onClick={() => item.function ? item.function() : null}
                     key={item.text}
                     className="block pl-2 py-2 text-base font-medium"
                     href={item.href}

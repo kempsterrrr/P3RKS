@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect } from "wagmi";
 import Image from "next/image";
-import { MixpanelTracking } from "../../services/mixpanel";
+import { MixpanelTracking } from "../../services/mixpanel"
 
 const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   open,
@@ -12,8 +12,9 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
 }) => {
   const { connect, connectors, error } = useConnect();
 
-  if (open) {
-    MixpanelTracking.getInstance().modalOpen();
+  const handleModalClose = async () => {
+    setOpen(!open);
+    MixpanelTracking.getInstance().closeModal();
   }
 
   return (
@@ -21,7 +22,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={setOpen}
+        onClose={() => handleModalClose()}
       >
         <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -59,7 +60,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                 </div>
                 <button
                   className="bg-white rounded-md text-gray-400 transition duration-150 hover:ease-in-out hover:text-gray-500 dark:text-[#9E9E9E] dark:bg-transparent dark:hover:text-[#ECECEC]"
-                  onClick={() => setOpen(false)}
+                  onClick={() => handleModalClose()}
                 >
                   <span className="sr-only">Close</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />

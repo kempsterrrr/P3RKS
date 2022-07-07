@@ -9,7 +9,7 @@ import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
-import { MixpanelTracking } from "../../services/mixpanel"
+// import { MixpanelTracking } from "../../services/mixpanel"
 export async function getStaticProps() {
   const perks = await getPerks();
   const categories = await getCategories();
@@ -27,14 +27,16 @@ const Perks: NextPage = ({ perks, categories }) => {
   const router = useRouter();
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
   const [tabs, setTabs] = useState([{ name: "All", id: "all", active: true }]);
-  const [perksToDisplay, setPerksToDisplay] = useState(perks);
-
-  // useEffect(() => {
-  //   MixpanelTracking.getInstance().pageViewed();
-  // }, [])
+  const [perksToDisplay, setPerksToDisplay] = useState(perks); y
 
   useEffect(() => {
-    if (ownsDDNFT != undefined) setLoading(false);
+    if (ownsDDNFT != undefined) {
+      setLoading(false);
+      // @TODO implement when /perks is fixed
+      //   MixpanelTracking.getInstance().perksPageViewed("owner");
+      // } else {
+      //   MixpanelTracking.getInstance().perksPageViewed("non_owner");
+    }
   }, [ownsDDNFT]);
 
   useEffect(() => {
