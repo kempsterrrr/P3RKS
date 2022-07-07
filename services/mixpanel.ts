@@ -26,17 +26,8 @@ export class MixpanelTracking {
     this.track("landing_page_viewed");
   }
 
-<<<<<<< Updated upstream
-  public ctaClicked(type: string = "primary") {
-    this.track(`cta_${type}_clicked`);
-  }
-
-  public modalOpen() {
-    this.track("sign_up_modal_open");
-=======
   public connectWallet(source: string) {
     this.track(`${source}_cta_click`);
->>>>>>> Stashed changes
   }
 
   public closeModal() {

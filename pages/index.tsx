@@ -12,16 +12,12 @@ const Home: NextPage = () => {
 
   const handleCTA = (source: string) => {
     setOpen(true);
-<<<<<<< Updated upstream
-    MixpanelTracking.getInstance().ctaClicked();
-=======
     mixpanelInstance.connectWallet(source);
   }
 
   const handleOfferPerk = () => {
     // @TODO is an external link supposed to return two mixpanel requests ?
     mixpanelInstance.offerPerk();
->>>>>>> Stashed changes
   }
 
   useEffect(() => {
