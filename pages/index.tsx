@@ -43,7 +43,7 @@ const Home: NextPage = () => {
               <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
                 Rewards for <br /> DAO Contributors
               </h1>
-              <p className="text-2xl leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-5/12 lg:mx-auto lg:text-xl 2xl:text-3xl lg:leading-normal">
+              <p className="text-2xl leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-5/12 lg:mx-auto lg:text-xl 2xl:text-3xl 2xl:w-8/12 lg:leading-normal">
                 Unlock more ways to recognise and reward your DAOs top
                 contributors.
               </p>
