@@ -9,7 +9,8 @@ import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
-import { MixpanelTracking } from "../../services/mixpanel"
+import { MixpanelTracking } from "../../services/mixpanel";
+
 export async function getStaticProps() {
   const perks = await getPerks();
   const categories = await getCategories();
@@ -41,12 +42,12 @@ const Perks: NextPage = ({ perks, categories }) => {
     const tempTabs = [{ name: "All", id: "all", active: true }];
     categories !== undefined
       ? categories.forEach((category) => {
-        tempTabs.push({
-          name: category.fields["Name"],
-          id: category.id,
-          active: false,
-        });
-      })
+          tempTabs.push({
+            name: category.fields["Name"],
+            id: category.id,
+            active: false,
+          });
+        })
       : null;
 
     setTabs(tempTabs);
@@ -56,10 +57,10 @@ const Perks: NextPage = ({ perks, categories }) => {
     const tempPerks = [...perks];
     const activeTab = tabs.find((tab) => tab.active);
 
-    if (activeTab.name === "All") return setPerksToDisplay(perks);
+    if (activeTab?.name === "All") return setPerksToDisplay(perks);
 
     const filteredPerks = tempPerks.filter((perk) =>
-      perk.fields["category"].find((el) => el === activeTab.name)
+      perk.fields["category"].find((el) => el === activeTab?.name)
     );
 
     return setPerksToDisplay(filteredPerks);
