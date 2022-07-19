@@ -3,11 +3,10 @@ import CookieConsent from "react-cookie-consent";
 import mixpanel from 'mixpanel-browser';
 
 export const Cookies = () => {
-  const isDebug = process.env.NODE_ENV == "development" ? true : false;
   return (
     <>
       <CookieConsent
-        debug={isDebug}
+        debug={process.env.NODE_ENV == "development"}
         enableDeclineButton
         declineButtonText="Decline"
         declineButtonStyle={{ margin: "0.5rem", padding: ".25rem", borderRadius: "9999px", backgroundColor: "black", border: "1px solid gray" }}
