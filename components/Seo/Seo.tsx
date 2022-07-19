@@ -10,9 +10,9 @@ type SeoProps = {
 };
 
 const Seo = ({
-  title,
-  description,
-  ogTitle,
+  title = "P3RKS | Rewards for DAO Contributors",
+  description = "Unlock more ways to recognise and reward your DAOs top contributors.",
+  ogTitle = "P3RKS | Rewards for DAO Contributors",
   ogType,
   ogUrl,
   ogImage,
