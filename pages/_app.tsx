@@ -55,8 +55,8 @@ function MyApp({ Component, pageProps, fallback }: AppProps) {
 
   return (
     <WagmiConfig client={client}>
+      {/* @ts-ignore: react-dom type issues */}
       <div className=" inset-0 min-h-screen dark:bg-[#1F1F1F] dark:text-[#8A8A8A]">
-        {/* @ts-ignore: react-dom type issues */}
         <Component {...pageProps} />
       </div>
       <ToastContainer

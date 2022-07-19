@@ -21,9 +21,9 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <main className="relative px-[30px] pt-[30px] grow w-screen">
-          <div className="h-full flex flex-col justify-end space-y-[40px] lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]">
-            <div className="flex grow justify-center lg:hidden">
+        <main className="relative px-7 border-red pt-[30px] grow w-screen">
+          <div className="h-full flex flex-col justify-start space-y-24 lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]">
+            <div className="flex justify-center lg:hidden">
               <div className="relative -left-3">
                 <Image
                   width="35"
@@ -49,25 +49,30 @@ const Home: NextPage = () => {
                 />
               </div>
             </div>
-            <h1 className="text-[32px] text-[#1A021B] leading-[38px] font-medium sm:text-[36px] sm:leading-[42px] md:text-[62px] md:leading-[68px] lg:text-[100px] lg:leading-[106px] dark:text-[#EAEAEA]">
-              Rewards for <br /> DAO Contributors
-            </h1>
-            <p className="text-[20px] leading-[30px] sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-[616px] lg:mx-auto lg:text-[28px] lg:leading-[48px]">
-              Unlock more ways to recognise and reward your DAOs top
-              contributors.
-            </p>
-            <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
-              <a
-                className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
-                onClick={() => handleCTA()}
-              >
-                Connect wallet
-              </a>
+            <div className="flex flex-col space-y-8">
+              <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
+                Rewards for <br /> DAO Contributors
+              </h1>
+              <p className="text-2xl leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-5/12 lg:mx-auto lg:text-xl 2xl:text-3xl 2xl:w-8/12 lg:leading-normal">
+                Unlock more ways to recognise and reward your DAOs top
+                contributors.
+              </p>
+              <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
+                <a
+                  className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+                  onClick={() => setOpen(true)}
+                >
+                  Connect wallet
               <Link href="https://airtable.com/shrZZn6ZKZfvrUqDX">
                 <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
                   Offer a perk
                 </a>
-              </Link>
+                <Link href="https://airtable.com/shrwGFJhHZGw88oC5">
+                  <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
+                    Offer a perk
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </main>

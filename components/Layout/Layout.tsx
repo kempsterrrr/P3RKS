@@ -16,9 +16,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
-      <div className="flex grow">{children}</div>
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <NavBar />
+        <div className="flex grow">{children}</div>
+        <Footer />
+      </div>
     </>
   );
 };

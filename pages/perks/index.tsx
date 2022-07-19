@@ -65,17 +65,17 @@ const Perks: NextPage = ({ perks, categories }) => {
     return setPerksToDisplay(filteredPerks);
   }, [tabs, perks]);
 
-  const handleActiveTab = (index) => {
+  const handleActiveTab = (index: number) => {
     const tempTabs = [...tabs];
     // update the array item that has active true to false
     // update the array item that has index ==== index to true
 
     tempTabs.map((item, i) =>
-      item.active
+      item.active && i !== index
         ? (item.active = false)
         : i === index
-          ? (item.active = true)
-          : null
+        ? (item.active = true)
+        : (item.active = false)
     );
 
     setTabs(tempTabs);
@@ -108,7 +108,7 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   const RenderPerks = () => {
     return (
-      <div className="lg:pt-[207px]">
+      <div className="lg:pt-40">
         <PerksTabMenu tabs={tabs} handleActiveTab={handleActiveTab} />
         <div className="mt-[32px] w-full grid gap-[24px] sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
           {perksToDisplay?.map((item) => (

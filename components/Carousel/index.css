@@ -39,19 +39,12 @@
 .embla__slide__inner {
   position: relative;
   overflow: hidden;
-  height: 290px;
+  width: 100%;
 }
 
 .embla__slide__img {
-  position: absolute;
   display: block;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  min-height: 100%;
-  min-width: 100%;
-  max-width: none;
-  transform: translate(-50%, -50%);
+  object-fit: contain;
 }
 
 .embla--thumb {
@@ -66,7 +59,7 @@
 
 .embla__slide--thumb {
   padding-left: 8px;
-  min-width: 20%;
+  min-width: 25%;
 }
 
 .embla__slide__inner--thumb {
@@ -86,7 +79,7 @@
 
 .embla__slide__thumbnail {
   position: absolute;
-  opacity: 0.2;
+  opacity: 0.4;
   top: 0;
   bottom: 0;
   left: -10000%;
