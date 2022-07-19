@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ConnectWalletModal } from "../components/ConnectWalletModal";
 import { MixpanelTracking } from "../services/mixpanel";
+import Seo from "../components/Seo/Seo";
 
 const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
+        <Seo />
         <main className="relative px-7 border-red pt-[30px] grow w-screen">
           <div className="h-full flex flex-col justify-start space-y-24 lg:py-0 lg:w-[958px] lg:mx-auto lg:justify-center lg:text-center lg:space-y-[40px]">
             <div className="flex justify-center lg:hidden">
