@@ -8,15 +8,21 @@ import { MixpanelTracking } from "../services/mixpanel";
 
 const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
+  const mixpanelInstance = MixpanelTracking.getInstance()
 
-  const handleCTA = () => {
+  const handleCTA = (source: string) => {
     setOpen(true);
-    // Add mixpanel call for CTA click
+    mixpanelInstance.connectWallet(source);
   };
 
+  const handleOfferPerk = () => {
+    // @TODO is an external link supposed to return two mixpanel requests ?
+    mixpanelInstance.offerPerk();
+  }
+
   useEffect(() => {
-    MixpanelTracking.getInstance().pageViewed();
-  }, []);
+    mixpanelInstance.landingPageViewed();
+  }, [])
 
   return (
     <>
@@ -60,12 +66,15 @@ const Home: NextPage = () => {
               <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
                 <a
                   className="text-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
-                  onClick={() => setOpen(true)}
-                >
+                  onClick={() => handleCTA("primary")}                >
                   Connect wallet
                 </a>
                 <Link href="https://airtable.com/shrwGFJhHZGw88oC5">
-                  <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
+                  <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:py-[21px] px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => handleOfferPerk()}
+                  >
                     Offer a perk
                   </a>
                 </Link>
