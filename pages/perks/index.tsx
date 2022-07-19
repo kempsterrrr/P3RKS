@@ -9,7 +9,7 @@ import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
 import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
-
+import { MixpanelTracking } from "../../services/mixpanel"
 export async function getStaticProps() {
   const perks = await getPerks();
   const categories = await getCategories();
@@ -29,6 +29,10 @@ const Perks: NextPage = ({ perks, categories }) => {
   const [tabs, setTabs] = useState([{ name: "All", id: "all", active: true }]);
   const [perksToDisplay, setPerksToDisplay] = useState(perks);
 
+  // useEffect(() => {
+  //   MixpanelTracking.getInstance().pageViewed();
+  // }, [])
+
   useEffect(() => {
     if (ownsDDNFT != undefined) setLoading(false);
   }, [ownsDDNFT]);
@@ -37,12 +41,12 @@ const Perks: NextPage = ({ perks, categories }) => {
     const tempTabs = [{ name: "All", id: "all", active: true }];
     categories !== undefined
       ? categories.forEach((category) => {
-          tempTabs.push({
-            name: category.fields["Name"],
-            id: category.id,
-            active: false,
-          });
-        })
+        tempTabs.push({
+          name: category.fields["Name"],
+          id: category.id,
+          active: false,
+        });
+      })
       : null;
 
     setTabs(tempTabs);
