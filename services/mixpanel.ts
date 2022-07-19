@@ -13,7 +13,10 @@ export class MixpanelTracking {
     if (MixpanelTracking._instance) {
       throw new Error("Error: Instance creation of MixpanelTracking is not allowed");
     }
-    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_ID || "",
+
+    const mixpanelKey = process.env.NODE_ENV == "development" ? process.env.NEXT_PUBLIC_MIXPANEL_ID_TEST : process.env.NEXT_PUBLIC_MIXPANEL_ID_PRODUCTION
+
+    mixpanel.init(mixpanelKey || "",
       { debug: true, ignore_dnt: true }
     );
   }
@@ -44,6 +47,14 @@ export class MixpanelTracking {
 
   public partnersLink() {
     this.track("partners_link_clicked")
+  }
+
+  public walletConnect(wallet: string) {
+    this.track(`${wallet}_selected`);
+  }
+
+  public walletTypeConnected(type: string) {
+    this.track(`${type}_wallet_connected`);
   }
 
   // @TODO implement when /perks is fixed

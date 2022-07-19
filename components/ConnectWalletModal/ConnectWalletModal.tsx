@@ -11,10 +11,16 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   setOpen,
 }) => {
   const { connect, connectors, error } = useConnect();
+  const mixpanelInstance = MixpanelTracking.getInstance()
 
   const handleModalClose = async () => {
     setOpen(!open);
-    MixpanelTracking.getInstance().closeModal();
+    mixpanelInstance.closeModal();
+  }
+
+  const handleWalletSelect = (wallet: string) => {
+    connect(connectors[wallet == "metamask" ? 0 : 1])
+    mixpanelInstance.walletConnect(wallet);
   }
 
   return (
@@ -90,7 +96,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   className="py-[16px] px-[48px] bg-[#f6851b]/[.06] border-[2px] border-[#f6851b]/[0.1] rounded-full text-[#F6851B] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#f6851b]/[0.75]"
                   disabled={!connectors[0].ready}
                   key={connectors[0].id}
-                  onClick={() => connect(connectors[0])}
+                  onClick={() => handleWalletSelect("metamask")}
                 >
                   <Image
                     width="20"
@@ -104,7 +110,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   className="py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#3b98fc]/[0.75]"
                   disabled={!connectors[1].ready}
                   key={connectors[1].id}
-                  onClick={() => connect(connectors[1])}
+                  onClick={() => handleWalletSelect("walletConnect")}
                 >
                   <Image
                     width="24"

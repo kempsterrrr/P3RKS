@@ -7,7 +7,7 @@ import { ConnectWalletModal } from "../components/ConnectWalletModal";
 import { MixpanelTracking } from "../services/mixpanel";
 
 const Home: NextPage = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const mixpanelInstance = MixpanelTracking.getInstance()
 
   const handleCTA = (source: string) => {
