@@ -11,7 +11,7 @@ export class MixpanelTracking {
 
   public constructor() {
     if (MixpanelTracking._instance) {
-      throw new Error("Error: Instance creation of MixpanelTracking is not allowed")
+      throw new Error("Error: Instance creation of MixpanelTracking is not allowed");
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_ID || "",
       { debug: true, ignore_dnt: true }
@@ -22,11 +22,33 @@ export class MixpanelTracking {
     mixpanel.track(name, data);
   }
 
-  public pageViewed() {
-    this.track("page_viewed");
+  public landingPageViewed() {
+    this.track("landing_page_viewed");
   }
 
-  public ctaClicked() {
-    this.track("")
+  public connectWallet(source: string) {
+    this.track(`${source}_cta_click`);
   }
+
+  public closeModal() {
+    this.track("connect_modal_close");
+  }
+
+  public offerPerk() {
+    this.track("offer_perk");
+  }
+
+  public daosLink() {
+    this.track("daos_link_clicked")
+  }
+
+  public partnersLink() {
+    this.track("partners_link_clicked")
+  }
+
+  // @TODO implement when /perks is fixed
+  // public perksPageViewed(owner: string) {
+  //   this.track(`${owner}_perks_view`);
+  // }
+
 }
