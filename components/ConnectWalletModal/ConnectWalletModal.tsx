@@ -1,5 +1,5 @@
 import { ConnectWalletModalProps } from "./ConnectWalletModal.d";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect } from "wagmi";
