@@ -65,9 +65,9 @@ const NavBar = () => {
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    <XIcon className="block h-8 w-8" aria-hidden="true" />
                   ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    <MenuIcon className="block h-7 w-7" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -77,17 +77,12 @@ const NavBar = () => {
                 {navItems.map((item) => (
                   <a
                     key={item.text}
-                    className="block pl-2 py-2 text-base font-medium"
+                    className="block pl-2 py-2 text-base font-light"
                     href={item.href}
                   >
                     {item.text}
                   </a>
                 ))}
-                <Link href="/benefits">
-                  <a className="block pl-2 py-2 text-base font-medium">
-                    View benefits
-                  </a>
-                </Link>
                 <div className="block pl-2 py-2 text-base font-medium"></div>
               </div>
             </Disclosure.Panel>

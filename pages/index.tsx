@@ -49,12 +49,12 @@ const Home: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-8">
-              <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
+            <div className="flex flex-col space-y-8 xl:space-y-7 2xl:space-y-9">
+              <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl xl:text-7xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
                 Rewards for <br /> DAO Contributors
               </h1>
-              <p className="text-2xl leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-5/12 lg:mx-auto lg:text-xl 2xl:text-3xl 2xl:w-8/12 lg:leading-normal">
-                Unlock more ways to recognise and reward your DAOs top
+              <p className="text-2xl font-light leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-6/12 lg:mx-auto lg:text-xl xl:text-2xl xl:w-7/12 2xl:text-[2rem] 2xl:w-9/12 2xl:leading-10 2xl:font-light">
+                Unlock more ways to recognise and reward your DAO's top
                 contributors.
               </p>
               <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
