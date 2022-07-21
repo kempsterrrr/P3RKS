@@ -42,7 +42,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         if (parseInt(data._hex) > 0) {
           if (!alreadyConnected) {
             toast(
-              <div className="flex items-center justify-center gap-[10px]">
+              <span className="flex text-sm items-center justify-center gap-[10px]">
                 <svg
                   className="h-[20px] w-[20px]"
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +57,14 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 </svg>
 
                 <div>Wallet connected successfully!</div>
-              </div>
+              </span>
             );
           }
           setDDNFT(true);
           sessionStorage.setItem("connected", "true");
         } else {
           toast.warning(
-            <div className="flex items-center justify-center gap-[10px]">
+            <div className="flex text-sm items-center justify-center gap-[10px]">
               <svg
                 className="h-[20px] w-[20px]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +145,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   {navItems.map((item) => (
                     <a
                       key={item.text}
-                      className="block pl-2 py-2 text-base font-medium"
+                      className="block pl-2 py-2 text-base font-light"
                       href={item?.href ? item.href : null}
                       target={item?.href ? "_blank" : null}
                       rel="noreferrer"
@@ -262,12 +262,13 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 {/*@ts-ignore - React tooltip is working on a fix */}
               </div>
             </div>
-            <main className="lg:px-12 lg:py-[32px] flex flex-col flex-1">
-              <div className="max-w-[100%] px-4 sm:px-[40px]">{children}</div>
-            </main>
           </>
         )}
       </Disclosure>
+      <main className="lg:px-12 flex flex-col flex-1 min-h-screen">
+        <div className="max-w-[100%] h-[87vh] lg:h-full flex">{children}</div>
+      </main>
+
       {/*@ts-ignore - React tooltip is working on a fix */}
       <ReactTooltip
         id="benefits"
