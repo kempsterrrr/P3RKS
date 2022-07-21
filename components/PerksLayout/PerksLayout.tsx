@@ -262,9 +262,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         )}
       </Disclosure>
       <main className="px-4 lg:px-12 flex flex-col flex-1 min-h-screen">
-        <div className="max-w-[100%] h-[87vh] pb-6 lg:h-full flex">
-          {children}
-        </div>
+        <div className="max-w-[100%] pb-6 lg:h-full flex-col">{children}</div>
       </main>
 
       {/*@ts-ignore - React tooltip is working on a fix */}
@@ -303,7 +301,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         delayHide={500}
         delayUpdate={500}
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-lg !px-[18px] !py-[10px]"
       >
@@ -333,7 +331,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         place="right"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >

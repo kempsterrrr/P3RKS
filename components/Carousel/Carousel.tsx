@@ -7,7 +7,6 @@ const EmblaCarousel = ({ images }) => {
   const [mainViewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
     containScroll: "keepSnaps",
-    selectedClass: "",
     dragFree: true,
   });
 
