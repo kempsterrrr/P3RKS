@@ -24,7 +24,10 @@ const Seo = ({
       <meta name="og:title" content={ogTitle} />
       <meta name="og:url" content={ogUrl} />
       <meta name="og:type" content={ogType} />
-      <meta name="og:image" content={ogImage} />
+      <meta
+        name="og:image"
+        content={ogImage ? ogImage : "./twitter-card.png"}
+      />
       <link rel="icon" href="/favicon.ico" />
       <title>{title}</title>
     </Head>
