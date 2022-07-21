@@ -54,7 +54,7 @@ const Home: NextPage = () => {
                 Rewards for <br /> DAO Contributors
               </h1>
               <p className="text-2xl font-light leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-6/12 lg:mx-auto lg:text-xl xl:text-2xl xl:w-7/12 2xl:text-[2rem] 2xl:w-9/12 2xl:leading-10 2xl:font-light">
-                Unlock more ways to recognise and reward your DAO's top
+                Unlock more ways to recognise and reward your DAO&apos;s top
                 contributors.
               </p>
               <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
