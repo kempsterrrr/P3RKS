@@ -111,10 +111,6 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
 
   const navItems = [
     {
-      text: "View all perks",
-      onClick: handleAllPerks,
-    },
-    {
       text: "Feedback",
       href: "https://airtable.com/shr5pSh4Xx6HN5a70",
     },
@@ -265,8 +261,10 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
           </>
         )}
       </Disclosure>
-      <main className="lg:px-12 flex flex-col flex-1 min-h-screen">
-        <div className="max-w-[100%] h-[87vh] lg:h-full flex">{children}</div>
+      <main className="px-4 lg:px-12 flex flex-col flex-1 min-h-screen">
+        <div className="max-w-[100%] h-[87vh] pb-6 lg:h-full flex">
+          {children}
+        </div>
       </main>
 
       {/*@ts-ignore - React tooltip is working on a fix */}
