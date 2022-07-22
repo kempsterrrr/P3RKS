@@ -261,7 +261,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
           </>
         )}
       </Disclosure>
-      <main className="px-4 lg:px-12 flex flex-col flex-1 min-h-screen">
+      <main className="lg:px-12 flex flex-col flex-1 min-h-screen">
         <div className="max-w-[100%] pb-6 lg:h-full flex-col">{children}</div>
       </main>
 
