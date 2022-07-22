@@ -7,7 +7,6 @@ import useStore from "../../stores/useStore";
 import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
-import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
 import { MixpanelTracking } from "../../services/mixpanel";
 
