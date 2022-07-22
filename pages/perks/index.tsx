@@ -146,11 +146,11 @@ const Perks: NextPage = ({ perks, categories }) => {
                     {item.fields["Perk Description"]}
                   </div>
 
-                  <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
+                  {/* <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
                     <div>4 days ago</div>
                     <div>{item.fields["Views"]} views</div>
                     <div>{item.fields["Uses"]} uses</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </a>
@@ -162,7 +162,7 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   const RenderNotQualified = () => {
     return (
-      <div className="px-8 flex flex-col-reverse lg:flex-row justify-between items-center mx-auto max-w-screen-2xl">
+      <div className="px-8 flex flex-col-reverse h-full lg:flex-row justify-between items-center mx-auto max-w-screen-2xl">
         <div className="text-center space-y-4 lg:space-y-[34px] lg:text-left lg:w-6/12 max-w-xl">
           <div className="text-[#171717] text-4xl dark:text-[#ECECEC]">
             Access perks
