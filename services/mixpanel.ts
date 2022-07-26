@@ -57,9 +57,31 @@ export class MixpanelTracking {
     this.track(`${type}_wallet_connected`);
   }
 
-  // @TODO implement when /perks is fixed
-  // public perksPageViewed(owner: string) {
-  //   this.track(`${owner}_perks_view`);
-  // }
+  public perksPageViewed(owner: string) {
+    this.track(`${owner}_perks_view`);
+  }
 
+  public perkClick(parnerName: string) {
+    this.track(`perk_view_${parnerName}`);
+  }
+
+  public perksFilter(filter: string) {
+    this.track(`perks_filter_${filter.split(" ").join("_").toLowerCase()}`);
+  }
+
+  public perksSideNav(target: string) {
+    this.track(`sidenav_clicked_${target}`);
+  }
+
+  public themeChange(theme: string) {
+    this.track(`theme_change_${theme}`);
+  }
+
+  public backNav() {
+    this.track(`back_nav_perks`);
+  }
+
+  public perkLink(target: string) {
+    this.track(`perk_link_${target}`);
+  }
 }

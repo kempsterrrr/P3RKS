@@ -22,9 +22,10 @@ const useGetUser = (redirectIfAuthenticated?: useGetUserProps) => {
     if (account) {
       setConnected(true);
       setWalletAddress(account.address!);
-      if (account.connector?.name) {
-        MixpanelTracking.getInstance().walletTypeConnected(account.connector.name);
-      }
+      // @TODO put this call somewhere else. This is being called too many times
+      // if (account.connector?.name) {
+      //   MixpanelTracking.getInstance().walletTypeConnected(account.connector.name);
+      // }
       if (redirectIfAuthenticated) router.push(`${redirectIfAuthenticated}`);
     } else {
       clearUser();
