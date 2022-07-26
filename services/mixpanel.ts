@@ -1,9 +1,12 @@
-import mixpanel from 'mixpanel-browser';
+import mixpanel from "mixpanel-browser";
 export class MixpanelTracking {
   private static _instance: MixpanelTracking;
 
   public static getInstance(): MixpanelTracking {
-    if (MixpanelTracking._instance === null || MixpanelTracking._instance === undefined) {
+    if (
+      MixpanelTracking._instance === null ||
+      MixpanelTracking._instance === undefined
+    ) {
       return (MixpanelTracking._instance = new MixpanelTracking());
     }
     return this._instance;

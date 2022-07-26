@@ -7,7 +7,6 @@ import useStore from "../../stores/useStore";
 import Head from "next/head";
 import { PerksLayout } from "../../components/PerksLayout";
 import ContentLoader from "react-content-loader";
-import { TwitterShareButton } from "react-share";
 import { PerksTabMenu } from "../../components/PerksTabMenu";
 import { MixpanelTracking } from "../../services/mixpanel";
 
@@ -146,11 +145,11 @@ const Perks: NextPage = ({ perks, categories }) => {
                     {item.fields["Perk Description"]}
                   </div>
 
-                  <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
+                  {/* <div className="flex space-x-[28px] text-[18px] text-[#9F9B9F] dark:text-[#8A8A8A]">
                     <div>4 days ago</div>
                     <div>{item.fields["Views"]} views</div>
                     <div>{item.fields["Uses"]} uses</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </a>
@@ -162,48 +161,44 @@ const Perks: NextPage = ({ perks, categories }) => {
 
   const RenderNotQualified = () => {
     return (
-      <div className="px-10 absolute inset-y-0 my-auto lg:flex lg:justify-center lg:items-center">
-        <div className="text-center space-y-[10px] lg:space-y-[34px] lg:text-left lg:w-[40%]">
-          <div className="text-[#171717] text-[32px] sm:text-[36px] md:text-[40px] lg:text-[48px] dark:text-[#ECECEC]">
+      <div className="px-8 flex flex-col-reverse h-full lg:flex-row justify-between items-center mx-auto max-w-screen-2xl">
+        <div className="text-center space-y-4 lg:space-y-[34px] lg:text-left lg:w-6/12 max-w-xl">
+          <div className="text-[#171717] text-4xl dark:text-[#ECECEC]">
             Access perks
           </div>
-          <div className="text-[18px] font-normal leading-[30px] space-y-[20px] md:text-[20px]  md:leading-[34px] md:space-y-[10px]">
-            <div>
+          <div className="text-lg font-light leading-[30px] space-y-4 lg:text-xl md:space-y-[10px]">
+            <p>
               Currently, only members of Developer DAO have access to P3RKS.
-            </div>
-            <div>
+            </p>
+            <p>
               If you’d like your DAO to be given access, join the DAO waitlist
               or{" "}
-              <TwitterShareButton
-                title={"test"}
-                url="www.b3nz.xyz"
-                className="underline cursor-pointer"
-              >
-                <div className=" dark:text-[#ECECEC] dark:hover:text-white">
-                  tweet us
-                </div>
-              </TwitterShareButton>
-              . If you’d prefer, just join Developer DAO!
-            </div>
-          </div>
-          <div className="pt-5 space-y-[16px] lg:pt-0">
-            <a href="/benefits">
               <a
-                href="https://airtable.com/shrmK5l1ZdifJAtJY"
-                className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+                href="https://twitter.com/intent/tweet?text=wen%20rewards%20%40getP3RKS?...%20our%20DAO's%20Contributors%20are%20hunnnnrgyyy%20%F0%9F%98%8B"
+                className="text-[#171717] dark:text-[#ECECEC] dark:hover:text-white underline cursor-pointer"
               >
-                Join DAO waitlist
+                tweet us
               </a>
+              . If you’d prefer, just join Developer DAO!
+            </p>
+          </div>
+
+          <div className="pt-5 space-y-[16px] lg:pt-0">
+            <a
+              href="https://airtable.com/shrmK5l1ZdifJAtJY"
+              className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#171717] py-4 px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+            >
+              Join DAO waitlist
             </a>
             <a
-              href="https://developerdao.com"
-              className="flex justify-center items-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
+              href="https://opensea.io/collection/devs-for-revolution"
+              className="flex justify-center items-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-4 px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
             >
               Join Developer DAO
             </a>
           </div>
         </div>
-        <div className="fade lg:w-[60%] lg:flex lg:justify-center">
+        <div className="fade lg:flex lg:justify-center lg:w-[45%]">
           <img src="./partners.png" alt="partners" />
         </div>
       </div>

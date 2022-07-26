@@ -91,7 +91,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                 </p>
                 <p>Connect your wallet to determine your elegibility:</p>
               </div>
-              <div className="px-[32px] pt-[20px] pb-[32px] space-y-[8px] flex flex-col">
+              <div className="px-[32px] pt-[20px] pb-[32px] space-y-[8px] flex flex-col font-light">
                 <button
                   className="py-[16px] px-[48px] bg-[#f6851b]/[.06] border-[2px] border-[#f6851b]/[0.1] rounded-full text-[#F6851B] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#f6851b]/[0.75]"
                   disabled={!connectors[0].ready}
@@ -104,7 +104,12 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                     src="/metamask-logo.png"
                     alt="metamask logo"
                   />
-                  <div>Connect with {connectors[0].name}</div>
+                  <div>
+                    <span className="hidden md:inline-block">
+                      Connect with{" "}
+                    </span>{" "}
+                    {connectors[0].name}
+                  </div>
                 </button>
                 <button
                   className="py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#3b98fc]/[0.75]"
@@ -118,7 +123,12 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                     src="/walletconnect-logo.png"
                     alt="walletconnect logo"
                   />
-                  <div>Connect with {connectors[1].name}</div>
+                  <div>
+                    <span className="hidden md:inline-block">
+                      Connect with{" "}
+                    </span>
+                    {connectors[1].name}
+                  </div>
                 </button>
 
                 {error && <div>{error.message}</div>}

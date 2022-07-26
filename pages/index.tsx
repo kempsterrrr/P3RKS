@@ -55,12 +55,12 @@ const Home: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-8">
-              <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
+            <div className="flex flex-col space-y-8 xl:space-y-7 2xl:space-y-9">
+              <h1 className="text-4xl text-[#1A021B] leading-tight font-medium sm:leading-10 md:text-6xl md:leading-tight lg:text-8xl xl:text-7xl 2xl:text-8xl lg:leading-none dark:text-[#EAEAEA]">
                 Rewards for <br /> DAO Contributors
               </h1>
-              <p className="text-2xl leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-5/12 lg:mx-auto lg:text-xl 2xl:text-3xl 2xl:w-8/12 lg:leading-normal">
-                Unlock more ways to recognise and reward your DAOs top
+              <p className="text-2xl font-light leading-normal sm:text-[24px] sm:leading-[34px] md:text-[30px] md:leading-[50px] lg:w-6/12 lg:mx-auto lg:text-xl xl:text-2xl xl:w-7/12 2xl:text-[2rem] 2xl:w-9/12 2xl:leading-10 2xl:font-light">
+                Unlock more ways to recognise and reward your DAO&apos;s top
                 contributors.
               </p>
               <div className="flex flex-col space-y-[16px] lg:flex-row lg:space-y-0 lg:space-x-[20px] lg:mx-auto">
@@ -75,6 +75,10 @@ const Home: NextPage = () => {
                     rel="noreferrer"
                     onClick={() => handleOfferPerk()}
                   >
+                  Connect wallet
+                </a>
+                <Link href="https://airtable.com/shrwGFJhHZGw88oC5">
+                  <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-4 px-14 cursor-pointer sm:text-[16px]  transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
                     Offer a perk
                   </a>
                 </Link>
