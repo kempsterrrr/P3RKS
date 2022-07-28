@@ -11,7 +11,7 @@ const navItems = [
   },
   {
     text: "Partners",
-    href: "https://airtable.com/shrZZn6ZKZfvrUqDX",
+    href: "https://airtable.com/shrwGFJhHZGw88oC5",
   },
 ];
 
