@@ -174,7 +174,7 @@ const Perks: NextPage = ({ perks, categories }) => {
               If you’d like your DAO to be given access, join the DAO waitlist
               or{" "}
               <a
-                href="https://twitter.com/intent/tweet?text=wen%20rewards%20%40getP3RKS?...%20our%20DAO's%20Contributors%20are%20hunnnnrgyyy%20%F0%9F%98%8B"
+                href="https://twitter.com/intent/tweet?text=wen%20%40getP3RKS%20?"
                 className="text-[#171717] dark:text-[#ECECEC] dark:hover:text-white underline cursor-pointer"
               >
                 tweet us
