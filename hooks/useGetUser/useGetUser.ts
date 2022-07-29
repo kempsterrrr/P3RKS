@@ -4,6 +4,7 @@ import { useAccount } from "wagmi";
 import useStore from "../../stores/useStore";
 import shallow from "zustand/shallow";
 import { useEffect } from "react";
+import { MixpanelTracking } from "../../services/mixpanel";
 
 const useGetUser = (redirectIfAuthenticated?: useGetUserProps) => {
   const router = useRouter();
@@ -21,7 +22,11 @@ const useGetUser = (redirectIfAuthenticated?: useGetUserProps) => {
     if (account) {
       setConnected(true);
       setWalletAddress(account.address!);
-      if (redirectIfAuthenticated) router.push(redirectIfAuthenticated);
+      // @TODO put this call somewhere else. This is being called too many times
+      // if (account.connector?.name) {
+      //   MixpanelTracking.getInstance().walletTypeConnected(account.connector.name);
+      // }
+      if (redirectIfAuthenticated) router.push(`${redirectIfAuthenticated}`);
     } else {
       clearUser();
       router.push("/");

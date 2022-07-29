@@ -4,19 +4,31 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useConnect } from "wagmi";
 import Image from "next/image";
+import { MixpanelTracking } from "../../services/mixpanel"
 
 const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
   open,
   setOpen,
 }) => {
   const { connect, connectors, error } = useConnect();
+  const mixpanelInstance = MixpanelTracking.getInstance()
+
+  const handleModalClose = async () => {
+    setOpen(!open);
+    mixpanelInstance.closeModal();
+  }
+
+  const handleWalletSelect = (wallet: string) => {
+    connect(connectors[wallet == "metamask" ? 0 : 1])
+    mixpanelInstance.walletConnect(wallet);
+  }
 
   return (
     <Transition.Root show={open}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={setOpen}
+        onClose={() => handleModalClose()}
       >
         <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -54,7 +66,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                 </div>
                 <button
                   className="bg-white rounded-md text-gray-400 transition duration-150 hover:ease-in-out hover:text-gray-500 dark:text-[#9E9E9E] dark:bg-transparent dark:hover:text-[#ECECEC]"
-                  onClick={() => setOpen(false)}
+                  onClick={() => handleModalClose()}
                 >
                   <span className="sr-only">Close</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -84,7 +96,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   className="py-[16px] px-[48px] bg-[#f6851b]/[.06] border-[2px] border-[#f6851b]/[0.1] rounded-full text-[#F6851B] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#f6851b]/[0.75]"
                   disabled={!connectors[0].ready}
                   key={connectors[0].id}
-                  onClick={() => connect(connectors[0])}
+                  onClick={() => handleWalletSelect("metamask")}
                 >
                   <Image
                     width="20"
@@ -103,7 +115,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                   className="py-[16px] px-[48px] bg-[#3b98fc]/[.06] border-[2px] border-[#3b98fc]/[0.1] rounded-full text-[#3b98fc] text-[18px] flex justify-center items-center space-x-2 transition duration-150 hover:ease-in-out hover:border-[#3b98fc]/[0.75]"
                   disabled={!connectors[1].ready}
                   key={connectors[1].id}
-                  onClick={() => connect(connectors[1])}
+                  onClick={() => handleWalletSelect("walletConnect")}
                 >
                   <Image
                     width="24"

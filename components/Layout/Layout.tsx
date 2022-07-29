@@ -3,6 +3,7 @@ import { LayoutProps } from "./Layout.d";
 import { useGetUser } from "../../hooks/useGetUser";
 import { NavBar } from "../NavBar";
 import { Footer } from "../Footer";
+import { Cookies } from '../Cookies';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   useGetUser("/perks");
@@ -20,6 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <NavBar />
         <div className="flex grow">{children}</div>
         <Footer />
+        <Cookies />
       </div>
     </>
   );

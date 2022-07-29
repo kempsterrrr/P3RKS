@@ -11,6 +11,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import ReactTooltip from "react-tooltip";
 import { toast } from "react-toastify";
+import { MixpanelTracking } from "../../services/mixpanel";
 
 const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const alreadyConnected =
@@ -19,6 +20,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const { setTheme } = useTheme();
   const { disconnect } = useDisconnect();
   const router = useRouter();
+  const mixpanel = MixpanelTracking.getInstance();
   const { walletAddress, setDDNFT, theme } = useStore(
     (state) => ({
       walletAddress: state.user.walletAddress,
@@ -97,10 +99,12 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   );
 
   const handleAllPerks = () => {
+    mixpanel.perksSideNav("perks");
     router.push("/perks");
   };
 
   const handleDisconnect = () => {
+    mixpanel.perksSideNav("disconnect");
     disconnect();
     router.push("/");
   };
@@ -108,6 +112,11 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
   const ensName = useEnsName({
     address: walletAddress,
   })?.data;
+
+  const handleThemeChange = (theme: string) => {
+    mixpanel.themeChange(theme);
+    setTheme(theme);
+  }
 
   const navItems = [
     {
@@ -187,6 +196,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                     rel="noreferrer"
                     className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center text-red cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B]  dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                     onClick={() => {
+                      mixpanel.perksSideNav("feedback");
                       localStorage.theme = "light";
                     }}
                   >
@@ -307,19 +317,19 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
       >
         <div
           className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
-          onClick={() => setTheme("system")}
+          onClick={() => handleThemeChange("system")}
         >
           System
         </div>
         <div
           className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
-          onClick={() => setTheme("dark")}
+          onClick={() => handleThemeChange("dark")}
         >
           Dark
         </div>
         <div
           className="py-1 cursor-pointer text-white transition duration-150 hover:ease-in-out dark:text-[#FFF]/[0.50] dark:hover:text-white"
-          onClick={() => setTheme("light")}
+          onClick={() => handleThemeChange("light")}
         >
           Light
         </div>

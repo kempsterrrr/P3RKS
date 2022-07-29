@@ -28,12 +28,10 @@ const Perks: NextPage = ({ perks, categories }) => {
   const ownsDDNFT = useStore((state) => state.user.DDNFT);
   const [tabs, setTabs] = useState([{ name: "All", id: "all", active: true }]);
   const [perksToDisplay, setPerksToDisplay] = useState(perks);
-
-  // useEffect(() => {
-  //   MixpanelTracking.getInstance().pageViewed();
-  // }, [])
+  const mixpanel = MixpanelTracking.getInstance();
 
   useEffect(() => {
+    mixpanel.perksPageViewed(ownsDDNFT ? "owner" : "non_owner");
     if (ownsDDNFT != undefined) setLoading(false);
   }, [ownsDDNFT]);
 
@@ -41,12 +39,12 @@ const Perks: NextPage = ({ perks, categories }) => {
     const tempTabs = [{ name: "All", id: "all", active: true }];
     categories !== undefined
       ? categories.forEach((category) => {
-          tempTabs.push({
-            name: category.fields["Name"],
-            id: category.id,
-            active: false,
-          });
-        })
+        tempTabs.push({
+          name: category.fields["Name"],
+          id: category.id,
+          active: false,
+        });
+      })
       : null;
 
     setTabs(tempTabs);
@@ -66,6 +64,7 @@ const Perks: NextPage = ({ perks, categories }) => {
   }, [tabs, perks]);
 
   const handleActiveTab = (index: number) => {
+    mixpanel.perksFilter(tabs[index].name);
     const tempTabs = [...tabs];
     // update the array item that has active true to false
     // update the array item that has index ==== index to true
@@ -74,14 +73,15 @@ const Perks: NextPage = ({ perks, categories }) => {
       item.active && i !== index
         ? (item.active = false)
         : i === index
-        ? (item.active = true)
-        : (item.active = false)
+          ? (item.active = true)
+          : (item.active = false)
     );
 
     setTabs(tempTabs);
   };
 
   const handleSelectPerk = async (partnerName, perkId, views) => {
+    mixpanel.perkClick(partnerName);
     await incrementPerkView(perkId, views + 1);
     router.push({
       pathname: `/perks/${partnerName.toLowerCase()}`,

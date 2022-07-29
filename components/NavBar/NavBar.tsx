@@ -3,20 +3,28 @@ import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ConnectWalletModal } from "../ConnectWalletModal";
+import { MixpanelTracking } from "../../services/mixpanel"
 
 const navItems = [
   {
     text: "DAOs",
     href: "https://airtable.com/shrmK5l1ZdifJAtJY",
+    function: () => MixpanelTracking.getInstance().daosLink(),
   },
   {
     text: "Partners",
-    href: "https://airtable.com/shrwGFJhHZGw88oC5",
+    href: "https://airtable.com/shrZZn6ZKZfvrUqDX",
+    function: () => MixpanelTracking.getInstance().partnersLink(),
   },
 ];
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+
+  const handleCTA = (source: string) => {
+    setOpen(true);
+    MixpanelTracking.getInstance().connectWallet(source);
+  }
 
   return (
     <>
@@ -56,7 +64,7 @@ const NavBar = () => {
               <div className="hidden lg:flex">
                 <a
                   className="w-56 flex justify-center items-center text-center text-[#1A021B] text-lg font-medium rounded-full border-[1px] border-[#1a021b]/15 lg:py-3 2xl:py-4 lg:px-9 2xl:px-10 cursor-pointer transition duration-150 hover:ease-in-out hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
-                  onClick={() => setOpen(true)}
+                  onClick={() => handleCTA("secondary")}
                 >
                   Connect wallet
                 </a>
@@ -76,6 +84,7 @@ const NavBar = () => {
               <div className="pt-2 pb-3 space-y-1">
                 {navItems.map((item) => (
                   <a
+                    onClick={() => item.function ? item.function() : null}
                     key={item.text}
                     className="block pl-2 py-2 text-base font-light"
                     href={item.href}

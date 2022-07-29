@@ -7,6 +7,7 @@ import Link from "next/link";
 import useStore from "../../stores/useStore";
 import ReactTooltip from "react-tooltip";
 import md from "markdown-it";
+import { MixpanelTracking } from "../../services/mixpanel";
 
 // Components
 import { Carousel } from "../../components/Carousel";
@@ -43,6 +44,7 @@ const RedeemPage = ({ perk }: any) => {
 
   const images = perk.fields["Gallery"];
   let items: any = [];
+  const mixpanel = MixpanelTracking.getInstance();
 
   useEffect(() => {
     images.map((item: any) => {
@@ -75,7 +77,7 @@ const RedeemPage = ({ perk }: any) => {
       </Head>
       <PerksLayout>
         <Link href="/perks">
-          <a className="h-[48px] w-fit flex items-center cursor-pointer gap-[5px] hover:text-[#1A021B] dark:hover:text-[#ECECEC] mt-8">
+          <a onClick={() => mixpanel.backNav()} className="h-[48px] w-fit flex items-center cursor-pointer gap-[5px] hover:text-[#1A021B] dark:hover:text-[#ECECEC] mt-8">
             <svg
               className="h-[20px] w-[20px]"
               xmlns="http://www.w3.org/2000/svg"
@@ -296,6 +298,7 @@ const RedeemPage = ({ perk }: any) => {
           theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
+        onClick={() => mixpanel.perkLink("website")}
       >
         <div className="text-white dark:text-[#FFF]/[0.50]">View website</div>
       </ReactTooltip>
@@ -309,6 +312,7 @@ const RedeemPage = ({ perk }: any) => {
           theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
+        onClick={() => mixpanel.perkLink("twitter")}
       >
         <div className="text-white dark:text-[#FFF]/[0.50]">View twitter</div>
       </ReactTooltip>
