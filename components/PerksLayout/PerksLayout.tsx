@@ -298,6 +298,8 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         id="theme"
         place="right"
         effect="solid"
+        delayHide={100}
+        delayUpdate={100}
         backgroundColor={
           theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
