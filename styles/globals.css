@@ -1,24 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @layer base {
-  h1 {
-    @apply block text-[2em] my-[0.67em] font-bold;
+  html {
+    @apply font-lexend bg-[#FEFDFE] text-[#9E9E9E];
   }
-  h2 {
-    @apply block text-[1.5em] my-[0.83em] font-bold;
-  }
-  h3 {
-    @apply block text-[1.17em] my-[1em] font-bold;
-  }
-  h4 {
-    @apply block my-[1.33em] font-bold;
-  }
-  h5 {
-    @apply block text-[.83em] my-[1.67em] font-bold;
-  }
-  h6 {
-    @apply block text-[.67em] my-[2.33em] font-bold;
-  }
+}
+
+:root {
+  --toastify-color-progress-light: #000 !important;
+  --toastify-toast-width: flex !important;
+}
+
+.fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 24%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.fade-to-bottom:after {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  bottom: 0;
+  mask-image: linear-gradient(to top, transparent 50%, rgba(0, 0, 0, 1) 100%);
+}
+
+.Toastify__toast-container {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.Toastify__toast-icon {
+  display: none !important;
+}
+
+.thumbs-wrapper {
+  margin: 0px !important;
+}
+
+.thumb {
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
+  height: 100% !important;
+  overflow: visible !important;
 }

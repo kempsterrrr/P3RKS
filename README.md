@@ -1,36 +1,29 @@
-# B3NZ
+# [P3RKS - Rewards for DAO Contributors](p3rks.xyz)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![](/public/twitter-card.png)
 
-## Getting Started
+_P3RKS is in beta testing with Developer DAO. We'll be expanding to other DAOs in the next few months. Join the DAO waitlist [here](https://airtable.com/shrmK5l1ZdifJAtJY)._
 
-First, run the development server:
+--
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## What is P3rks?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+We believe DAOs are the future of work. To realise their potential, DAOs must compete with traditional orgs to attract and retain talent.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+P3RKS help with this by unclocking new ways for DAO's to reward their contributors. We enable DAO's to create benefits programs in a decentralised way with pre-vetted partners and no code.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## How do I contribute to P3RKS?
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Whislt we'll always be building in the open, to begin with we're keeping our team small so we can move fast and therefore not accepting new contriubtors.
 
-## Learn More
+In the future, we'll open up public bounties for anyone to support our growth and Development. These will be viewable @ https://app.dework.xyz/p3rks.
 
-To learn more about Next.js, take a look at the following resources:
+## How do I get more product, protocol or service on P3RKS?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We're onboarding new partners all the time!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Please fill out [this form](https://airtable.com/shrwGFJhHZGw88oC5) and we'll be in touch asap.
 
-## Deploy on Vercel
+## How do I get my DAO on P3RKS?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We have a growing beta list of DAO's interested in working with P3RKS. To add your DAO to the list fill out [this form](https://airtable.com/shrmK5l1ZdifJAtJY).

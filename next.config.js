@@ -4,6 +4,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ["dl.airtable.com"],
+  },
 };
 
 module.exports = nextConfig;
