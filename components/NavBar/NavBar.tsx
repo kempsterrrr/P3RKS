@@ -49,6 +49,7 @@ const NavBar = () => {
                     key={item.text}
                     href={item.href}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     {item.text}
                   </a>
@@ -59,6 +60,7 @@ const NavBar = () => {
                   className="w-56 flex justify-center items-center text-center text-[#1A021B] text-lg font-medium rounded-full border-[1px] border-[#1a021b]/15 lg:py-3 2xl:py-4 lg:px-9 2xl:px-10 cursor-pointer transition duration-150 hover:ease-in-out hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
                   onClick={() => setOpen(true)}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Connect wallet
                 </a>

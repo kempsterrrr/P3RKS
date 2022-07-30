@@ -71,6 +71,7 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
                     href="https://airtable.com/shrmK5l1ZdifJAtJY"
                     className="underline underline-offset-1 text-black cursor-pointer dark:text-[#ECECEC]"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     Fill in this form!
                   </a>
