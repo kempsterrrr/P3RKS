@@ -1,9 +1,12 @@
-import mixpanel from 'mixpanel-browser';
+import mixpanel from "mixpanel-browser";
 export class MixpanelTracking {
   private static _instance: MixpanelTracking;
 
   public static getInstance(): MixpanelTracking {
-    if (MixpanelTracking._instance === null || MixpanelTracking._instance === undefined) {
+    if (
+      MixpanelTracking._instance === null ||
+      MixpanelTracking._instance === undefined
+    ) {
       return (MixpanelTracking._instance = new MixpanelTracking());
     }
     return this._instance;
@@ -11,11 +14,14 @@ export class MixpanelTracking {
 
   public constructor() {
     if (MixpanelTracking._instance) {
-      throw new Error("Error: Instance creation of MixpanelTracking is not allowed")
+      throw new Error(
+        "Error: Instance creation of MixpanelTracking is not allowed"
+      );
     }
-    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_ID || "",
-      { debug: true, ignore_dnt: true }
-    );
+    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_ID || "", {
+      debug: true,
+      ignore_dnt: true,
+    });
   }
 
   protected track(name: string, data: object = {}) {
@@ -27,6 +33,6 @@ export class MixpanelTracking {
   }
 
   public ctaClicked() {
-    this.track("")
+    this.track("");
   }
 }

@@ -42,7 +42,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         if (parseInt(data._hex) > 0) {
           if (!alreadyConnected) {
             toast(
-              <div className="flex items-center justify-center gap-[10px]">
+              <span className="flex text-sm items-center justify-center gap-[10px]">
                 <svg
                   className="h-[20px] w-[20px]"
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +57,14 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                 </svg>
 
                 <div>Wallet connected successfully!</div>
-              </div>
+              </span>
             );
           }
           setDDNFT(true);
           sessionStorage.setItem("connected", "true");
         } else {
           toast.warning(
-            <div className="flex items-center justify-center gap-[10px]">
+            <div className="flex text-sm items-center justify-center gap-[10px]">
               <svg
                 className="h-[20px] w-[20px]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,10 +111,6 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
 
   const navItems = [
     {
-      text: "View all perks",
-      onClick: handleAllPerks,
-    },
-    {
       text: "Feedback",
       href: "https://airtable.com/shr5pSh4Xx6HN5a70",
     },
@@ -145,7 +141,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   {navItems.map((item) => (
                     <a
                       key={item.text}
-                      className="block pl-2 py-2 text-base font-medium"
+                      className="block pl-2 py-2 text-base font-light"
                       href={item?.href ? item.href : null}
                       target={item?.href ? "_blank" : null}
                       rel="noreferrer"
@@ -182,7 +178,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                   </svg>
                 </a>
                 <div className="grow" />
-                <div className="space-y-[16px]">
+                <div className="space-y-[32px]">
                   <a
                     data-tip
                     data-for="feedback"
@@ -213,66 +209,69 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
                       <line x1="12" y1="12" x2="12" y2="12.01"></line>
                     </svg>
                   </a>
-                  <div className="border-b border-[#ECEBEC] my-[-10px]"></div>
-                  <a
-                    data-tip
-                    data-for="theme"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
-                    onClick={() => {
-                      localStorage.theme = "light";
-                    }}
-                  >
-                    <svg
-                      className="h-[26px] w-[26px]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      aria-hidden="true"
+                  <div className="border-b border-[#ECEBEC] my-[-10px] w-1/2 mx-auto"></div>
+                  <div className="space-y-4">
+                    <a
+                      data-tip
+                      data-for="theme"
+                      className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                      onClick={() => {
+                        localStorage.theme = "light";
+                      }}
                     >
-                      <path d="M0 0h24v24H0z" stroke="none" />
-                      <circle cx="12" cy="12" r="3" />
-                      <path d="M12 5V3M17 7l1.4-1.4M19 12h2M17 17l1.4 1.4M12 19v2M7 17l-1.4 1.4M6 12H4M7 7 5.6 5.6" />
-                    </svg>
-                  </a>
-                  <a
-                    data-tip
-                    data-for="disconnect"
-                    className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
-                    onClick={handleDisconnect}
-                  >
-                    <svg
-                      className="h-[20px] w-[20px]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      aria-hidden="true"
+                      <svg
+                        className="h-[26px] w-[26px]"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        aria-hidden="true"
+                      >
+                        <path d="M0 0h24v24H0z" stroke="none" />
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 5V3M17 7l1.4-1.4M19 12h2M17 17l1.4 1.4M12 19v2M7 17l-1.4 1.4M6 12H4M7 7 5.6 5.6" />
+                      </svg>
+                    </a>
+                    <a
+                      data-tip
+                      data-for="disconnect"
+                      className="w-[48px] h-[48px] rotate-180 border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
+                      onClick={handleDisconnect}
                     >
-                      <path d="M0 0h24v24H0z" stroke="none" />
-                      <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
-                      <path d="M7 12h14l-3-3m0 6 3-3" />
-                    </svg>
-                  </a>
+                      <svg
+                        className="h-[20px] w-[20px]"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        aria-hidden="true"
+                      >
+                        <path d="M0 0h24v24H0z" stroke="none" />
+                        <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
+                        <path d="M7 12h14l-3-3m0 6 3-3" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
                 {/*@ts-ignore - React tooltip is working on a fix */}
               </div>
             </div>
-            <main className="lg:px-12 lg:py-[32px] flex flex-col flex-1">
-              <div className="max-w-[100%] px-4 sm:px-[40px]">{children}</div>
-            </main>
           </>
         )}
       </Disclosure>
+      <main className="lg:px-12 flex flex-col flex-1 min-h-screen">
+        <div className="max-w-[100%] pb-6 lg:h-full flex-col">{children}</div>
+      </main>
+
       {/*@ts-ignore - React tooltip is working on a fix */}
       <ReactTooltip
         id="benefits"
         place="right"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >
@@ -286,7 +285,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         place="right"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >
@@ -299,10 +298,10 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         id="theme"
         place="right"
         effect="solid"
-        delayHide={500}
-        delayUpdate={500}
+        delayHide={100}
+        delayUpdate={100}
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-lg !px-[18px] !py-[10px]"
       >
@@ -332,7 +331,7 @@ const PerksLayout: React.FC<PerksLayoutProps> = ({ children }) => {
         place="right"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >

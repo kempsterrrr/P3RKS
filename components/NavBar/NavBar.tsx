@@ -11,7 +11,7 @@ const navItems = [
   },
   {
     text: "Partners",
-    href: "https://airtable.com/shrZZn6ZKZfvrUqDX",
+    href: "https://airtable.com/shrwGFJhHZGw88oC5",
   },
 ];
 
@@ -48,6 +48,7 @@ const NavBar = () => {
                     className="text-[#908C91] text-lg transition duration-150 hover:ease-in-out hover:text-[#1A021B] dark:text-[#8A8A8A] dark:hover:text-white"
                     key={item.text}
                     href={item.href}
+                    target="_blank"
                   >
                     {item.text}
                   </a>
@@ -57,6 +58,7 @@ const NavBar = () => {
                 <a
                   className="w-56 flex justify-center items-center text-center text-[#1A021B] text-lg font-medium rounded-full border-[1px] border-[#1a021b]/15 lg:py-3 2xl:py-4 lg:px-9 2xl:px-10 cursor-pointer transition duration-150 hover:ease-in-out hover:shadow-[0_0_25px_rgba(0,0,0,0.05)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
                   onClick={() => setOpen(true)}
+                  target="_blank"
                 >
                   Connect wallet
                 </a>
@@ -65,9 +67,9 @@ const NavBar = () => {
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    <XIcon className="block h-8 w-8" aria-hidden="true" />
                   ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    <MenuIcon className="block h-7 w-7" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -77,17 +79,12 @@ const NavBar = () => {
                 {navItems.map((item) => (
                   <a
                     key={item.text}
-                    className="block pl-2 py-2 text-base font-medium"
+                    className="block pl-2 py-2 text-base font-light"
                     href={item.href}
                   >
                     {item.text}
                   </a>
                 ))}
-                <Link href="/benefits">
-                  <a className="block pl-2 py-2 text-base font-medium">
-                    View benefits
-                  </a>
-                </Link>
                 <div className="block pl-2 py-2 text-base font-medium"></div>
               </div>
             </Disclosure.Panel>

@@ -75,7 +75,7 @@ const RedeemPage = ({ perk }: any) => {
       </Head>
       <PerksLayout>
         <Link href="/perks">
-          <a className="h-[48px] w-fit flex items-center cursor-pointer gap-[5px] hover:text-[#1A021B] dark:hover:text-[#ECECEC]">
+          <a className="h-[48px] w-fit flex items-center cursor-pointer gap-[5px] hover:text-[#1A021B] dark:hover:text-[#ECECEC] mt-8">
             <svg
               className="h-[20px] w-[20px]"
               xmlns="http://www.w3.org/2000/svg"
@@ -92,8 +92,8 @@ const RedeemPage = ({ perk }: any) => {
           </a>
         </Link>
 
-        <div className="flex space-x-[60px] lg:mt-14 xl:mt-16 lg:pr-12">
-          <div className="flex-1 space-y-[30px] lg:space-y-[60px] lg:max-w-[50%]">
+        <div className="flex space-x-[60px] lg:mt-14 xl:mt-16 lg:pr-12 font-light pb-8">
+          <div className="flex-1 space-y-[30px] lg:space-y-[60px] lg:max-w-[50%] max-w-md">
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[32px] lg:text-[48px] text-[#171717] dark:text-[#ECECEC]">
@@ -147,9 +147,9 @@ const RedeemPage = ({ perk }: any) => {
             </div>
             <div className="space-y-[20px]">
               <div className="space-y-[4px]">
-                <div className="text-[18px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
+                <h3 className="text-[18px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
                   About {perk?.fields["Partner Name"]}
-                </div>
+                </h3>
                 <div className="text-[16px] lg:text-[18px]">
                   {perk?.fields["Partner About"]}
                 </div>
@@ -177,12 +177,12 @@ const RedeemPage = ({ perk }: any) => {
                   ></div>
                 </div>
               </div>
-              <div className="text-[16px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
+              <h3 className="text-[16px] lg:text-[20px] text-[#171717] dark:text-[#ECECEC]">
                 Gallery
-              </div>
+              </h3>
               <div
                 ref={ref}
-                className="rounded-[16px] overflow-hidden border-[1px] border-[#F3F1F3] dark:border-[#2E2E2E] w-full h-full"
+                className="rounded-[16px] overflow-hidden border-[1px] border-[#F3F1F3] dark:border-[#2E2E2E] h-full"
               >
                 <Carousel images={images} />
               </div>
@@ -195,6 +195,7 @@ const RedeemPage = ({ perk }: any) => {
                     perk?.fields["Redemption Link"]
                   )
                 }
+                target="_blank"
               >
                 Redeem perk
               </a>
@@ -209,6 +210,7 @@ const RedeemPage = ({ perk }: any) => {
                 data-for="website"
                 className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                 onClick={() => router.push(perk?.fields["Website"])}
+                target="_blank"
               >
                 <svg
                   className="h-[20px] w-[20px]"
@@ -229,6 +231,7 @@ const RedeemPage = ({ perk }: any) => {
                 data-for="twitter"
                 className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                 onClick={() => router.push(perk?.fields["Twitter"])}
+                target="_blank"
               >
                 <svg
                   className="h-[20px] w-[20px]"
@@ -244,10 +247,10 @@ const RedeemPage = ({ perk }: any) => {
                 </svg>
               </a>
             </div>
-            <div className="border-[1px] border-[#1A021B]/[0.07] rounded-[16px] dark:bg-[#232323] dark:border-[#1A021B]/[0.07]  py-8">
-              <div className="text-[26px] text-[#171717] dark:text-[#ECECEC] border-b-[1px] border-[#1A021B]/[0.07] dark:bg-[#232323] dark:border-[#1A021B]/[0.07]  bg-white px-8 pb-4">
+            <div className="border-[1px] border-[#1A021B]/[0.07] rounded-[16px] dark:bg-[#232323] dark:border-[#F0F0F0]/[0.07] pt-8">
+              <h3 className="text-[26px] text-[#171717] dark:text-[#ECECEC] border-b-[1px] border-[#1A021B]/[0.07] dark:bg-[#232323] dark:border-[#F0F0F0]/[0.07]  bg-white px-8 pb-4">
                 Perk details
-              </div>
+              </h3>
               <div className="p-8">
                 <div className="space-y-[4px]">
                   <div className="text-[20px] text-[#171717] dark:text-[#ECECEC]">
@@ -271,7 +274,7 @@ const RedeemPage = ({ perk }: any) => {
                   ></div>
                 </div>
                 <a
-                  className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#1A021B] py-[18px] px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white "
+                  className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#171717] py-4 px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] lg:px-[52px] transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white "
                   onClick={() =>
                     handleRedeemPerk(
                       perk?.id,
@@ -279,6 +282,7 @@ const RedeemPage = ({ perk }: any) => {
                       perk?.fields["Redemption Link"]
                     )
                   }
+                  target="_blank"
                 >
                   Redeem perk
                 </a>
@@ -293,7 +297,7 @@ const RedeemPage = ({ perk }: any) => {
         place="top"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >
@@ -306,7 +310,7 @@ const RedeemPage = ({ perk }: any) => {
         place="top"
         effect="solid"
         backgroundColor={
-          theme == "dark" || theme == "system" ? "#2B2B2B" : "#1A021B"
+          theme == "dark" || theme == "system" ? "#2B2B2B" : "#171717"
         }
         className="!rounded-full"
       >
