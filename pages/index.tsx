@@ -65,7 +65,10 @@ const Home: NextPage = () => {
                   Connect wallet
                 </a>
                 <Link href="https://airtable.com/shrwGFJhHZGw88oC5">
-                  <a className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-4 px-14 cursor-pointer sm:text-[16px]  transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white">
+                  <a
+                    className="text-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-4 px-14 cursor-pointer sm:text-[16px]  transition duration-150 hover:ease-in-out hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
+                    target="_blank"
+                  >
                     Offer a perk
                   </a>
                 </Link>
