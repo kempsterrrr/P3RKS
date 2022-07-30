@@ -176,6 +176,7 @@ const Perks: NextPage = ({ perks, categories }) => {
               <a
                 href="https://twitter.com/intent/tweet?text=wen%20%40getP3RKS%20?"
                 className="text-[#171717] dark:text-[#ECECEC] dark:hover:text-white underline cursor-pointer"
+                target="_blank"
               >
                 tweet us
               </a>
@@ -187,12 +188,14 @@ const Perks: NextPage = ({ perks, categories }) => {
             <a
               href="https://airtable.com/shrmK5l1ZdifJAtJY"
               className="flex justify-center items-center text-white text-[15px] font-medium rounded-full bg-[#171717] py-4 px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.25)] dark:border-[#414141] dark:bg-[#EAEAEA] dark:text-[#171717] dark:hover:bg-white"
+              target="_blank"
             >
               Join DAO waitlist
             </a>
             <a
               href="https://opensea.io/collection/devs-for-revolution"
               className="flex justify-center items-center text-[#1A021B] text-[15px] font-medium rounded-full border-[1px] border-[#1a021b]/15 py-4 px-[48px] cursor-pointer sm:text-[16px] lg:text-[18px] hover:shadow-[0_0_35px_rgba(0,0,0,0.07)] dark:text-white dark:bg-[#232323] dark:border-[#2E2E2E] dark:hover:border-white"
+              target="_blank"
             >
               Join Developer DAO
             </a>

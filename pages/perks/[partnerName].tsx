@@ -195,6 +195,7 @@ const RedeemPage = ({ perk }: any) => {
                     perk?.fields["Redemption Link"]
                   )
                 }
+                target="_blank"
               >
                 Redeem perk
               </a>
@@ -209,6 +210,7 @@ const RedeemPage = ({ perk }: any) => {
                 data-for="website"
                 className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                 onClick={() => router.push(perk?.fields["Website"])}
+                target="_blank"
               >
                 <svg
                   className="h-[20px] w-[20px]"
@@ -229,6 +231,7 @@ const RedeemPage = ({ perk }: any) => {
                 data-for="twitter"
                 className="w-[48px] h-[48px] border-[#ECEBEC] text-[#9E9E9E] border-[1px] rounded-full flex justify-center items-center cursor-pointer transition duration-150 hover:ease-in-out hover:border-[#1A021B] hover:text-[#1A021B] dark:border-[#2E2E2E] dark:bg-[#232323] dark:text-[#8A8A8A] dark:hover:text-white dark:hover:border-white"
                 onClick={() => router.push(perk?.fields["Twitter"])}
+                target="_blank"
               >
                 <svg
                   className="h-[20px] w-[20px]"
@@ -279,6 +282,7 @@ const RedeemPage = ({ perk }: any) => {
                       perk?.fields["Redemption Link"]
                     )
                   }
+                  target="_blank"
                 >
                   Redeem perk
                 </a>

@@ -63,16 +63,14 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = ({
               <hr className="dark:border-[#959595]/[0.7]" />
               <div className="px-[32px] pt-[24px] text-[18px] text-left space-y-[8px]">
                 <p>
-                  P3RKS currently only available to members of{" "}
-                  <span className="text-black dark:text-[#ECECEC]">
-                    Developer DAO.
-                  </span>
+                  P3RKS currently only available to members of Developer DAO.
                 </p>
                 <p>
-                  Want us to add your DAO?{" "}
+                  Want to add your DAO?{" "}
                   <a
                     href="https://airtable.com/shrmK5l1ZdifJAtJY"
                     className="underline underline-offset-1 text-black cursor-pointer dark:text-[#ECECEC]"
+                    target="_blank"
                   >
                     Fill in this form!
                   </a>
