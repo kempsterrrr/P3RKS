@@ -12,7 +12,7 @@ type SeoProps = {
 
 const Seo = ({
   title = "P3RKS | Rewards for DAO Contributors",
-  description = "Unlock more ways to recognise and reward your DAOs top contributors.",
+  description = "Unlock more ways to recognise and reward your DAO's top contributors.",
   ogTitle = "P3RKS | Rewards for DAO Contributors",
   ogType,
   ogUrl,
@@ -23,6 +23,7 @@ const Seo = ({
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
+      <meta name="og:description" content={description} />
       <meta name="og:title" content={ogTitle} />
       <meta name="og:url" content={ogUrl} />
       <meta name="og:type" content={ogType} />
