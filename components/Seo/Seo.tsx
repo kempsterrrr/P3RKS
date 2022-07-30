@@ -7,6 +7,7 @@ type SeoProps = {
   ogType?: string;
   ogUrl?: string;
   ogImage?: string;
+  robots?: string;
 };
 
 const Seo = ({
@@ -16,6 +17,7 @@ const Seo = ({
   ogType,
   ogUrl,
   ogImage,
+  robots,
 }: SeoProps) => {
   return (
     <Head>
@@ -25,6 +27,9 @@ const Seo = ({
       <meta name="og:url" content={ogUrl} />
       <meta name="og:type" content={ogType} />
       <meta name="og:image" content={ogImage ? ogImage : "/twitter-card.png"} />
+      {process.env.NODE_ENV == "production" && !robots ? null : (
+        <meta name="robots" content={robots} />
+      )}
       <link rel="icon" href="/favicon.ico" />
       <title>{title}</title>
     </Head>

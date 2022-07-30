@@ -4,6 +4,7 @@ import { NavBar } from "../NavBar";
 import { Footer } from "../Footer";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  useGetUser("/perks");
   return (
     <>
       <div className="flex flex-col min-h-screen">
